@@ -38,8 +38,6 @@ public class RegisterService {
         String email = json.getString("email");
         String foundingTime = json.getString("founding_time");
         String desc = json.getString("desc");
-        Integer firmType = json.getInteger("firm_type");
-        Maunfacturer maunfacturer = new Maunfacturer();
         if (StringUtils.isEmpty(username)){
             return ResponseModel.getModel("用户名为空", "error", null);
         }
@@ -85,25 +83,28 @@ public class RegisterService {
         String password2 = json.getString("password2");
         String firmname = json.getString("firm_name");
         String product = json.getString("product");
+        Integer productid = json.getInteger("productid");
         String address = json.getString("address");
         String phone = json.getString("phone");
         String department = json.getString("department");
         String email = json.getString("email");
         String foundingTime = json.getString("founding_time");
         String desc = json.getString("desc");
-        Integer firmType = json.getInteger("firm_type");
+        Integer grade = json.getInteger("grade");
+
         Maunfacturer maunfacturer = new Maunfacturer();
         maunfacturer.setUsername(username);
         maunfacturer.setPassword(password1);
         maunfacturer.setFirmName(firmname);
         maunfacturer.setProduct(product);
+        maunfacturer.setProductId(productid);
         maunfacturer.setAddress(address);
         maunfacturer.setPhone(phone);
         maunfacturer.setDepartment(department);
         maunfacturer.setEmail(email);
         maunfacturer.setFoundingTime(baseService.parseStringToDate(foundingTime));
         maunfacturer.setDesc(desc);
-        maunfacturer.setGrade(firmType);
+        maunfacturer.setGrade(grade);
         return maunfacturer;
     }
     public void insertManu(Maunfacturer maunfacturer){

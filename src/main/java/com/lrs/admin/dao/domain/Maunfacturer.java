@@ -31,6 +31,8 @@ public class Maunfacturer {
 
     private Integer grade;
 
+    private Integer productId;
+
     public Integer getFirmId() {
         return firmId;
     }
@@ -141,5 +143,13 @@ public class Maunfacturer {
 
     public void setGrade(Integer grade) {
         this.grade = grade;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 }
