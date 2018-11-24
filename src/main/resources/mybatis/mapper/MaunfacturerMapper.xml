@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lrs.admin.dao.mapper.MaunfacturerMapper" >
+  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.Maunfacturer" >
+    <id column="firm_id" property="firmId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="firm_name" property="firmName" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="founding_time" property="foundingTime" jdbcType="TIMESTAMP" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.tyre.lca.domain.Maunfacturer">
+    insert into maunfacturer (firm_id, username, password,
+    firm_name, product, address,
+    phone, department, email,
+    founding_time, register_time, update_time,
+    `desc`, grade)
+    values (#{firmId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    #{firmName,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+    #{phone,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+    #{foundingTime,jdbcType=TIMESTAMP}, #{registerTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{desc,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}) ON  DUPLICATE KEY UPDATE password = #{password,jdbcType=VARCHAR},
+    firm_name = #{firmName,jdbcType=VARCHAR},
+    product = #{product,jdbcType=VARCHAR},
+    address = #{address,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    department = #{department,jdbcType=VARCHAR},
+    email = #{email,jdbcType=VARCHAR},
+    founding_time = #{foundingTime,jdbcType=TIMESTAMP},
+    register_time = #{registerTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    `desc` = #{desc,jdbcType=VARCHAR},
+    grade = #{grade,jdbcType=INTEGER}
+  </insert>
+  <select id="selectUser" parameterType="String" resultMap="BaseResultMap">
+    SELECT * FROM maunfacturer WHERE username = #{username}
+  </select>
+</mapper>
