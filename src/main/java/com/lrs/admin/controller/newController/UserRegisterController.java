@@ -24,6 +24,7 @@ public class UserRegisterController {
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public ParamException usrRegister(@RequestBody String str){
     	System.out.println("进来注册了。。。。。");
+    	System.out.println(str);
         if (StringUtils.isEmpty(str)){
             return new ParamException(Constants.ERROR_CODE, "请输入数据");
         }

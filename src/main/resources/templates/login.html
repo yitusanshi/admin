@@ -46,6 +46,7 @@
 	top: 3%;
 	left: 30%;
 	z-index: 9999;
+	right: 25%;
 }
 
 .login-box-body {
@@ -534,7 +535,8 @@
 			if (true) {
 				$.ajax({
 					type : "POST",
-					url : _ctx + "/user/regist",
+					url : _ctx + "/regist",
+					scriptCharset: "utf-8",
 					data : {
 						username : $("#regist_username").val(),
 						password1 : $("#regist_password1").val(),
