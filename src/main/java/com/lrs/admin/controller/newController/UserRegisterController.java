@@ -72,6 +72,11 @@ public class UserRegisterController {
         if (map.containsKey(pid)){
             json.put("product", map.get(pid));
         }
+        if (pid == 8 || pid == 9){
+            json.put("grade", 2);
+        }else {
+            json.put("grade", 1);
+        }
         HashMap<String,Object> map = registerService.judgeNormal(json);
         if (map != null){
             return map;

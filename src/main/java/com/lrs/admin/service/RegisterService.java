@@ -90,7 +90,8 @@ public class RegisterService {
         String email = json.getString("email");
         String foundingTime = json.getString("founding_time");
         String desc = json.getString("desc");
-        Integer firmType = json.getInteger("firm_type");
+        Integer grade = json.getInteger("grade");
+
         Maunfacturer maunfacturer = new Maunfacturer();
         maunfacturer.setUsername(username);
         maunfacturer.setPassword(password1);
@@ -103,7 +104,7 @@ public class RegisterService {
         maunfacturer.setEmail(email);
         maunfacturer.setFoundingTime(baseService.parseStringToDate(foundingTime));
         maunfacturer.setDesc(desc);
-        maunfacturer.setGrade(firmType);
+        maunfacturer.setGrade(grade);
         return maunfacturer;
     }
     public void insertManu(Maunfacturer maunfacturer){
