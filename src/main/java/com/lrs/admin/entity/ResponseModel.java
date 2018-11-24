@@ -2,7 +2,7 @@ package com.lrs.admin.entity;
 
 import java.util.HashMap;
 
-public class ResponseModel{
+public class ResponseModel extends Exception{
 
 	private static HashMap<String,Object> model=null;
 	
