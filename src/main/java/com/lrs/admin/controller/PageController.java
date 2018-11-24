@@ -13,4 +13,8 @@ public class PageController {
 		return "include/"+pageName;
 	}
 	
+	@RequestMapping("/register")
+	public String register(){
+		return "/register";
+	}
 }

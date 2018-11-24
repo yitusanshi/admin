@@ -14,3 +14,4 @@
 # workspance
 .settings/
 *.project
+/bin/
