@@ -40,7 +40,7 @@
 				<ul class="treeview-menu">
 					<li th:if="${subm.isHasMenu()}" th:each="subm,submStat:${menu.getSubMenu()}"><a target="mainFrame" href="404.html" th:href="@{${subm.getMENU_URL()}}"> <i class="fa fa-circle-o"></i> <label th:text="${subm.getMENU_NAME()}">子菜单</label>
 					</a></li>
-				</ul></li>
+				</ul></li> 
 		</ul>
 	</section>
 	<!-- /.sidebar -->
