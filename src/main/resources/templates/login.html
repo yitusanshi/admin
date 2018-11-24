@@ -46,6 +46,7 @@
 	top: 3%;
 	left: 30%;
 	z-index: 9999;
+	right: 25%;
 }
 
 .login-box-body {
@@ -173,7 +174,7 @@
 				<div class="row form-group">
 					<div class="col-xs-3">详细地址：</div>
 					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address1" />
+						<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address" />
 					</div>
 				</div>
 				<div class="row form-group">
@@ -535,9 +536,16 @@
 				$.ajax({
 					type : "POST",
 					url : _ctx + "/regist",
+					scriptCharset: "utf-8",
 					data : {
 						username : $("#regist_username").val(),
-
+						password1 : $("#regist_password1").val(),
+						password2 : $("#regist_password2").val(),
+						firm_name:$("#regist_firm_name").val(),
+						firm_type: $("#regist_firm_type").val(),
+						address:$("#cmbProvince").val()+""+$("#cmbCity").val()+""+$("#cmbArea").val(),
+						regist_address:$("#regist_address1").val(),
+						founding_time:$("#regist_founding_time").val()
 					},
 					dataType : "json",
 					success : function(data) {
