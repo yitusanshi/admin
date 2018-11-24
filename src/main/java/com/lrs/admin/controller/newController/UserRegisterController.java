@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping(value = "/user")
 public class UserRegisterController {
     @Resource
     private MaunfacturerMapper maunfacturerMapper;
     @Resource
     private RegisterService registerService;
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public ParamException usrRegister(@RequestBody String str){
+    	System.out.println("进来注册了。。。。。");
         if (StringUtils.isEmpty(str)){
             return new ParamException(Constants.ERROR_CODE, "请输入数据");
         }

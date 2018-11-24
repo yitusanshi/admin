@@ -17,7 +17,7 @@
     <result column="desc" property="desc" jdbcType="VARCHAR" />
     <result column="grade" property="grade" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="com.tyre.lca.domain.Maunfacturer">
+  <insert id="insert" parameterType="com.lrs.admin.dao.domain.Maunfacturer">
     insert into maunfacturer (firm_id, username, password,
     firm_name, product, address,
     phone, department, email,
