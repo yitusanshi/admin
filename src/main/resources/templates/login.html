@@ -21,13 +21,13 @@
 <link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
 <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/logo.png}">
 
-<!-- datetimepicker时间插件 -->
+<!-- datetimepicker时间插件v -->
 <link rel="stylesheet" th:href="@{/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}">
 
 <!-- Google Font -->
 <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
 <style>
-#error-msg {
+#error-msg, #error-msg1 {
 	text-align: center;
 	color: red;
 }
@@ -149,13 +149,19 @@
 				<div class="row form-group">
 					<div class="col-xs-3">厂商类型：</div>
 					<div class="col-xs-9">
-						<select class="form-control" id="regist_firm_type">
-							<option value="1">供应商</option>
-							<option value="2">回收商</option>
+						<select class="form-control" id="productid">
+							<option value="1" selected="selected">钢帘线_供应商</option>
+							<option value="2">合成橡胶_丁苯橡胶_供应商</option>
+							<option value="3">合成橡胶_顺丁橡胶_供应商</option>
+							<option value="4">尼龙帘布_供应商</option>
+							<option value="5">胎圈钢丝_供应商</option>
+							<option value="6">炭黑_供应商</option>
+							<option value="7">天然橡胶_供应商</option>
+							<option value="8">轮胎生产_回收商</option>
+							<option value="9">再生胶_回收商</option>
 						</select>
 					</div>
 				</div>
-
 				<div class="row form-group">
 					<div class="col-xs-3">厂商地址：</div>
 					<div class="col-xs-3">
@@ -174,7 +180,7 @@
 				<div class="row form-group">
 					<div class="col-xs-3">详细地址：</div>
 					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address" />
+						<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address1" />
 					</div>
 				</div>
 				<div class="row form-group">
@@ -186,9 +192,8 @@
 					</div>
 					<input type="hidden" id="dtp_input2" value="" /><br />
 				</div>
-
-
 			</form>
+			<p id="error-msg1"></p>
 			<div class="row">
 				<div class="col-xs-4">
 					<button type="submit" id="regist_btn" class="btn btn-primary btn-block btn-flat">注册</button>
@@ -212,6 +217,7 @@
 	<script th:src="@{/js/path.js}"></script>
 	<script th:src="@{/js/city.js}"></script>
 
+	<script th:src="@{/js/login.js}"></script>
 	<!-- datetimepicker插件 -->
 	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
 	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
@@ -518,47 +524,11 @@
 				}
 				return true;
 			}
-			// 打开会员注册
-			$("#Regist_start_").click(function() {
-				$("#login-box").hide();
-				$("#regist-box").show();
-			});
-			$("#toLogin").click(function() {
-				$("#regist-box").hide();
-				$("#login-box").show();
-			});
 		});
 	</script>
-	<script type="text/javascript">
-		// 注册账户
-		$("#regist_btn").click(function() {
-			if (true) {
-				$.ajax({
-					type : "POST",
-					url : _ctx + "/regist",
-					scriptCharset: "utf-8",
-					data : {
-						username : $("#regist_username").val(),
-						password1 : $("#regist_password1").val(),
-						password2 : $("#regist_password2").val(),
-						firm_name:$("#regist_firm_name").val(),
-						firm_type: $("#regist_firm_type").val(),
-						address:$("#cmbProvince").val()+""+$("#cmbCity").val()+""+$("#cmbArea").val(),
-						regist_address:$("#regist_address1").val(),
-						founding_time:$("#regist_founding_time").val()
-					},
-					dataType : "json",
-					success : function(data) {
-						if ("success" == data.status) {
-							window.location.href = _ctx + "/index";
-						} else {
-							$("#error-msg").html(data.msg);
-						}
-					}
-				})
-			}
-		});
-	</script>
+	<!-- 	<script type="text/javascript">
+
+	</script> -->
 	<script>
 		$('.form_date').datetimepicker({
 			format : 'yyyy-mm-dd', // 格式 如果只有yyyy-mm-dd那就是0000-00-00
