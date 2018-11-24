@@ -125,6 +125,11 @@
 			<version>1.7.25</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>

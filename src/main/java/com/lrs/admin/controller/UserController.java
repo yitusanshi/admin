@@ -35,7 +35,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 获取用户角色
+	 * 获取用户 角色
 	 * @return
 	 */
 	@RequestMapping(value="/getRole",method=RequestMethod.GET)
