@@ -5,64 +5,53 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="_ctx" th:content="@{/}" />
 <title>Admin</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<link rel="stylesheet"
-	th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
-<link rel="stylesheet"
-	th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
-<link rel="stylesheet"
-	th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
 <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
 <link rel="stylesheet" th:href="@{/dist/css/skins/_all-skins.min.css}">
 <link rel="stylesheet" th:href="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css}">
 
-<link rel="stylesheet"
-	th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
-	
+<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
+
 <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/logo.png}">
 </head>
-	<script type="text/javascript">
-			
-		//iframe 自适应
-		function setIframeHeight(iframe) {
-			if (iframe) {
-				var iframeWin = iframe.contentWindow
-						|| iframe.contentDocument.parentWindow;
-				if (iframeWin.document.body) {
-					iframe.height = iframeWin.document.documentElement.scrollHeight
-							|| iframeWin.document.body.scrollHeight;
-				}
+<script type="text/javascript">
+	//iframe 自适应
+	function setIframeHeight(iframe) {
+		if (iframe) {
+			var iframeWin = iframe.contentWindow
+					|| iframe.contentDocument.parentWindow;
+			if (iframeWin.document.body) {
+				iframe.height = iframeWin.document.documentElement.scrollHeight
+						|| iframeWin.document.body.scrollHeight;
 			}
-		};
+		}
+	};
 
-		window.onload = function() {
-			setIframeHeight(document.getElementById('mainBodyFrame'));
-		};
-	</script>
+	window.onload = function() {
+		setIframeHeight(document.getElementById('mainBodyFrame'));
+	};
+</script>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		
+
 		<!-- 头部 -->
-		<header th:include="include/header :: admin-header" class="main-header">
-		</header>
+		<header th:include="include/header :: admin-header" class="main-header"> </header>
 		<!-- 左边 -->
-		<aside th:include="include/left :: admin-left" class="main-sidebar">
-		</aside>
+		<aside th:include="include/left :: admin-left" class="main-sidebar"></aside>
 
 		<div class="content-wrapper">
 			<!-- 主体部分！！！！ -->
-			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}"
-				frameborder="0" scrolling="no" width="100%"  onload="setIframeHeight(this)"></iframe>
+			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%" onload="setIframeHeight(this)"></iframe>
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1.0.0
 			</div>
-			<strong>Copyright &copy; 2018 <a
-				href="https://lrshuai.top">九九辰</a>.
+			<strong>Copyright &copy; 2018 <a href="https://lrshuai.top">九九辰</a>.
 			</strong> All rights reserved.
 		</footer>
 
@@ -86,8 +75,7 @@
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
 				<!-- /.tab-pane -->
 				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-				</div>
+				<div class="tab-pane" id="control-sidebar-settings-tab"></div>
 				<!-- /.tab-pane -->
 			</div>
 		</aside>
@@ -97,6 +85,68 @@
 		<div class="control-sidebar-bg"></div>
 	</div>
 	<!-- ./wrapper -->
+
+
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="userModelHead">修改密码</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<input type="hidden" name="menu_id" value="0" /> 
+						<input type="hidden" name="parent_id" value="0" />
+						 <input type="hidden" name="actionurl" value="/" />
+						<div class="form-group">
+							<label for="menu_name" class="col-sm-2 control-label">用户名称</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="user_name" value="" id="user_name" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="menu_url" class="col-sm-2 control-label">旧密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control"  value="" id="old_password" placeholder="请输入旧密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="menu_url" class="col-sm-2 control-label">新密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control"  value="" id="old_password" placeholder="请输入旧密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="menu_type" class="col-sm-2 control-label">菜单类型</label>
+							<div class="col-sm-10">
+								<select name="menu_type" class="form-control">
+									<option value="1">系统</option>
+									<option value="2" selected="selected">业务</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="menu_icon" class="col-sm-2 control-label">菜单ICON</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="menu_icon" value="" id="menu_icon" placeholder="请输入icon">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="menu_order" class="col-sm-2 control-label">菜单顺序</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control" name="menu_order" value="" id="menu_order" placeholder="请输入菜单顺序">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-success" id="submitBtn">添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -115,8 +165,7 @@
 	<!-- Bootstrap 3.3.7 -->
 	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
 	<!-- Bootstrap WYSIHTML5 -->
-	<script
-		th:src="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js}"></script>
 	<!-- Slimscroll -->
 	<script th:src="@{/bower_components/jquery-slimscroll/jquery.slimscroll.min.js}"></script>
 	<!-- FastClick -->
