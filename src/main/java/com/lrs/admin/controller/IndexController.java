@@ -58,16 +58,16 @@ public class IndexController extends BaseController{
 	}
 	
 	
-	/**
+/*	*//**
 	 * 用户登录
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value={"/login"},method=RequestMethod.POST)
 	@ResponseBody
 	public Object login(){
 		System.out.println("登录进来了"+this.getParameterMap()+"======"+this.getSession());
 		return userService.login(this.getParameterMap(), this.getSession());
-	}
+	}*/
 	
 	/**
 	 * 用户注销
