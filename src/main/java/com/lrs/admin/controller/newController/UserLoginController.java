@@ -2,7 +2,7 @@ package com.lrs.admin.controller.newController;
 
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.entity.ResponseModel;
-import com.lrs.admin.service.UserService;
+import com.lrs.admin.service.NewUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 
 
 @RestController
 public class UserLoginController {
     private Logger logger = LoggerFactory.getLogger(UserLoginController.class);
     @Resource
-    private UserService userService;
+    private NewUserService newUserService;
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(HttpServletRequest request, Model model){
         try {
@@ -38,7 +37,7 @@ public class UserLoginController {
         if (StringUtils.isEmpty(password)){
             return ResponseModel.getModel("请输入密码", "error", null);
         }
-        Maunfacturer maunfacturer = userService.select(username);
+        Maunfacturer maunfacturer = newUserService.select(username);
         if (maunfacturer == null){
             return ResponseModel.getModel("用户名错误", "error", null);
         }
