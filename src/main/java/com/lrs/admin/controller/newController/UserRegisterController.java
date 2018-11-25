@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.entity.ResponseModel;
-import com.lrs.admin.service.UserService;
+import com.lrs.admin.service.NewUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +36,7 @@ public class UserRegisterController {
     };
 
     @Resource
-    private UserService userService;
+    private NewUserService newUserService;
     @RequestMapping(value = "/regist", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public HashMap<String,Object> usrRegister(HttpServletRequest request){
         try {
@@ -71,13 +71,13 @@ public class UserRegisterController {
         }else {
             json.put("grade", 1);
         }
-        HashMap<String,Object> map = userService.judgeNormal(json);
+        HashMap<String,Object> map = newUserService.judgeNormal(json);
         if (map != null){
             return map;
         }
-        Maunfacturer maunfacturer = userService.getObject(json);
+        Maunfacturer maunfacturer = newUserService.getObject(json);
         try{
-            userService.insertManu(maunfacturer);
+            newUserService.insertManu(maunfacturer);
         }catch (Exception e){
             logger.error("register error, username is {}", username);
             return ResponseModel.getModel("注册失败，请联系管理员", "error", null);

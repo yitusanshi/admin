@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 @Service
-public class UserService {
+public class NewUserService {
 
-    private Logger logger = LoggerFactory.getLogger(UserService.class);
+    private Logger logger = LoggerFactory.getLogger(NewUserService.class);
     @Resource
     private BaseService baseService;
     @Resource
