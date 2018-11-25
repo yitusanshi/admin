@@ -39,7 +39,7 @@ public class UrlInterceptor implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		try {
+	/*	try {
 			HttpSession session = request.getSession();
 			String path = request.getServletPath();
 			System.out.println("path="+path);
@@ -75,7 +75,7 @@ public class UrlInterceptor implements HandlerInterceptor{
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		return true;
 	}
 

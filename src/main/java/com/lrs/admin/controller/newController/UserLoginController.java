@@ -22,7 +22,7 @@ public class UserLoginController {
     @Resource
     private NewUserService newUserService;
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(HttpServletRequest request, Model model){
+    public Object login(HttpServletRequest request){
         try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -45,7 +45,7 @@ public class UserLoginController {
         if (!pword.equals(password)){
             return ResponseModel.getModel("用户名或密码错误", "error", null);
         }
-        model.addAttribute("user", maunfacturer);
-        return "/index";
+       return  ResponseModel.getModel("登录成功", "success", maunfacturer);
+      
     }
 }
