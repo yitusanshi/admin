@@ -2,16 +2,11 @@ package com.lrs.admin.controller.newController;
 
 import com.alibaba.fastjson.JSONObject;
 
-import com.lrs.admin.common.Constants;
 import com.lrs.admin.dao.domain.Maunfacturer;
-import com.lrs.admin.dao.domain.ParamException;
-import com.lrs.admin.dao.mapper.MaunfacturerMapper;
 import com.lrs.admin.entity.ResponseModel;
-import com.lrs.admin.service.RegisterService;
-import org.apache.commons.lang3.StringUtils;
+import com.lrs.admin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +36,7 @@ public class UserRegisterController {
     };
 
     @Resource
-    private RegisterService registerService;
+    private UserService userService;
     @RequestMapping(value = "/regist", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public HashMap<String,Object> usrRegister(HttpServletRequest request){
         try {
@@ -77,13 +71,13 @@ public class UserRegisterController {
         }else {
             json.put("grade", 1);
         }
-        HashMap<String,Object> map = registerService.judgeNormal(json);
+        HashMap<String,Object> map = userService.judgeNormal(json);
         if (map != null){
             return map;
         }
-        Maunfacturer maunfacturer = registerService.getObject(json);
+        Maunfacturer maunfacturer = userService.getObject(json);
         try{
-            registerService.insertManu(maunfacturer);
+            userService.insertManu(maunfacturer);
         }catch (Exception e){
             logger.error("register error, username is {}", username);
             return ResponseModel.getModel("注册失败，请联系管理员", "error", null);

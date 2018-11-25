@@ -2,9 +2,7 @@ package com.lrs.admin.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.lrs.admin.common.Constants;
 import com.lrs.admin.dao.domain.Maunfacturer;
-import com.lrs.admin.dao.domain.ParamException;
 import com.lrs.admin.dao.mapper.MaunfacturerMapper;
 import com.lrs.admin.entity.ResponseModel;
 import org.apache.commons.lang3.StringUtils;
@@ -17,9 +15,9 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 @Service
-public class RegisterService {
+public class UserService {
 
-    private Logger logger = LoggerFactory.getLogger(RegisterService.class);
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
     @Resource
     private BaseService baseService;
     @Resource
@@ -109,5 +107,10 @@ public class RegisterService {
     }
     public void insertManu(Maunfacturer maunfacturer){
         maunfacturerMapper.insert(maunfacturer);
+    }
+
+    public Maunfacturer select(String username){
+        Maunfacturer maunfacturer = maunfacturerMapper.selectUser(username);
+        return maunfacturer;
     }
 }

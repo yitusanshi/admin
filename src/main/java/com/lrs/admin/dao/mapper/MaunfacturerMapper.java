@@ -14,4 +14,5 @@ import javax.annotation.Resource;
 public interface MaunfacturerMapper {
     int insert(Maunfacturer record);
     Maunfacturer selectUser(String username);
+
 }
