@@ -20,17 +20,17 @@ import java.util.Map;
 @RestController
 public class UserRegisterController {
     private Logger logger  = LoggerFactory.getLogger(UserRegisterController.class);
-    private static Map<Integer, String> map = new HashMap(){
+    protected static Map<String, String> map = new HashMap(){
         {
-            put( 1 , "钢帘线_供应商");
-            put( 2 , "合成橡胶_丁苯橡胶_供应商");
-            put( 3 , "合成橡胶_顺丁橡胶_供应商");
-            put( 4 , "尼龙帘布_供应商");
-            put( 5 , "胎圈钢丝_供应商");
-            put( 6 , "炭黑_供应商");
-            put( 7 , "天然橡胶_供应商");
-            put( 8 , "轮胎生产_回收商");
-            put( 9 , "再生胶_回收商");
+            put( "1" , "钢帘线_供应商");
+            put( "2" , "合成橡胶_丁苯橡胶_供应商");
+            put( "3" , "合成橡胶_顺丁橡胶_供应商");
+            put( "4" , "尼龙帘布_供应商");
+            put( "5" , "胎圈钢丝_供应商");
+            put( "6" , "炭黑_供应商");
+            put( "7" , "天然橡胶_供应商");
+            put( "8" , "轮胎生产_回收商");
+            put( "9" , "再生胶_回收商");
 
         }
     };
@@ -61,12 +61,12 @@ public class UserRegisterController {
         json.put("firm_name", firm_name);
         json.put("address", address);
         json.put("founding_time", founding_time);
-        int pid = Integer.parseInt(productid);
-        json.put("productid", pid);
-        if (map.containsKey(pid)){
-            json.put("product", map.get(pid));
+        //int pid = Integer.parseInt(productid);
+        json.put("productid", productid);
+        if (map.containsKey(productid)){
+            json.put("product", map.get(productid));
         }
-        if (pid == 8 || pid == 9){
+        if (productid.equals("8") || productid.equals("9")){
             json.put("grade", 2);
         }else {
             json.put("grade", 1);

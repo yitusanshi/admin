@@ -4,22 +4,22 @@ import lombok.Data;
 
 import java.util.Date;
 @Data
-public class DataRecord {
+public class TransportRecord {
     private Integer id;
 
     private Integer firmId;
 
-    private String tagTime;
+    private Integer tagTime;
 
     private String categoryId;
 
-    private String classifyId;
+    private Float transportVolume;
 
-    private Float productVolume;
+    private Float transportDistance;
 
-    private String dataSource;
+    private Integer isLoad;
 
-    private String remark;
+    private String applicant;
 
     private Date applicantTime;
 

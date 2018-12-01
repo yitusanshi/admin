@@ -30,9 +30,21 @@
                   enableDeleteByExample="false" enableSelectByExample="false"
                   selectByExampleQueryId="false">
            </table>-->
-        <table tableName="data_record">
-           <!-- <columnOverride column="desc" jdbcType="VARCHAR"> </columnOverride>-->
+       <!-- <table tableName="data_record">
+           &lt;!&ndash; <columnOverride column="desc" jdbcType="VARCHAR"> </columnOverride>&ndash;&gt;
         </table>
+        <table tableName="maunfacturer">
+             <columnOverride column="desc" jdbcType="VARCHAR"> </columnOverride>
+        </table>
+        <table tableName="pro_category">
+             <columnOverride column="desc" jdbcType="VARCHAR"> </columnOverride>
+        </table>
+        <table tableName="pro_classify">
+             <columnOverride column="classify_desc" jdbcType="VARCHAR"> </columnOverride>
+        </table>
+        <table tableName="transport_record">
+            &lt;!&ndash; <columnOverride column="desc" jdbcType="VARCHAR"> </columnOverride>&ndash;&gt;
+        </table>-->
 
     </context>
 </generatorConfiguration>

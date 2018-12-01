@@ -23,6 +23,8 @@ public class App {
         json2.put("种类id4", "种类名称4");
         jsonObject.put("分类id1", json1);
         jsonObject.put("分类id2", json2);
+        JSONObject json3 = jsonObject.getJSONObject("分类id1");
+        json3.put("种类id5", "种类名称5");
         System.out.println(jsonObject.toJSONString());
     }
 }

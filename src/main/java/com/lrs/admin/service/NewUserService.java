@@ -81,7 +81,7 @@ public class NewUserService {
         String password2 = json.getString("password2");
         String firmname = json.getString("firm_name");
         String product = json.getString("product");
-        Integer productid = json.getInteger("productid");
+        String productid = json.getString("productid");
         String address = json.getString("address");
         String phone = json.getString("phone");
         String department = json.getString("department");
@@ -95,7 +95,7 @@ public class NewUserService {
         maunfacturer.setPassword(password1);
         maunfacturer.setFirmName(firmname);
         maunfacturer.setProduct(product);
-        maunfacturer.setProductId(productid);
+        maunfacturer.setProductid(productid);
         maunfacturer.setAddress(address);
         maunfacturer.setPhone(phone);
         maunfacturer.setDepartment(department);

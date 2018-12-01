@@ -5,9 +5,11 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class ProCategory {
-    private Integer categoryId;
+    private Integer id;
 
-    private Integer classifyId;
+    private String categoryId;
+
+    private String classifyId;
 
     private String categoryName;
 

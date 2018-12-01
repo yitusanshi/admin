@@ -1,276 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lrs.admin.dao.mapper.DataRecordMapper" >
-  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.DataRecord" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="firm_id" property="firmId" jdbcType="INTEGER" />
-    <result column="tag_time" property="tagTime" jdbcType="INTEGER" />
-    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="classify_id" property="classifyId" jdbcType="INTEGER" />
-    <result column="product_volume" property="productVolume" jdbcType="REAL" />
-    <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="applicant_time" property="applicantTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrs.admin.dao.mapper.DataRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.DataRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="firm_id" jdbcType="INTEGER" property="firmId" />
+    <result column="tag_time" jdbcType="VARCHAR" property="tagTime" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <result column="product_volume" jdbcType="REAL" property="productVolume" />
+    <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, firm_id, tag_time, category_id, classify_id, product_volume, data_source, remark, 
-    applicant_time
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lrs.admin.dao.domain.DataRecordExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from data_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from data_record
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from data_record
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.lrs.admin.dao.domain.DataRecordExample" >
-    delete from data_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.lrs.admin.dao.domain.DataRecord" >
-    insert into data_record (id, firm_id, tag_time, 
+  <insert id="insert" parameterType="com.lrs.admin.dao.domain.DataRecord">
+    insert into data_record (firm_id, tag_time,
       category_id, classify_id, product_volume, 
-      data_source, remark, applicant_time
+      data_source, remark
       )
-    values (#{id,jdbcType=INTEGER}, #{firmId,jdbcType=INTEGER}, #{tagTime,jdbcType=INTEGER}, 
-      #{categoryId,jdbcType=INTEGER}, #{classifyId,jdbcType=INTEGER}, #{productVolume,jdbcType=REAL}, 
-      #{dataSource,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{applicantTime,jdbcType=TIMESTAMP}
+    values (#{firmId,jdbcType=INTEGER}, #{tagTime,jdbcType=INTEGER},
+      #{categoryId,jdbcType=VARCHAR}, #{classifyId,jdbcType=VARCHAR}, #{productVolume,jdbcType=REAL}, 
+      #{dataSource,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lrs.admin.dao.domain.DataRecord" >
-    insert into data_record
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="firmId != null" >
-        firm_id,
-      </if>
-      <if test="tagTime != null" >
-        tag_time,
-      </if>
-      <if test="categoryId != null" >
-        category_id,
-      </if>
-      <if test="classifyId != null" >
-        classify_id,
-      </if>
-      <if test="productVolume != null" >
-        product_volume,
-      </if>
-      <if test="dataSource != null" >
-        data_source,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="applicantTime != null" >
-        applicant_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="firmId != null" >
-        #{firmId,jdbcType=INTEGER},
-      </if>
-      <if test="tagTime != null" >
-        #{tagTime,jdbcType=INTEGER},
-      </if>
-      <if test="categoryId != null" >
-        #{categoryId,jdbcType=INTEGER},
-      </if>
-      <if test="classifyId != null" >
-        #{classifyId,jdbcType=INTEGER},
-      </if>
-      <if test="productVolume != null" >
-        #{productVolume,jdbcType=REAL},
-      </if>
-      <if test="dataSource != null" >
-        #{dataSource,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="applicantTime != null" >
-        #{applicantTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.lrs.admin.dao.domain.DataRecordExample" resultType="java.lang.Integer" >
-    select count(*) from data_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
+
+  <select id="selectGroupByFirmId" parameterType="java.lang.Integer">
+      SELECT * FROM data_record GROUP BY firm_id, tag_time
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update data_record
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.firmId != null" >
-        firm_id = #{record.firmId,jdbcType=INTEGER},
-      </if>
-      <if test="record.tagTime != null" >
-        tag_time = #{record.tagTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.categoryId != null" >
-        category_id = #{record.categoryId,jdbcType=INTEGER},
-      </if>
-      <if test="record.classifyId != null" >
-        classify_id = #{record.classifyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.productVolume != null" >
-        product_volume = #{record.productVolume,jdbcType=REAL},
-      </if>
-      <if test="record.dataSource != null" >
-        data_source = #{record.dataSource,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.applicantTime != null" >
-        applicant_time = #{record.applicantTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update data_record
-    set id = #{record.id,jdbcType=INTEGER},
-      firm_id = #{record.firmId,jdbcType=INTEGER},
-      tag_time = #{record.tagTime,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER},
-      classify_id = #{record.classifyId,jdbcType=INTEGER},
-      product_volume = #{record.productVolume,jdbcType=REAL},
-      data_source = #{record.dataSource,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      applicant_time = #{record.applicantTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lrs.admin.dao.domain.DataRecord" >
-    update data_record
-    <set >
-      <if test="firmId != null" >
-        firm_id = #{firmId,jdbcType=INTEGER},
-      </if>
-      <if test="tagTime != null" >
-        tag_time = #{tagTime,jdbcType=INTEGER},
-      </if>
-      <if test="categoryId != null" >
-        category_id = #{categoryId,jdbcType=INTEGER},
-      </if>
-      <if test="classifyId != null" >
-        classify_id = #{classifyId,jdbcType=INTEGER},
-      </if>
-      <if test="productVolume != null" >
-        product_volume = #{productVolume,jdbcType=REAL},
-      </if>
-      <if test="dataSource != null" >
-        data_source = #{dataSource,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="applicantTime != null" >
-        applicant_time = #{applicantTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lrs.admin.dao.domain.DataRecord" >
-    update data_record
-    set firm_id = #{firmId,jdbcType=INTEGER},
-      tag_time = #{tagTime,jdbcType=INTEGER},
-      category_id = #{categoryId,jdbcType=INTEGER},
-      classify_id = #{classifyId,jdbcType=INTEGER},
-      product_volume = #{productVolume,jdbcType=REAL},
-      data_source = #{dataSource,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      applicant_time = #{applicantTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <select id="selectDetailData" parameterMap="java.util.List">
+      SELECT * FROM data_record WHERE firm_id = #{0}  AND tag_time = #{1}
+  </select>
 </mapper>

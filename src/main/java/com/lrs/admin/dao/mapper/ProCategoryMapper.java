@@ -6,15 +6,16 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ProCategoryMapper {
-
+    List<ProCategory> selectList(String dbColumn);
+    ProCategory getProCategoryDetail(String categoryid);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(ProCategory record);
 
     int insertSelective(ProCategory record);
 
 
-
-    ProCategory selectByPrimaryKey(Integer categoryId);
+    ProCategory selectByPrimaryKey(Integer id);
 
 
     int updateByPrimaryKeySelective(ProCategory record);
