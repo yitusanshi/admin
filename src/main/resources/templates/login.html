@@ -159,8 +159,8 @@
 							<option value="7">天然橡胶_供应商</option>
 							<option value="8">轮胎生产_回收商</option>
 							<option value="9">再生胶_回收商</option>
-						 </select>
-					</div> 
+						</select>
+					</div>
 				</div>
 				<div class="row form-group">
 					<div class="col-xs-3">厂商地址：</div>
@@ -205,7 +205,6 @@
 
 			</div>
 		</div>
-
 	</div>
 
 	<!-- jQuery 3 -->
@@ -501,7 +500,11 @@
 								cache : false,
 								success : function(data) {
 									if ("success" == data.status) {
-										window.location.href = _ctx + "/index";
+										/* window.location.href = _ctx + "/index?firmId="+data.data.firmId; */
+										document.write("<form action='"+_ctx+"/index' name='login_submit' method='post' style='display:none'>>");
+										document.write("<input type='hidden' name='firmId' value='"+data.data.firmId+"'/>");
+										document.write("</form>")
+										document.login_submit.submit();
 									} else {
 										$("#error-msg").html(data.msg);
 									}

@@ -41,6 +41,7 @@ public class LoginFilter implements Filter{
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
+    	System.out.println("===============走了一次过滤器==================");
     	 HttpServletRequest request = (HttpServletRequest) req;
          HttpServletResponse response = (HttpServletResponse) res;
          String path = request.getServletPath();
