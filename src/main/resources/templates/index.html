@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="_ctx" th:content="@{/}" />
-<title>Admin</title>
+<title>基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库管理系统</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
@@ -51,7 +51,7 @@
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1.0.0
 			</div>
-			<strong>Copyright &copy; 2018 <a href="https://lrshuai.top">九九辰</a>.
+			<strong>Copyright &copy; 2018 <a href="www.baidu.com">九九辰</a>.
 			</strong> All rights reserved.
 		</footer>
 
@@ -84,74 +84,104 @@
        immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<!-- ./wrapper -->
 
-<!-- 
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="userModelHead">修改密码</h4>
+					<h4 class="modal-title" id="UserModalLabel">用户信息修改</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form">
-						<input type="hidden" name="menu_id" value="0" /> 
-						<input type="hidden" name="parent_id" value="0" />
-						 <input type="hidden" name="actionurl" value="/" />
-						<div class="form-group">
-							<label for="menu_name" class="col-sm-2 control-label">用户名称</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="user_name" value="" id="user_name" >
+					<form action="" method="post">
+
+						<input type="text" class="form-control" placeholder="用户ID" id="regist_username" />
+
+						<div class="row form-group">
+							<div class="col-xs-3">用户名：</div>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" id="regist_username" value="${maunfacturer.username}" />
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="menu_url" class="col-sm-2 control-label">旧密码</label>
-							<div class="col-sm-10">
-								<input type="password" class="form-control"  value="" id="old_password" placeholder="请输入旧密码">
+						<div class="row form-group">
+							<div class="col-xs-3">密&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
+							<div class="col-xs-9">
+								<input type="password" class="form-control" placeholder="密码" id="regist_password1" />
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="menu_url" class="col-sm-2 control-label">新密码</label>
-							<div class="col-sm-10">
-								<input type="password" class="form-control"  value="" id="old_password" placeholder="请输入旧密码">
+						<div class="row form-group">
+							<div class="col-xs-3">确认密码：</div>
+							<div class="col-xs-9">
+								<input type="password" class="form-control" placeholder="确认密码" id="regist_password2" />
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="menu_type" class="col-sm-2 control-label">菜单类型</label>
-							<div class="col-sm-10">
-								<select name="menu_type" class="form-control">
-									<option value="1">系统</option>
-									<option value="2" selected="selected">业务</option>
+						<div class="row form-group">
+							<div class="col-xs-3">厂商名称：</div>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" placeholder="厂商名称" id="regist_firm_name" />
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-3">厂商类型：</div>
+							<div class="col-xs-9">
+								<select class="form-control" id="productid">
+									<option value="1" selected="selected">钢帘线_供应商</option>
+									<option value="2">合成橡胶_丁苯橡胶_供应商</option>
+									<option value="3">合成橡胶_顺丁橡胶_供应商</option>
+									<option value="4">尼龙帘布_供应商</option>
+									<option value="5">胎圈钢丝_供应商</option>
+									<option value="6">炭黑_供应商</option>
+									<option value="7">天然橡胶_供应商</option>
+									<option value="8">轮胎生产_回收商</option>
+									<option value="9">再生胶_回收商</option>
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="menu_icon" class="col-sm-2 control-label">菜单ICON</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="menu_icon" value="" id="menu_icon" placeholder="请输入icon">
+						<div class="row form-group">
+							<div class="col-xs-3">厂商地址：</div>
+							<div class="col-xs-3">
+								<select id="cmbProvince" name="cmbProvince" class="form-control"></select>
+							</div>
+							<div class="col-xs-3">
+								<select id="cmbCity" name="cmbCity" class="form-control"></select>
+							</div>
+							<div class="col-xs-3">
+								<select id="cmbArea" name="cmbArea" class="form-control"></select>
+							</div>
+							<!-- 							<input class="col-xs-3" type="text" value="详细地址"
+								onblur="if(this.value=''){this.value='详细地址'}"
+								onfocus="if(this.value='详细地址'){this.value='';this.style.color='#ff0000'}"> -->
+						</div>
+						<div class="row form-group">
+							<div class="col-xs-3">详细地址：</div>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address1" />
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="menu_order" class="col-sm-2 control-label">菜单顺序</label>
-							<div class="col-sm-10">
-								<input type="number" class="form-control" name="menu_order" value="" id="menu_order" placeholder="请输入菜单顺序">
+						<div class="row form-group">
+							<div class="col-xs-3">成立时间：</div>
+							<div class="col-xs-9">
+								<div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="16" type="text" id="regist_founding_time" value="2018-12-29" readonly> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
 							</div>
+							<input type="hidden" id="dtp_input2" value="" /><br />
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-success" id="submitBtn">添加</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">提交更改</button>
 				</div>
 			</div>
+			<!-- /.modal-content -->
 		</div>
-	</div> -->
+		<!-- /.modal -->
+	</div>
 
 
-
-
-
+	<!-- ./wrapper -->
 
 
 	<!-- jQuery 3 -->

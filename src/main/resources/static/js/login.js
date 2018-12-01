@@ -21,7 +21,8 @@ $("#regist_btn").click(
 					dataType : "json",
 					success : function(data) {
 						if ("success" == data.status) {
-							window.location.href = _ctx + "/index";
+							alert("注册成功,返回登录界面！！！");
+							window.location.href = _ctx;
 						} else {
 							$("#error-msg1").html(data.msg);
 						}

@@ -31,15 +31,17 @@ public class UrlInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object obj, ModelAndView mv)
 			throws Exception {
+		System.out.println("===================走了一次添加增删改查权限=====================");
 		//添加增删改查权限
-		if(mv != null){
+		/*if(mv != null){
 			mv.addObject(Const.SESSION_QX, request.getSession().getAttribute(Const.SESSION_QX));
-		}
+		}*/
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-	/*	try {
+		System.out.println("===============走了一次拦截器=======================");
+		/*	try {
 			HttpSession session = request.getSession();
 			String path = request.getServletPath();
 			System.out.println("path="+path);
@@ -81,6 +83,7 @@ public class UrlInterceptor implements HandlerInterceptor{
 
 	//校验是否有权限
 	private boolean checkPermission(Permission permission, HttpServletRequest request) throws IOException {
+		System.out.println("=====================走了一次权限检查========================");
 		if (permission != null && !StringUtils.isEmpty(permission.url()) && !StringUtils.isEmpty(permission.type().getType())) {
 			if(!Jurisdiction.buttonJurisdiction(permission.url(), permission.type().getType(),request.getSession())){
 				return false;
@@ -91,6 +94,7 @@ public class UrlInterceptor implements HandlerInterceptor{
 
 	//json 字符串返回
 	private void outputJson(HttpServletResponse response, HashMap<String,Object> model) throws IOException {
+		System.out.println("=================走了一次json字符串返回==================");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = null ;
