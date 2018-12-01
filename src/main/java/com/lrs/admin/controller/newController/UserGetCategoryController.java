@@ -41,6 +41,8 @@ public class UserGetCategoryController {
             return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
         }
         logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        int productid = maunfacturer.getProductId();
+
         return null;
     }
 }
