@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException;
 public class UserLoginController {
     private Logger logger = LoggerFactory.getLogger(UserLoginController.class);
     @Resource
-    private NewUserService newUserService;
+    private NewUserService  newUserService;
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(HttpServletRequest request){
         try {
