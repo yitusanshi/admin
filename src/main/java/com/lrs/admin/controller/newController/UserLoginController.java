@@ -42,7 +42,7 @@ public class UserLoginController {
             return ResponseModel.getModel("用户名错误", "error", null);
         }
         String pword = maunfacturer.getPassword();
-        if (!pword.equals(password)){
+        if (! pword.equals(password)){
             return ResponseModel.getModel("用户名或密码错误", "error", null);
         }
        return  ResponseModel.getModel("登录成功", "success", maunfacturer);
