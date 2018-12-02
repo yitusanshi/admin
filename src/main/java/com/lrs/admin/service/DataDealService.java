@@ -19,8 +19,7 @@ public class DataDealService {
     private ProCategoryMapper proCategoryMapper;
     @Autowired
     private DataRecordMapper dataRecordMapper;
-    @Autowired
-    private ProCategoryMapper proCategoryMapper;
+
     public List<ProCategory> getUserCategory(String dbColumn){
         return proCategoryMapper.selectList(dbColumn);
     }
