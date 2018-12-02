@@ -48,7 +48,9 @@ public class UserRegisterController {
 
         String username = request.getParameter("username");
         String password1 = request.getParameter("password1");
+        password1 = password1.trim();
         String password2 = request.getParameter("password2");
+        password2 = password2.trim();
         String firm_name = request.getParameter("firm_name");
         String firm_type = request.getParameter("firm_type");
         String address = request.getParameter("address");

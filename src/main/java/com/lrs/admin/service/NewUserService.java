@@ -113,4 +113,11 @@ public class NewUserService {
         Maunfacturer maunfacturer = maunfacturerMapper.selectUser(username);
         return maunfacturer;
     }
+    public Maunfacturer selectByFirmId(int firmid){
+        Maunfacturer maunfacturer = maunfacturerMapper.selectByFirmId(firmid);
+        return  maunfacturer;
+    }
+    public void updatePassword(int firmid, String password){
+        maunfacturerMapper.updatePassword(firmid, password);
+    }
 }

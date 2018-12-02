@@ -45,4 +45,10 @@
   <select id="selectUser" parameterType="String" resultMap="BaseResultMap">
     SELECT * FROM maunfacturer WHERE username = #{username}
   </select>
+  <select id="selectByFirmId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM maunfacturer WHERE firm_id = #{0}
+  </select>
+  <update id="updatePassword" >
+    UPDATE maunfacturer SET `password` = #{1} WHERE firm_id = #{0}
+  </update>
 </mapper>

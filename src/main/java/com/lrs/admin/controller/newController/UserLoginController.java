@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 
 
 @RestController
@@ -31,6 +32,7 @@ public class UserLoginController {
         }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        password = password.trim();
         if (StringUtils.isEmpty(username)){
             return ResponseModel.getModel("请输入用户名", "error", null);
         }
@@ -47,5 +49,34 @@ public class UserLoginController {
         }
        return  ResponseModel.getModel("登录成功", "success", maunfacturer);
       
+    }
+    @RequestMapping(value = "editPassword", method = RequestMethod.POST)
+    public HashMap<String, Object> editUserPassword(HttpServletRequest request){
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("编码格式错误");
+            return ResponseModel.getModel("编码格式错误", "error", null);
+        }
+        String firmid = request.getParameter("firmid");
+        String oldpassword = request.getParameter("oldpassword");
+        oldpassword = oldpassword.trim();
+        String newpassword1 = request.getParameter("newpassword1");
+        newpassword1 = newpassword1.trim();
+        String newpassword2 = request.getParameter("newpassword2");
+        newpassword2 = newpassword2.trim();
+        int fid = Integer.valueOf(firmid);
+        Maunfacturer maunfacturer = newUserService.selectByFirmId(fid);
+        String password = maunfacturer.getPassword();
+        if (password.equals(oldpassword)){
+            if (newpassword1.equals(newpassword2)){
+                newUserService.updatePassword(fid, newpassword1);
+                return ResponseModel.getModel("修改成功", "success", null);
+            }else {
+                return ResponseModel.getModel("新密码两次输入不一致", "error", null);
+            }
+        }else {
+            return ResponseModel.getModel("原始密码输入错误", "error", null);
+        }
     }
 }
