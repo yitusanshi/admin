@@ -1,6 +1,6 @@
 <!-- Logo -->
 <div th:fragment="admin-header">
-	<a th:href="@{/index}" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini">菜单</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg" th:text="${maunfacturer.username}"><b>Admin</b>后台</span>
+	<a th:href="@{/index}" class="logo"> <span class="logo-mini">菜单</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg" th:text="${maunfacturer.username}"><b>Admin</b>后台</span>
 	</a>
 	<!-- Header Navbar: style can be found in header.less -->
 	<nav class="navbar navbar-static-top">
@@ -157,14 +157,14 @@
 						<li class="footer"><a href="#">View all tasks</a></li>
 					</ul></li>
 				<!-- User Account: style can be found in dropdown.less -->
-				<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/images/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs" th:text="${userName}">管理员</span>
+				<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/images/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs" th:text="${maunfacturer.username}">管理员</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header"><img src="/images/logo.png" class="img-circle" alt="User Image">
 							<p th:text="${maunfacturer.username}"></p>
 							<p>
-								<small><a href="http://www.lrshuai.top" style="color: #fff;">http://www.lrshuai.top</a></small>
+								<small><a href="www.baidu.com" style="color: #fff;">www.baidu.com</a></small>
 							</p></li>
 						<!-- Menu Body -->
 						<li class="user-body">

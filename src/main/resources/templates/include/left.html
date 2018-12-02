@@ -7,20 +7,28 @@
 			</div>
 			<div class="pull-left info">
 				<p th:text="${maunfacturer.username}">Admin</p>
-				<a style="cursor: pointer" data-toggle="modal" data-target="#UserModal" onclick="update()"> <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;修改密码
+				<a data-toggle="modal" data-target="#UserPassModal" th:onclick="'update_user_id(\''+${maunfacturer.username}+'\',\''+${maunfacturer.firmId}+'\');'" style="cursor: pointer"> <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;修改密码
 				</a> <a th:href="@{/logout}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;退出</a>
 			</div>
 		</div>
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">主导航</li>
-			<li class="treeview" th:if="${menu.isHasMenu()}" th:each="menu,mStat:${menus}"><a href="#"> <i class="fa fa-dashboard" th:class="${menu.getMENU_ICON()}"></i> <span th:text="${menu.getMENU_NAME()}">菜单</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
-				</span>
-			</a>
+			<li class="treeview"></li>
+			
+			
+			
+			<li class="treeview" th:if="${menu.isHasMenu()}" th:each="menu,mStat:${menus}">
+				<a href="#"> <i class="fa fa-dashboard" th:class="${menu.getMENU_ICON()}"></i> 
+					<span th:text="${menu.getMENU_NAME()}">菜单</span> 
+					<span class="pull-right-container"> 
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
 				<ul class="treeview-menu">
 					<li th:if="${subm.isHasMenu()}" th:each="subm,submStat:${menu.getSubMenu()}"><a target="mainFrame" href="404.html" th:href="@{${subm.getMENU_URL()}}"> <i class="fa fa-circle-o"></i> <label th:text="${subm.getMENU_NAME()}">子菜单</label>
 					</a></li>
-				</ul></li>
+				</ul>
+			</li>
 		</ul>
 	</section>
-	<!-- /.sidebar -->
 </aside>
