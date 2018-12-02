@@ -50,9 +50,10 @@ public class UserLoginController {
        return  ResponseModel.getModel("登录成功", "success", maunfacturer);
       
     }
-    @RequestMapping(value = "editPassword", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPassword", method = RequestMethod.POST)
     public HashMap<String, Object> editUserPassword(HttpServletRequest request){
-        try {
+        System.out.println("景来额。。。。。。。。。。。。。。。");
+    	try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
             logger.error("编码格式错误");
@@ -61,6 +62,7 @@ public class UserLoginController {
         String firmid = request.getParameter("firmid");
         String oldpassword = request.getParameter("oldpassword");
         oldpassword = oldpassword.trim();
+        System.out.println(oldpassword);
         String newpassword1 = request.getParameter("newpassword1");
         newpassword1 = newpassword1.trim();
         String newpassword2 = request.getParameter("newpassword2");
@@ -70,6 +72,7 @@ public class UserLoginController {
         String password = maunfacturer.getPassword();
         if (password.equals(oldpassword)){
             if (newpassword1.equals(newpassword2)){
+            	System.out.println(fid+"==========="+newpassword1);
                 newUserService.updatePassword(fid, newpassword1);
                 return ResponseModel.getModel("修改成功", "success", null);
             }else {

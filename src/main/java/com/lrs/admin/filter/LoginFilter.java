@@ -31,7 +31,7 @@ public class LoginFilter implements Filter{
 	//静态资源文件地址
 	private static final String PTAH_REG=".*\\.((js)|(css)|(png)|(jpg)|(woff)|(woff2)|(map)|(svg)|(ttf)|(ico))";
 	//不过滤的地址
-	private static final String NOT_FILTER="/((login)|(logout)|(regist)|(toLogin)|(error)|(upload)|(index)|(include)).*";
+	private static final String NOT_FILTER="/((login)|(logout)|(regist)|(toLogin)|(error)|(upload)|(editPassword)|(index)|(include)).*";
 
 	@Autowired
 	private IUserService userService;
@@ -44,6 +44,7 @@ public class LoginFilter implements Filter{
     	 HttpServletRequest request = (HttpServletRequest) req;
          HttpServletResponse response = (HttpServletResponse) res;
          String path = request.getServletPath();
+         System.out.println("过滤器的路径是"+path+"=========================");
          
          if(!path.matches(PTAH_REG) && !path.matches(NOT_FILTER) && !path.equals("/")){
         	 if(userService == null){

@@ -11,13 +11,14 @@ $(function() {
 			cache : false,
 			dataType : "json",
 			data : {
-				firmid : $("#update_firm_id"),
-				oldpassword : ("#old_firm_password"),
-				newpassword1 : ("#new_firm_password1"),
-				newpassword2 : ("#new_firm_password2"),
+				firmid : $("#update_firm_id").val(),
+				oldpassword : $("#old_firm_password").val(),
+				newpassword1 : $("#new_firm_password1").val(),
+				newpassword2 : $("#new_firm_password2").val(),
 			},
 			success : function(data) {
 				if (data.status == 'success') {
+					alert("密码修改成功！！！");
 					$("#UserPassModal").modal("hide");
 				} else {
 					alert(data.msg);

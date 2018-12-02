@@ -42,13 +42,13 @@
     `desc` = #{desc,jdbcType=VARCHAR},
     grade = #{grade,jdbcType=INTEGER}
   </insert>
-  <select id="selectUser" parameterType="String" resultMap="MaunfacturerMap">
+  <select id="selectUser" parameterType="java.lang.String" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer WHERE username = #{username}
   </select>
   <select id="selectByFirmId" parameterType="java.lang.Integer" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer WHERE firm_id = #{0}
   </select>
   <update id="updatePassword" >
-    UPDATE maunfacturer SET `password` = #{1} WHERE firm_id = #{0}
+    UPDATE maunfacturer SET `password` = #{arg1} WHERE firm_id = #{arg0}
   </update>
 </mapper>

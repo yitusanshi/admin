@@ -27,7 +27,7 @@
       SELECT * FROM data_record GROUP BY firm_id, tag_time
   </select>
 
-  <select id="selectDetailData" parameterMap="java.util.List">
+  <select id="selectDetailData" >
       SELECT * FROM data_record WHERE firm_id = #{0}  AND tag_time = #{1}
   </select>
 </mapper>
