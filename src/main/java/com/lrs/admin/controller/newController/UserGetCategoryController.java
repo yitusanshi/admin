@@ -40,7 +40,7 @@ public class UserGetCategoryController {
         put("8", "tyre_produce");
         put("9", "recla_rubber");
     }};
-
+    //online
     @Resource
     private NewUserService newUserService;
     @RequestMapping(value = "getcategory", method = RequestMethod.POST)
