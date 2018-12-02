@@ -22,38 +22,38 @@ import com.lrs.admin.service.IUserService;
 @Controller
 public class IndexController extends BaseController {
 
-	@Value("${admin.name}")
+	/*@Value("${admin.name}")
 	private String adminName;
 
 	@Autowired
 	private IUserService userService;
 
-	/**
+	*//**
 	 * 入口
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = { "/", "/toLogin" }, method = RequestMethod.GET)
 	public String toLogin() {
 		return "login";
 	}
 
-	/**
+	*//**
 	 * 首页
 	 * 
 	 * @param model
 	 * @return
-	 */
-/*	@SuppressWarnings("unchecked")
+	 *//*
+*//*	@SuppressWarnings("unchecked")
 	@RequestMapping(value = { "/index" }, method = RequestMethod.POST)
 	public String index(Model model, String firmId) {
 
 		System.out.println("已经登录进来了、、、、、、、、、、、" + firmId);
 
-		*//**
+		*//**//**
 		 * 根据厂商Id获取厂商的详细信息
 		 * 
-		 *//*
+		 *//**//*
 
 		model.addAttribute("userStatus", "在线");
 
@@ -70,29 +70,29 @@ public class IndexController extends BaseController {
 			e.printStackTrace();
 		}
 		return "index";
-	}*/
+	}*//*
 
-	/*	*//**
+	*//*	*//**//**
 			 * 用户登录
 			 * 
 			 * @return
-			 *//*
+			 *//**//*
 			 * @RequestMapping(value={"/login"},method=RequestMethod.POST)
 			 * 
 			 * @ResponseBody public Object login(){
 			 * System.out.println("登录进来了"+this.getParameterMap()+"======"+this.
 			 * getSession()); return userService.login(this.getParameterMap(),
 			 * this.getSession()); }
-			 */
+			 *//*
 
-	/**
+	*//**
 	 * 用户注销
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/logout")
 	public String logout() {
 		return userService.logout(this.getSession());
-	}
+	}*/
 
 }
