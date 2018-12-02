@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrs.admin.dao.mapper.ProCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.ProCategory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="steel_cord" jdbcType="INTEGER" property="steelCord" />
+    <result column="sbr_rubber" jdbcType="INTEGER" property="sbrRubber" />
+    <result column="cis_rubber" jdbcType="INTEGER" property="cisRubber" />
+    <result column="nylon_cord" jdbcType="INTEGER" property="nylonCord" />
+    <result column="bead_wire" jdbcType="INTEGER" property="beadWire" />
+    <result column="carbon_black" jdbcType="INTEGER" property="carbonBlack" />
+    <result column="natural_rubber" jdbcType="INTEGER" property="naturalRubber" />
+    <result column="tyre_produce" jdbcType="INTEGER" property="tyreProduce" />
+    <result column="recla_rubber" jdbcType="INTEGER" property="reclaRubber" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <select id="selectList" parameterType="java.lang.String">
+    SELECT * FROM pro_category WHERE ${0} = 1
+  </select>
+  <select id="getProCategoryDetail" parameterType="java.lang.String">
+    SELECT * FROM pro_category WHERE category_id = #{0}
+  </select>
+
+  <insert id="insert" parameterType="com.lrs.admin.dao.domain.ProCategory">
+    insert into pro_category (id, category_id, classify_id, 
+      category_name, unit, desc, 
+      steel_cord, sbr_rubber, cis_rubber, 
+      nylon_cord, bead_wire, carbon_black, 
+      natural_rubber, tyre_produce, recla_rubber, 
+      insert_time)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=VARCHAR}, #{classifyId,jdbcType=VARCHAR}, 
+      #{categoryName,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{steelCord,jdbcType=INTEGER}, #{sbrRubber,jdbcType=INTEGER}, #{cisRubber,jdbcType=INTEGER}, 
+      #{nylonCord,jdbcType=INTEGER}, #{beadWire,jdbcType=INTEGER}, #{carbonBlack,jdbcType=INTEGER}, 
+      #{naturalRubber,jdbcType=INTEGER}, #{tyreProduce,jdbcType=INTEGER}, #{reclaRubber,jdbcType=INTEGER}, 
+      #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByExample" parameterType="map">
+    update pro_category
+    set id = #{record.id,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=VARCHAR},
+      classify_id = #{record.classifyId,jdbcType=VARCHAR},
+      category_name = #{record.categoryName,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      steel_cord = #{record.steelCord,jdbcType=INTEGER},
+      sbr_rubber = #{record.sbrRubber,jdbcType=INTEGER},
+      cis_rubber = #{record.cisRubber,jdbcType=INTEGER},
+      nylon_cord = #{record.nylonCord,jdbcType=INTEGER},
+      bead_wire = #{record.beadWire,jdbcType=INTEGER},
+      carbon_black = #{record.carbonBlack,jdbcType=INTEGER},
+      natural_rubber = #{record.naturalRubber,jdbcType=INTEGER},
+      tyre_produce = #{record.tyreProduce,jdbcType=INTEGER},
+      recla_rubber = #{record.reclaRubber,jdbcType=INTEGER},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.lrs.admin.dao.domain.ProCategory">
+    update pro_category
+    set category_id = #{categoryId,jdbcType=VARCHAR},
+      classify_id = #{classifyId,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      steel_cord = #{steelCord,jdbcType=INTEGER},
+      sbr_rubber = #{sbrRubber,jdbcType=INTEGER},
+      cis_rubber = #{cisRubber,jdbcType=INTEGER},
+      nylon_cord = #{nylonCord,jdbcType=INTEGER},
+      bead_wire = #{beadWire,jdbcType=INTEGER},
+      carbon_black = #{carbonBlack,jdbcType=INTEGER},
+      natural_rubber = #{naturalRubber,jdbcType=INTEGER},
+      tyre_produce = #{tyreProduce,jdbcType=INTEGER},
+      recla_rubber = #{reclaRubber,jdbcType=INTEGER},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+
+</mapper>

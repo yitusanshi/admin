@@ -1,5 +1,7 @@
 package com.lrs.admin.dao.domain;
 
+import lombok.Data;
+
 import java.util.Date;
 
 public class Maunfacturer {
@@ -12,6 +14,8 @@ public class Maunfacturer {
     private String firmName;
 
     private String product;
+
+    private String productid;
 
     private String address;
 
@@ -30,8 +34,6 @@ public class Maunfacturer {
     private String desc;
 
     private Integer grade;
-
-    private Integer productId;
 
     public Integer getFirmId() {
         return firmId;
@@ -71,6 +73,14 @@ public class Maunfacturer {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public String getProductid() {
+        return productid;
+    }
+
+    public void setProductid(String productid) {
+        this.productid = productid;
     }
 
     public String getAddress() {
@@ -143,13 +153,5 @@ public class Maunfacturer {
 
     public void setGrade(Integer grade) {
         this.grade = grade;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
     }
 }
