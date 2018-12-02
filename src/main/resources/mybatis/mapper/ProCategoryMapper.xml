@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lrs.admin.dao.mapper.ProCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.ProCategory">
+  <resultMap id="ProCategory" type="com.lrs.admin.dao.domain.ProCategory">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
     <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
@@ -41,28 +41,7 @@
       #{insertTime,jdbcType=TIMESTAMP})
   </insert>
 
-  <update id="updateByExample" parameterType="map">
-    update pro_category
-    set id = #{record.id,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=VARCHAR},
-      classify_id = #{record.classifyId,jdbcType=VARCHAR},
-      category_name = #{record.categoryName,jdbcType=VARCHAR},
-      unit = #{record.unit,jdbcType=VARCHAR},
-      desc = #{record.desc,jdbcType=VARCHAR},
-      steel_cord = #{record.steelCord,jdbcType=INTEGER},
-      sbr_rubber = #{record.sbrRubber,jdbcType=INTEGER},
-      cis_rubber = #{record.cisRubber,jdbcType=INTEGER},
-      nylon_cord = #{record.nylonCord,jdbcType=INTEGER},
-      bead_wire = #{record.beadWire,jdbcType=INTEGER},
-      carbon_black = #{record.carbonBlack,jdbcType=INTEGER},
-      natural_rubber = #{record.naturalRubber,jdbcType=INTEGER},
-      tyre_produce = #{record.tyreProduce,jdbcType=INTEGER},
-      recla_rubber = #{record.reclaRubber,jdbcType=INTEGER},
-      insert_time = #{record.insertTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+
 
   <update id="updateByPrimaryKey" parameterType="com.lrs.admin.dao.domain.ProCategory">
     update pro_category
@@ -83,10 +62,5 @@
       insert_time = #{insertTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-
-
-
-
 
 </mapper>

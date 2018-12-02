@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lrs.admin.dao.mapper.DataRecordMapper">
-  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.DataRecord">
+  <resultMap id="DataRecord" type="com.lrs.admin.dao.domain.DataRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="firm_id" jdbcType="INTEGER" property="firmId" />
     <result column="tag_time" jdbcType="VARCHAR" property="tagTime" />
