@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lrs.admin.dao.mapper.MaunfacturerMapper">
-  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.Maunfacturer">
+  <resultMap id="MaunfacturerMap" type="com.lrs.admin.dao.domain.Maunfacturer">
     <id column="firm_id" jdbcType="INTEGER" property="firmId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -42,10 +42,10 @@
     `desc` = #{desc,jdbcType=VARCHAR},
     grade = #{grade,jdbcType=INTEGER}
   </insert>
-  <select id="selectUser" parameterType="String" resultMap="BaseResultMap">
+  <select id="selectUser" parameterType="String" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer WHERE username = #{username}
   </select>
-  <select id="selectByFirmId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByFirmId" parameterType="java.lang.Integer" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer WHERE firm_id = #{0}
   </select>
   <update id="updatePassword" >
