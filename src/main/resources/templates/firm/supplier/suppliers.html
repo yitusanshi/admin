@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head th:include="include/css-head :: css-head">
+</head>
+<body>
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库 <small>凡是没后台的都被一棒子打死了</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> 厂商管理</a></li>
+			<li class="active">供应商</li>
+		</ol>
+	</section>
+
+
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="box-header">
+			<h3 class="box-title">供应商列表</h3>
+			<br> <br>
+			<button class="btn btn-success btn-sm" id="addSuppliers">
+				<i class="fa fa-plus"></i> &nbsp;&nbsp;添加供应商
+			</button>
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<table id="suppliersList" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th width="8%">序号</th>
+						<th width="10%">供应商ID</th>
+						<th width="12%">供应商名称</th>
+						<th width="10%">产品类型</th>
+						<th width="10%">地址</th>
+						<th width="10%">电话</th>
+						<th width="10%">邮箱</th>
+						<th width="10%">成立时间</th>
+						<th width="10%">注册时间</th>
+						<th width="10%">描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="maunfacturer,stat:${maunfacturers}">
+						<td th:text="${stat.count}">1</td>
+						<td th:text="${maunfacturer.firmId}">供应商ID</td>
+						<td th:text="${maunfacturer.firmName}">供应商名称</td>
+						<td th:text="${maunfacturer.product}">产品类型</td>
+						<td th:text="${maunfacturer.address}">地址</td>
+						<td th:text="${maunfacturer.phone}">电话</td>
+						<td th:text="${maunfacturer.email}">邮箱</td>
+						<td th:text="${maunfacturer.foundingTime}">成立时间</td>
+						<td th:text="${maunfacturer.registerTime}">注册时间</td>
+						<td th:text="${maunfacturer.desc}">描述</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	
+	
+	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/dist/js/adminlte.min.js}"></script>
+	<script th:src="@{/js/path.js}"></script>
+	<script th:src="@{/js/firm/suppliers.js}"></script> 
+
+</body>
+</html>

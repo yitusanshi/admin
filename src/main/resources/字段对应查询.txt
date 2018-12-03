@@ -1,0 +1,15 @@
+product(产品信息)
+钢帘线steel
+合成橡胶（丁苯橡胶）sbr
+合成橡胶（顺丁橡胶）cis
+尼龙帘布nylon
+胎圈钢丝beadwire
+炭黑carbon
+天然橡胶(nr)Natural rubber
+轮胎生产tyre
+再生胶rr(Reclaimed rubber)
+
+
+firm(厂商信息)
+recycler回收商
+supplier供应商
