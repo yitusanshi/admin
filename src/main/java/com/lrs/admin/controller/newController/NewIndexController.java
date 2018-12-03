@@ -1,8 +1,11 @@
 package com.lrs.admin.controller.newController;
 
+import com.lrs.admin.controller.base.BaseController;
 import com.lrs.admin.dao.domain.Maunfacturer;
+import com.lrs.admin.service.IUserService;
 import com.lrs.admin.service.NewUserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 @Controller
-public class NewIndexController {
+public class NewIndexController extends BaseController{
     @Resource
     private NewUserService newUserService;
+    
+    @Autowired
+	private IUserService userService;
     /**
      * 入口
      *
@@ -39,4 +44,14 @@ public class NewIndexController {
         model.addAttribute("maunfacturer",maunfacturer);
         return "index";
     }
+    
+    
+    /**
+	 * 用户注销
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String logout(){
+		return userService.logout(this.getSession());
+	}
 }

@@ -46,7 +46,7 @@ public class LoginFilter implements Filter{
          String path = request.getServletPath();
          System.out.println("过滤器的路径是"+path+"=========================");
          
-         if(!path.matches(PTAH_REG) && !path.matches(NOT_FILTER) && !path.equals("/")){
+/*         if(!path.matches(PTAH_REG) && !path.matches(NOT_FILTER) && !path.equals("/")){
         	 if(userService == null){
         		 BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext()); 
         		 userService = (IUserService) factory.getBean("userService"); 
@@ -68,7 +68,7 @@ public class LoginFilter implements Filter{
         			 response.sendRedirect(request.getContextPath()+"/toLogin");
         		 }
         	 }
-         }
+         }*/
     	
         chain.doFilter(request, response);
     }

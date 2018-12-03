@@ -7,26 +7,149 @@
 			</div>
 			<div class="pull-left info">
 				<p th:text="${maunfacturer.username}">Admin</p>
-				<a data-toggle="modal" data-target="#UserPassModal" th:onclick="'update_user_id(\''+${maunfacturer.username}+'\',\''+${maunfacturer.firmId}+'\');'" style="cursor: pointer"> <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;修改密码
-				</a> <a th:href="@{/logout}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;退出</a>
+				<a data-toggle="modal" data-target="#UserPassModal" th:onclick="'update_user_id(\''+${maunfacturer.username}+'\',\''+${maunfacturer.firmId}+'\');'" style="cursor: pointer">
+					<i class="dropdown-icon fa fa-cog"></i>
+					&nbsp;&nbsp;修改密码
+				</a>
+				<a th:href="@{/logout}">
+					<i class="dropdown-icon fa fa-power-off"></i>
+					&nbsp;&nbsp;退出
+				</a>
 			</div>
 		</div>
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">主导航</li>
-			<li class="treeview"></li>
-			
-			
-			
-			<li class="treeview" th:if="${menu.isHasMenu()}" th:each="menu,mStat:${menus}">
-				<a href="#"> <i class="fa fa-dashboard" th:class="${menu.getMENU_ICON()}"></i> 
-					<span th:text="${menu.getMENU_NAME()}">菜单</span> 
-					<span class="pull-right-container"> 
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-gears"></i>
+					<span class="nav-label">系统管理</span>
+					<span class="pull-right-container">
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
 				</a>
 				<ul class="treeview-menu">
-					<li th:if="${subm.isHasMenu()}" th:each="subm,submStat:${menu.getSubMenu()}"><a target="mainFrame" href="404.html" th:href="@{${subm.getMENU_URL()}}"> <i class="fa fa-circle-o"></i> <label th:text="${subm.getMENU_NAME()}">子菜单</label>
-					</a></li>
+					<li>
+						<a target="mainFrame" href="menu/list">
+							<i class="fa fa-circle-o"></i>
+							<label>用户管理</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="menu/list">
+							<i class="fa fa-circle-o"></i>
+							<label>密码管理</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-gears"></i>
+					<span class="nav-label">厂商管理</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li>
+						<a target="mainFrame" href="firm/find_all_suppliers">
+							<i class="fa fa-circle-o"></i>
+							<label>供应商</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="firm/find_all_recyclers">
+							<i class="fa fa-circle-o"></i>
+							<label>回收商</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-gears"></i>
+					<span class="nav-label">供应商产品信息</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li>
+						<a target="mainFrame" href="product/find_all_steels">
+							<i class="fa fa-circle-o"></i>
+							<label>钢帘线</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_sbrs">
+							<i class="fa fa-circle-o"></i>
+							<label>合成橡胶（丁苯橡胶）</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_ciss">
+							<i class="fa fa-circle-o"></i>
+							<label>合成橡胶（顺丁橡胶）</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_nylons">
+							<i class="fa fa-circle-o"></i>
+							<label>尼龙帘布</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_beadwires">
+							<i class="fa fa-circle-o"></i>
+							<label>胎圈钢丝</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_carbons">
+							<i class="fa fa-circle-o"></i>
+							<label>炭黑</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" href="product/find_all_nrs">
+							<i class="fa fa-circle-o"></i>
+							<label>天然橡胶</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-gears"></i>
+					<span class="nav-label">生产商产品信息</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li>
+						<a target="mainFrame" href="product/find_all_tyres">
+							<i class="fa fa-circle-o"></i>
+							<label>轮胎生产</label>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-gears"></i>
+					<span class="nav-label">回收商产品信息</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li>
+						<a target="mainFrame" href="product/find_all_rrs">
+							<i class="fa fa-circle-o"></i>
+							<label>再生胶</label>
+						</a>
+					</li>
 				</ul>
 			</li>
 		</ul>

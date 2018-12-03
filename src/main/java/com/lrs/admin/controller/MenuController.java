@@ -27,6 +27,7 @@ public class MenuController extends BaseController{
 	
 	@RequestMapping("/list")
 	public String list(Model model){
+		System.out.println("菜单的东西进来了吗=============");
 		model.addAttribute("menus",menuService.getAllParentMenuList());
 		return "page/menu/list";
 	}
