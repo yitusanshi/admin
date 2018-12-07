@@ -1,7 +1,9 @@
 package com.lrs.admin.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -23,12 +25,12 @@ public class FirmController extends BaseController {
 	/**
 	 * 返回所有的供应商列表(测试用例)
 	 * 
-	 * @param mode
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/find_all_suppliers")
 	public String findAllSupplier(Model model) {
-		Maunfacturer maunfacturer = newUserService.selectByFirmId(6);
+		/*Maunfacturer maunfacturer = newUserService.selectByFirmId(6);
 		Maunfacturer maunfacturer1 = newUserService.selectByFirmId(7);
 		Maunfacturer maunfacturer2 = newUserService.selectByFirmId(8);
 		List list = new ArrayList();
@@ -53,6 +55,8 @@ public class FirmController extends BaseController {
 		list.add(maunfacturer);
 		list.add(maunfacturer1);
 		list.add(maunfacturer2);
+		model.addAttribute("maunfacturers", list);*/
+		List<Maunfacturer> list = newUserService.selectByGrade(1);
 		model.addAttribute("maunfacturers", list);
 		return "firm/supplier/suppliers";
 	}
@@ -60,11 +64,13 @@ public class FirmController extends BaseController {
 	/**
 	 * 查询所有的回收商的信息
 	 * 
-	 * @param mode
+	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/find_all_recyclers")
-	public String findAllRecycler(Model mode) {
+	public String findAllRecycler(Model model) {
+		List<Maunfacturer> list = newUserService.selectByGrade(2);
+		model.addAttribute("maunfacturers", list);
 		return "firm/recycler/recyclers";
 	}
 

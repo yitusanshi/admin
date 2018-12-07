@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
@@ -116,6 +117,10 @@ public class NewUserService {
     public Maunfacturer selectByFirmId(int firmid){
         Maunfacturer maunfacturer = maunfacturerMapper.selectByFirmId(firmid);
         return  maunfacturer;
+    }
+    public List<Maunfacturer> selectByGrade(int grade){
+        List<Maunfacturer> list = maunfacturerMapper.selectByGrade(grade);
+        return list;
     }
     public void updatePassword(int firmid, String password){
         maunfacturerMapper.updatePassword(firmid, password);

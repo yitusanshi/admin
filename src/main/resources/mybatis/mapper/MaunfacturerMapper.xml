@@ -51,4 +51,7 @@
   <update id="updatePassword" >
     UPDATE maunfacturer SET `password` = #{arg1} WHERE firm_id = #{arg0}
   </update>
+  <select id="selectByGrade" parameterType="java.lang.Integer" resultMap="MaunfacturerMap">
+    SELECT * FROM maunfacturer WHERE grade = #{0}
+  </select>
 </mapper>
