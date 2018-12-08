@@ -10,5 +10,6 @@ public interface MaunfacturerMapper {
     Maunfacturer selectUser(String username);
     Maunfacturer selectByFirmId(int firmid);
     List<Maunfacturer> selectByGrade(int grade);
+    List<Maunfacturer> selectAll();
     void updatePassword(int firmid, String newpassword);
 }

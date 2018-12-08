@@ -125,4 +125,8 @@ public class NewUserService {
     public void updatePassword(int firmid, String password){
         maunfacturerMapper.updatePassword(firmid, password);
     }
+    public List<Maunfacturer> selectAll(){
+        List<Maunfacturer> list = maunfacturerMapper.selectAll();
+        return list;
+    }
 }

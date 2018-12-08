@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrs.admin.dao.mapper.DataRecordCategoryMapper">
+    <resultMap id="DataRecordCategory" type="com.lrs.admin.dao.domain.DataRecordCategory">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="firm_id" jdbcType="INTEGER" property="firmId" />
+        <result column="tag_time" jdbcType="VARCHAR" property="tagTime" />
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+        <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+        <result column="product_volume" jdbcType="REAL" property="productVolume" />
+        <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="classify_name" jdbcType="VARCHAR" property="classifyName" />
+        <result column="classify_desc" jdbcType="VARCHAR" property="classifyDesc" />
+    </resultMap>
+    <select id="selectDetail" resultMap="DataRecordCategory">
+        SELECT * FROM data_record d JOIN pro_classify cs JOIN pro_category cg WHERE d.classify_id = cs.classify_id AND
+        d.category_id = cg.category_id AND d.firm_id = #{arg0} AND d.tag_time = #{arg1}
+    </select>
+</mapper>
