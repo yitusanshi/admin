@@ -77,8 +77,10 @@ public class DataStoreController {
             logger.error("编码格式错误");
             return ResponseModel.getModel("编码格式错误", "error", null);
         }
-        String data = request.getParameter("records");
+        String data = request.getParameter("records[1]");
+        System.out.println("=============="+data);
         String username = request.getParameter("username");
+        System.out.println(username+"==============");
         if (StringUtils.isEmpty(username)){
             return ResponseModel.getModel("无法获取用户", "error", null);
         }

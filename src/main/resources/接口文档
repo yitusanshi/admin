@@ -1,0 +1,48 @@
+[{
+	"maunfacturer": {
+		"address": "北京市辖区东城区胡同",
+		"firmId": 8,
+		"firmName": "联通",
+		"foundingTime": 1516378020000,
+		"grade": 1,
+		"password": "123",
+		"product": "钢帘线_供应商",
+		"productid": "1",
+		"username": "用户2"
+	},
+	"data": [{
+		"applicantTime": 1545967716000,
+		"categoryId": "1",
+		"categoryName": "钢帘线",
+		"classifyDesc": "",
+		"classifyId": "1",
+		"classifyName": "产品产出",
+		"firmId": 8,
+		"id": 1,
+		"productVolume": 3.0,
+		"tagTime": "2018-12-8 11:30:00",
+		"unit": "t"
+	}, {
+		"applicantTime": 1545276570000,
+		"categoryId": "2",
+		"categoryName": "盘条",
+		"classifyId": "2",
+		"classifyName": "原料消耗",
+		"firmId": 8,
+		"id": 2,
+		"productVolume": 2.0,
+		"tagTime": "2018-12-8 11:30:00",
+		"unit": "t"
+	}],
+	"tagTime": "2018-12-8 11:30:00",
+	"ispass": 0
+}]
+
+
+{
+	"name_1": "钢帘线",
+	"unit_1": "t",
+	"value_1": "444",
+	"datasource_1": "5566",
+	"desc_1": "7788"
+}

@@ -140,7 +140,7 @@ function save_steels() {
 		url : _ctx + "/product/save_steels",
 		type : "POST",
 		data : {
-			"username" : "厂商",
+			"username" : "用户2",
 			"records" : {
 				"1" : JSON.stringify($('#save_steels1').serializeObject()),
 				"2" : JSON.stringify($('#save_steels2').serializeObject())
