@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lrs.admin.controller.base.BaseController;
 import com.lrs.admin.entity.ResponseModel;
 
-@Controller
-@RequestMapping("/product")
+//@Controller
+//@RequestMapping("/product")
 public class ProductController extends BaseController {
 /*	private Logger logger = LoggerFactory.getLogger(ProductController.class);
 */
