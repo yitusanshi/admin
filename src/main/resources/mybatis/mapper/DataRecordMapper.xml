@@ -28,6 +28,9 @@
   </select>
 
   <select id="selectDetailData" >
-      SELECT * FROM data_record WHERE firm_id = #{0}  AND tag_time = #{1}
+      SELECT * FROM data_record WHERE firm_id = #{arg0}  AND tag_time = #{arg1}
+  </select>
+  <select id="selectUniqueTag" resultMap="DataRecord">
+    SELECT * FROM data_record GROUP BY  firm_id, tag_time
   </select>
 </mapper>

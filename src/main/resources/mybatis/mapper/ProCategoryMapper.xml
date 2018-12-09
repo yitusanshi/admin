@@ -19,8 +19,8 @@
     <result column="recla_rubber" jdbcType="INTEGER" property="reclaRubber" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
   </resultMap>
-  <select id="selectList" parameterType="java.lang.String">
-    SELECT * FROM pro_category WHERE ${0} = 1
+  <select id="selectList" parameterType="java.lang.String" resultMap="ProCategory">
+    SELECT * FROM pro_category WHERE ${dbColumn} = 1
   </select>
   <select id="getProCategoryDetail" parameterType="java.lang.String">
     SELECT * FROM pro_category WHERE category_id = #{0}

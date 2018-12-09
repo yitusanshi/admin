@@ -1,7 +1,9 @@
 package com.lrs.admin.controller.newController;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.dao.domain.DataRecord;
+import com.lrs.admin.dao.domain.DataRecordCategory;
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.dao.domain.ProCategory;
 import com.lrs.admin.entity.ResponseModel;
@@ -10,6 +12,7 @@ import com.lrs.admin.service.NewUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:wanglei1
@@ -59,6 +64,43 @@ public class UserGetDataController {
         }
         return ResponseModel.getModel("返回数据成功", "success", json.toJSONString());
     }
+    @RequestMapping(value = "getdatarecord", method = RequestMethod.POST)
+    public String  getnewData(Model model){
+        Map<String, Object> modelmap = model.asMap();
+        String username = (String) modelmap.get("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "";
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "";
+        }
+        List<JSONObject> list = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        list.add(json);
+                    }
+
+                }
+            }
+        }
+        model.addAttribute("list", list);
+        return "";
+    }
+
+
     @RequestMapping(value = "/getdetailData", method = RequestMethod.POST)
     public HashMap<String, Object> getDetailData(HttpServletRequest request){
         try {
