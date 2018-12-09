@@ -29,5 +29,57 @@ $(function() {
 
 	// 提示框
 	$("[data-toggle='tooltip']").tooltip();
-
 })
+
+// 删除厂商信息
+function delMaunfacturer(firmId) {
+	if (confirm("你确定要删除吗？如果删除，此用户将不再能够登录！")) {
+		$.ajax({
+			type : "POST",
+			url : _ctx + "/firm/delMaunfacturer",
+			cache : false,
+			dataType : "json",
+			data : {
+				firmid : firmId
+			},
+			success : function(data) {
+				if (data.status == 'success') {
+					window.location.href = window.location.href;
+				} else {
+					alert(data.msg);
+				}
+			}
+		});
+	}
+}
+
+// 查看用户详情
+function findMaunfacturerByFirmId(firmId) {
+	$.ajax({
+		type : "POST",
+		url : _ctx + "/firm/findMaunfacturerByFirmId",
+		cache : false,
+		dataType : "json",
+		data : {
+			firmId : firmId
+		},
+		success : function(data) {
+			if (data.status == 'success') {
+				maunfacturer = eval("(" + data.data + ")").maunfacturer;
+				$("#firm_username").val(maunfacturer.username);
+				$("#firm_product").val(maunfacturer.product);
+				$("#firmname").val(maunfacturer.firmName);
+				$("#firm_address").val(maunfacturer.address);
+				$("#firm_phone").val(maunfacturer.phone);
+				$("#firm_departmen").val(maunfacturer.departmen);
+				$("#firm_email").val(maunfacturer.email);
+				$("#firm_foundingTime").val(maunfacturer.foundingTime);
+				$("#firm_registerTime").val(maunfacturer.registerTime);
+				$("#firm_desc").val(maunfacturer.desc);
+			} else {
+				alert(data.msg);
+			}
+		}
+
+	})
+}

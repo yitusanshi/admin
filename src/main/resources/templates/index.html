@@ -44,7 +44,8 @@
 
 		<div class="content-wrapper">
 			<!-- 主体部分！！！！ -->
-			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%" onload="setIframeHeight(this)"></iframe>
+			<!-- <iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%" onload="setIframeHeight(this)" seamless></iframe> -->
+			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%"></iframe>
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
@@ -99,7 +100,7 @@
 						<div class="row form-group">
 							<div class="col-xs-3">用户名：</div>
 							<div class="col-xs-9">
-								<input type="text" class="form-control" id="firm_username" readonly="readonly"/>
+								<input type="text" class="form-control" id="firm_username" readonly="readonly" />
 							</div>
 						</div>
 						<div class="row form-group">
@@ -124,16 +125,14 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="firm_update_password" >提交</button>
+					<button type="button" class="btn btn-primary" id="firm_update_password">提交</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal -->
 	</div>
-	<script type="text/javascript">
-		
-	</script>
+
 
 
 	<!-- ./wrapper -->
@@ -159,7 +158,7 @@
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script th:src="@{/dist/js/demo.js}"></script>
-	
+
 	<!-- 引用自定义的js文件操作index页面的按钮 -->
 	<script th:src="@{/js/user/index.js}"></script>
 	<script th:src="@{/js/path.js}"></script>

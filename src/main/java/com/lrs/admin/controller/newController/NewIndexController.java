@@ -45,7 +45,6 @@ public class NewIndexController extends BaseController{
         return "index";
     }
     
-    
     /**
 	 * 用户注销
 	 * @return
