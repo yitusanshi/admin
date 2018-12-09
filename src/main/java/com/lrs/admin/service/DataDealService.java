@@ -31,7 +31,7 @@ public class DataDealService {
         map.put("dbColumn", dbColumn);
         return proCategoryMapper.selectList(map);
     }
-    public void insertDataRecord(DataRecord dataRecord){
+    public void insertDataRecord(List<DataRecord> dataRecord){
         dataRecordMapper.insert(dataRecord);
     }
     public List<DataRecord> selectGroupByFirmId(int firmid){

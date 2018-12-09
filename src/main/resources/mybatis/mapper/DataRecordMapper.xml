@@ -12,15 +12,18 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />
   </resultMap>
-  <insert id="insert" parameterType="com.lrs.admin.dao.domain.DataRecord">
+  <insert id="insert" parameterType="java.util.List">
     insert into data_record (firm_id, tag_time,
       category_id, classify_id, product_volume, 
       data_source, remark
       )
-    values (#{firmId,jdbcType=INTEGER}, #{tagTime,jdbcType=INTEGER},
+    values
+    <foreach collection="list" item="item" index= "index" separator =",">
+     (#{firmId,jdbcType=INTEGER}, #{tagTime,jdbcType=INTEGER},
       #{categoryId,jdbcType=VARCHAR}, #{classifyId,jdbcType=VARCHAR}, #{productVolume,jdbcType=REAL}, 
       #{dataSource,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}}
       )
+    </foreach>
   </insert>
 
   <select id="selectGroupByFirmId" parameterType="java.lang.Integer">
