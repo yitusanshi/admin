@@ -1,121 +1,97 @@
-function format(d) {
-	// `d` is the original data object for the row
-	return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
-			+ '<tr>' + '<td>用户名:</td>' + '<td>'
-			+ d.username
-			+ '</td>'
-			+ '</tr>'
-			+ '<tr>'
-			+ '<td>厂商名称:</td>'
-			+ '<td>'
-			+ d.firmName
-			+ '</td>'
-			+ '</tr>'
-			+ '<tr>'
-			+ '<td>产品类型:</td>'
-			+ '<td>'
-			+ d.product
-			+ '</td>'
-			+ '</tr>'
-			+ '<tr>'
-			+ '<td>厂商地址:</td>'
-			+ '<td>'
-			+ d.address
-			+ '</td>'
-			+ '</tr>' + '</table>';
-}
+$(document).ready(
+        function() {
+	        var table = $('#steelsList').DataTable({
+	            "scrollX" : true,
+	            'paging' : true,
+	            'lengthChange' : true,
+	            'searching' : true,
+	            'ordering' : true,
+	            'info' : true,
+	            'autoWidth' : false,
+	            "pagingType" : "full_numbers",
+	            "pageLength" : 10,
+	            "oLanguage" : { // 语言设置
+	                "sLengthMenu" : "每页显示 _MENU_ 条记录",
+	                "sZeroRecords" : "抱歉， 没有找到",
+	                "sInfo" : "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+	                "sInfoEmpty" : "没有数据",
+	                "sInfoFiltered" : "(从 _MAX_ 条数据中检索)",
+	                "sZeroRecords" : "没有检索到数据",
+	                "sSearch" : "搜索:",
+	                "oPaginate" : {
+	                    "sFirst" : "首页",
+	                    "sPrevious" : "前一页",
+	                    "sNext" : "后一页",
+	                    "sLast" : "尾页"
+	                }
+	            }
 
-$(document)
-		.ready(
-				function() {
-					var table = $('#steelsList').DataTable({
-						"scrollX" : true,
-						'paging' : true,
-						'lengthChange' : true,
-						'searching' : true,
-						'ordering' : true,
-						'info' : true,
-						'autoWidth' : false,
-						"pagingType" : "full_numbers",
-						"pageLength" : 10,
-						"oLanguage" : { // 语言设置
-							"sLengthMenu" : "每页显示 _MENU_ 条记录",
-							"sZeroRecords" : "抱歉， 没有找到",
-							"sInfo" : "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-							"sInfoEmpty" : "没有数据",
-							"sInfoFiltered" : "(从 _MAX_ 条数据中检索)",
-							"sZeroRecords" : "没有检索到数据",
-							"sSearch" : "搜索:",
-							"oPaginate" : {
-								"sFirst" : "首页",
-								"sPrevious" : "前一页",
-								"sNext" : "后一页",
-								"sLast" : "尾页"
-							}
-						}
+	        });
 
-					});
+	        // Add event listener for opening and closing details
+	        $('#steelsList tbody').on('click', 'td.details-control', function() {
+		        var tr = $(this).closest('tr');
+		        var row = table.row(tr);
 
-					// Add event listener for opening and closing details
-					$('#steelsList tbody').on('click', 'td.details-control',
-							function() {
-								var tr = $(this).closest('tr');
-								var row = table.row(tr);
+		        if (row.child.isShown()) {
+			        row.child.hide();
+			        tr.removeClass('shown');
+		        } else {
+			        row.child(format(row.data())).show();
+			        tr.addClass('shown');
+		        }
+	        });
 
-								if (row.child.isShown()) {
-									row.child.hide();
-									tr.removeClass('shown');
-								} else {
-									row.child(format(row.data())).show();
-									tr.addClass('shown');
-								}
-							});
+	        var rmc = $('#rmc').DataTable({
+	            "paging" : false,
+	            "ordering" : false,
+	            "info" : false,
+	            "searching" : false,
+	            "columnDefs" : [ {
+	                // 定义操作列
+	                "targets" : 6,
+	                "data" : null,
+	                "render" : function(data, type, row) {
+		                var html = '<a href="javascript:void(0);"  class="delete btn btn-default btn-xs"><i class="fa fa-times"></i> 删除</a>';
+		                return html;
+	                }
+	            } ],
 
-					var rmc = $('#rmc').DataTable({
-						"paging" : false,
-						"ordering" : false,
-						"info" : false,
-						"searching" : false
-					});
-					var count = 1;
-					$("#addRmcRow")
-							.on(
-									'click',
-									function() {
-										var s = '${categorylist[2]}';
-										rmc.row
-												.add(
-														[
-																"<input type='text' class='form-control' id='firm_phone' readonly='readonly' value='"
-																		+ s
-																		+ "'/>",
-																"<input type='text' class='form-control' id='firm_phone' readonly='readonly' value='t'/>",
-																"<input type='text' class='form-control' id='firm_phone'  />",
-																"<input type='text' class='form-control' id='firm_phone' />",
-																"<input type='text' class='form-control' id='firm_phone' />" ])
-												.draw();
-										count++;
-									});
-					$("#addRmcRow").click();
+	        });
+	        $("#addRmcRow").on(
+	                'click',
+	                function() {
+		                var cat_unit = $("#rmcSelect").val();
+		                var categoryId = cat_unit.split("_")[0];
+		                var unit = cat_unit.split("_")[1];
+		                var categoryName = $("#rmcSelect").find("option:selected").text();
+		                rmc.row.add(
+		                        [ "<input type='hidden'  value='" + cat_unit + "'/>", "<input type='text' name='name_" + categoryId + "' class='form-control' id='name_" + categoryId + "' readonly='readonly' value='" + categoryName + "'/>",
+		                                "<input type='text' name='unit_" + categoryId + "' class='form-control' id='unit_" + categoryId + "' readonly='readonly' value='" + unit + "'/>", "<input type='text' name='value_" + categoryId + "' class='form-control' id='value_" + categoryId + "'  />",
+		                                "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />", "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
+		                // 移除选过的记录
+		                $("#rmcSelect option[value=" + cat_unit + "]").remove();
+	                });
+	        /* $("#addRmcRow").click(); */
 
-					$("#steel_save_btn").click(function() {
-						alert("保存钢帘线按钮触发");
-						/*
-						 * $.ajax({ url : _ctx + "/product/save_steels", type :
-						 * "POST", data : {
-						 * JSON.stringify($('#save_steels').serializeObject()) },
-						 * success : function() { alert("成功了。。。。"); }
-						 * 
-						 * });
-						 */
-					});
+	        // 初始化原料消耗的刪除按钮
+	        $('#rmc tbody').on('click', 'a.delete', function(e) {
+		        e.preventDefault();
+		        if (confirm("确定要删除该属性？")) {
+			        var table = $('#rmc').DataTable();
+			        var cat_unit = $(this).parents('tr').children('td').eq(0).children('input').val();
+			        var categoryName = $(this).parents('tr').children('td').eq(1).children('input').val();
+			        table.row($(this).parents('tr')).remove().draw();
+			        $("#rmcSelect").append("<option value=" + cat_unit + ">" + categoryName + "</option>")
+		        }
 
-				});
+	        });
+        });
 
-function addRmcRowss(id) {
-	var jsonstr = $.parseJSON(id);
-	alert(jsonstr[2][0].unit);
-}
+/*
+ * function addRmcRowss(id) { var jsonstr = $.parseJSON(id);
+ * alert(jsonstr[2][0].unit); }
+ */
 
 /**
  * 自动将form表单封装成json对象
@@ -137,21 +113,26 @@ $.fn.serializeObject = function() {
 };
 function save_steels() {
 	$.ajax({
-		url : _ctx + "/product/save_steels",
-		type : "POST",
-		data : {
-			"username" : "用户2",
-			"records" : {
-				"1" : JSON.stringify($('#save_steels1').serializeObject()),
-				"2" : JSON.stringify($('#save_steels2').serializeObject())
-			}
-		}
+	    url : _ctx + "/product/save_steels",
+	    type : "POST",
+	    data : {
+	        "username" : "用户2",
+	        "records" : {
+	            "1" : JSON.stringify($('#save_steels1').serializeObject()),
+	            "2" : JSON.stringify($('#save_steels2').serializeObject())
+	        }
+	    }
 	});
+}
 
-	/*
-	 * $.ajax({ url : _ctx + "/product/save_steels", type : "POST", data : {
-	 * usename:"厂商名称";
-	 * save_steels:JSON.stringify($('#save_steels').serializeObject()); },
-	 * success : function() { alert("成功了。。。。"); } });
-	 */
+/* 左右边框的的内容左右移动 */
+function moveOption(obj1, obj2) {
+	for (var i = obj1.options.length - 1; i >= 0; i--) {
+		if (obj1.options[i].selected) {
+			var opt = new Option(obj1.options[i].text, obj1.options[i].value);
+			opt.selected = true;
+			obj2.options.add(opt);
+			obj1.remove(i);
+		}
+	}
 }

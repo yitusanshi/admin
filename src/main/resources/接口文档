@@ -46,3 +46,88 @@
 	"datasource_1": "5566",
 	"desc_1": "7788"
 }
+
+
+
+{
+	"1": [{
+		"beadWire": 0,
+		"carbonBlack": 0,
+		"categoryId": "1",
+		"categoryName": "钢帘线",
+		"cisRubber": 0,
+		"classifyId": "1",
+		"id": 1,
+		"insertTime": 1544337153000,
+		"naturalRubber": 0,
+		"nylonCord": 0,
+		"reclaRubber": 0,
+		"sbrRubber": 0,
+		"steelCord": 1,
+		"tyreProduce": 0,
+		"unit": "t"
+	}],
+	"maunfacturer": {
+		"address": "北京市辖区东城区胡同",
+		"email": "875253371@qq.com",
+		"firmId": 8,
+		"firmName": "联通",
+		"foundingTime": 1543843346000,
+		"grade": 1,
+		"password": "123",
+		"product": "钢帘线_供应商",
+		"productid": "1",
+		"registerTime": 1543843346000,
+		"updateTime": 1543843346000,
+		"username": "用户2"
+	},
+	"2": [{
+		"beadWire": 0,
+		"carbonBlack": 0,
+		"categoryId": "2",
+		"categoryName": "盘条",
+		"cisRubber": 0,
+		"classifyId": "2",
+		"id": 2,
+		"insertTime": 1543656156000,
+		"naturalRubber": 0,
+		"nylonCord": 0,
+		"reclaRubber": 0,
+		"sbrRubber": 0,
+		"steelCord": 1,
+		"tyreProduce": 0,
+		"unit": "t"
+	}, {
+		"beadWire": 0,
+		"carbonBlack": 0,
+		"categoryId": "3",
+		"categoryName": "硫酸",
+		"cisRubber": 0,
+		"classifyId": "2",
+		"id": 3,
+		"insertTime": 1544428952000,
+		"naturalRubber": 0,
+		"nylonCord": 0,
+		"reclaRubber": 0,
+		"sbrRubber": 0,
+		"steelCord": 1,
+		"tyreProduce": 0,
+		"unit": "t"
+	}, {
+		"beadWire": 0,
+		"carbonBlack": 0,
+		"categoryId": "4",
+		"categoryName": "盐酸",
+		"cisRubber": 0,
+		"classifyId": "2",
+		"id": 4,
+		"insertTime": 1544428989000,
+		"naturalRubber": 0,
+		"nylonCord": 0,
+		"reclaRubber": 0,
+		"sbrRubber": 0,
+		"steelCord": 1,
+		"tyreProduce": 0,
+		"unit": "t"
+	}]
+}

@@ -78,7 +78,8 @@ public class DataStoreController {
             return ResponseModel.getModel("编码格式错误", "error", null);
         }
         String data = request.getParameter("records[1]");
-        System.out.println("=============="+data);
+        String data1 = request.getParameter("records[2]");
+        System.out.println(data+"=============="+data1);
         String username = request.getParameter("username");
         System.out.println(username+"==============");
         if (StringUtils.isEmpty(username)){

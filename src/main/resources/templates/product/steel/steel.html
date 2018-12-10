@@ -94,34 +94,22 @@
 						<table class="display" style="width: 100%" id="rmc">
 							<thead>
 								<tr>
-									<th colspan="4" style="text-align: center;">原料消耗</th>
-									<th><input type="button" id="addRmcRow" onclick="addRmcRow('${categorylist.maunfacturer.firmId}')" value="新增" /> <input type="button" th:onclick="'addRmcRowss(\''+${categorylist}+'\');'" value="测试" /></th>
-
+									<th colspan="3" style="text-align: center;">原料消耗</th>
+									<th><select id="rmcSelect">
+											<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
+									</select> <input type="button" id="addRmcRow" th:onclick="'addRow(\''+${categorylist}+'\');'" value="新增" />
+									<!--  <input type="button" th:onclick="'addRmcRowss(\''+${categorylist}+'\');'" value="测试" /> --></th>
 								</tr>
 								<tr>
+									<th></th>
 									<th>原料种类</th>
 									<th>单位</th>
 									<th>消耗量</th>
 									<th>数据来源</th>
 									<th>备注</th>
+									<th>操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td><input type="text" name="name_1" class="form-control" id="pantiao_name" value="盘条1" readonly="readonly" /></td>
-									<td><input type="text" name="unit_1" class="form-control" id="pantiao_unit" value="t" readonly="readonly" /></td>
-									<td><input type="text" name="value_1" class="form-control" id="pantiao_value" /></td>
-									<td><input type="text" name="datasource_1" class="form-control" id="pantiao_datasrc" /></td>
-									<td><input type="text" name="desc_1" class="form-control" id="pantiao_desc" /></td>
-								</tr>
-								<!-- 	<tr>
-									<td><input type="text" class="form-control" id="firm_phone" value="硫酸" readonly="readonly" /></td>
-									<td><input type="text" class="form-control" id="firm_phone" value="t" readonly="readonly" /></td>
-									<td><input type="text" class="form-control" id="firm_phone" /></td>
-									<td><input type="text" class="form-control" id="firm_phone" /></td>
-									<td><input type="text" class="form-control" id="firm_phone" /></td>
-								</tr> -->
-							</tbody>
 						</table>
 					</form>
 					<div class="row">
