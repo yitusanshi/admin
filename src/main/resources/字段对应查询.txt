@@ -32,3 +32,12 @@ supplier供应商
 14	运输过程_陆运
 15	运输过程_空运
 
+
+
+
+产品产出 （pro）Product output
+原料消耗（rmc) Raw material consumption
+资源消耗 （res）resource consumption
+能源消耗 （energy）energy consumption
+污染物排放 （pd）Pollutant discharge
+

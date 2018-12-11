@@ -43,7 +43,7 @@
 				<tbody>
 					<tr th:each="cat,stat:${categorylist[2]}">
 						<td th:text="${stat.count}">1</td>
-						<td th:text="${categorylist.maunfacturer.firmId}">供应商名称</td>
+						<td th:text="${categorylist.maunfacturer.firmName}">供应商名称</td>
 						<td th:text="${categorylist.maunfacturer.product}">产品类型</td>
 						<td th:text="${categorylist.maunfacturer.foundingTime}">填报日期</td>
 						<td th:text="${cat.beadWire}">指标数据</td>
@@ -64,8 +64,10 @@
 					<h4 class="modal-title" id="SteelsModalLabel">新增钢帘线产品数据</h4>
 				</div>
 				<div class="modal-body">
-					<form action="" id="save_steels1">
-						<table class="display" style="width: 100%">
+
+					<!-- 产品产出的table pro-->
+					<form action="" id="save_pro">
+						<table class="display" style="width: 100%" id="pro">
 							<thead>
 								<tr>
 									<th colspan="5" style="text-align: center;">产品产出</th>
@@ -90,15 +92,15 @@
 						</table>
 					</form>
 					<br> <br>
-					<form action="" id="save_steels2">
+					
+					<!-- 原料消耗的tbale res -->
+					<form action="" id="save_rms">
 						<table class="display" style="width: 100%" id="rmc">
 							<thead>
 								<tr>
-									<th colspan="3" style="text-align: center;">原料消耗</th>
-									<th><select id="rmcSelect">
+									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect">
 											<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
-									</select> <input type="button" id="addRmcRow" th:onclick="'addRow(\''+${categorylist}+'\');'" value="新增" />
-									<!--  <input type="button" th:onclick="'addRmcRowss(\''+${categorylist}+'\');'" value="测试" /> --></th>
+									</select> <input type="button" id="addRmcRow" value="新增" /></th>
 								</tr>
 								<tr>
 									<th></th>
@@ -112,15 +114,92 @@
 							</thead>
 						</table>
 					</form>
+					<br> <br>
+					
+					<!-- 资源消耗table res -->
+					<form action="" id="save_res">
+						<table class="display" style="width: 100%" id="res">
+							<thead>
+								<tr>
+									<th colspan="6" style="text-align: center;">资源消耗</th>
+								</tr>
+								<tr>
+									<th>资源种类</th>
+									<th>来源（井水/自来水）</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" class="form-control" name="name_4"  value="新鲜水" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" name="water_4"  /></td>
+									<td><input type="text" class="form-control" name="unit_4"  value="t" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" name="value_4"  /></td>
+									<td><input type="text" class="form-control" name="datasource_4"  /></td>
+									<td><input type="text" class="form-control" name="desc_4"  /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br><br>
+					
+					<!-- 能源消耗 -->
+					<form action="" id="save_energy">
+						<table class="display" style="width: 100%" id="energy">
+							<thead>
+								<tr>
+									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect">
+											<option th:each="s : ${categorylist[5]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
+									</select> <input type="button" id="addEnergyRow" value="新增" /></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th>能源种类</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+						</table>
+					</form>
+					<br> <br>
+<!-- 					
+					污染物排放table pd
+					<form action="" id="save_pd">
+						<table class="display" style="width: 100%" id="pd">
+							<thead>
+								<tr>
+									<th colspan="7" style="text-align: center;">污染物排放&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect">
+											<option th:each="s : ${categorylist[5]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
+									</select> <input type="button" id="addPdRow" value="新增" /></th>
+								</tr>
+								<tr>
+									<th class="2">污染物种类</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+						</table>
+					</form> -->
+					
+					
 					<div class="row">
-						<div class="col-xs-4"></div>
-						<div class="col-xs-2">
-							<input type="button" id="steel_save_btn" class="btn btn-primary btn-block btn-flat" onclick="save_steels();" value="提交" />
+						<div class="col-xs-5"></div>
+						<div class="col-xs-1">
+							<input type="button" id="steel_save_btn" class="btn btn-primary" onclick="save_steels();" value="提交" />
 						</div>
-						<div class="col-xs-2">
-							<button type="submit" id="steel_reset_btn" class="btn btn-primary btn-block btn-flat">重置</button>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-primary " data-dismiss="modal">关闭</button>
 						</div>
-						<div class="col-xs-4"></div>
+						<div class="col-xs-5"></div>
 
 					</div>
 				</div>
