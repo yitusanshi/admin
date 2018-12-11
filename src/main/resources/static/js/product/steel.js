@@ -158,6 +158,9 @@ $.fn.serializeObject = function() {
 
 // 保存钢帘线的信息
 function save_steels() {
+	alert(JSON.stringify($('#save_pro').serializeObject()));
+	alert(JSON.stringify($('#save_rmc').serializeObject()));
+	alert(JSON.stringify($('#save_res').serializeObject()));
 	$.ajax({
 	    url : _ctx + "/product/save_steels",
 	    type : "POST",
@@ -167,6 +170,8 @@ function save_steels() {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
 	            "4" : JSON.stringify($('#save_res').serializeObject()),
+	            "5" : JSON.stringify($('#energy').serializeObject())
+
 	        }
 	    }
 	});

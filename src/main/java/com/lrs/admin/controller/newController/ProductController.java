@@ -200,6 +200,7 @@ public class ProductController extends BaseController{
         }
         System.out.println(alljson.toJSONString());
         model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/steel/steel";
 	}
 
