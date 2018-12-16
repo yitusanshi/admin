@@ -77,11 +77,7 @@ public class DataStoreController {
             logger.error("编码格式错误");
             return ResponseModel.getModel("编码格式错误", "error", null);
         }
-        String data = request.getParameter("records[1]");
-        String data1 = request.getParameter("records[2]");
-        System.out.println(data+"=============="+data1);
         String username = request.getParameter("username");
-        System.out.println(username+"==============");
         if (StringUtils.isEmpty(username)){
             return ResponseModel.getModel("无法获取用户", "error", null);
         }
@@ -89,10 +85,21 @@ public class DataStoreController {
         if (maunfacturer == null){
             return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
         }
+        Map<String, String[]> requestMap = request.getParameterMap();
+        JSONObject jsonObject = new JSONObject();
+        for (Map.Entry<String, String[]> entry : requestMap.entrySet()){
+           String key = entry.getKey();
+           if (key.contains("records[")){
+               System.out.println(key);
+               String value = request.getParameter(key);
+               String s = key.substring(8,9);
+               jsonObject.put(s, value);
+           }
+        }
+
         int firmid = maunfacturer.getFirmId();
         long timeStamp = System.currentTimeMillis();
         String tagTime =  DateFormatUtils.format(timeStamp, "yyyy-MM-dd HH:mm:ss");
-        JSONObject jsonObject = JSONObject.parseObject(data);
         Set<String> set = jsonObject.keySet();
         Map<String, HashMap<String, Object>> map = new HashMap<>();
         for (String classifyid : set) {
@@ -116,7 +123,13 @@ public class DataStoreController {
         List<DataRecord> list = new ArrayList<>();
         for (String categoryid : map.keySet()){
             HashMap<String, Object> innermap = map.get(categoryid);
-            Float volume = (float)innermap.get("volume");
+            if (innermap == null || innermap.isEmpty()){
+                continue;
+            }
+            for (String key : innermap.keySet()){
+                System.out.println(key + "===" + innermap.get(key));
+            }
+            Float volume = (Float) innermap.get("value");
             String datasouce = (String) innermap.get("datasouce");
             String desc = (String) innermap.get("desc");
             String classifyid = (String) innermap.get("classifyid");

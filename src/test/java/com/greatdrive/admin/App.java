@@ -26,5 +26,8 @@ public class App {
         JSONObject json3 = jsonObject.getJSONObject("分类id1");
         json3.put("种类id5", "种类名称5");
         System.out.println(jsonObject.toJSONString());
+        String s = "records[2]";
+        String key = s.substring(8,9);
+        System.out.println(key);
     }
 }

@@ -19,9 +19,9 @@
       )
     values
     <foreach collection="list" item="item" index= "index" separator =",">
-     (#{firmId,jdbcType=INTEGER}, #{tagTime,jdbcType=INTEGER},
-      #{categoryId,jdbcType=VARCHAR}, #{classifyId,jdbcType=VARCHAR}, #{productVolume,jdbcType=REAL}, 
-      #{dataSource,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}}
+     (#{item.firmId,jdbcType=INTEGER}, #{item.tagTime,jdbcType=VARCHAR},
+      #{item.categoryId,jdbcType=VARCHAR}, #{item.classifyId,jdbcType=VARCHAR}, #{item.productVolume,jdbcType=REAL},
+      #{item.dataSource,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}
       )
     </foreach>
   </insert>

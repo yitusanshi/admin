@@ -81,7 +81,7 @@ public class UserRegisterController {
         try{
             newUserService.insertManu(maunfacturer);
         }catch (Exception e){
-            logger.error("register error, username is {}", username);
+            logger.error("register error, username is {}, reason is {}", username,e);
             return ResponseModel.getModel("注册失败，请联系管理员", "error", null);
         }
 
