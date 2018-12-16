@@ -62,7 +62,7 @@ public class DataStoreController {
                 dataRecord.setCategoryId(categoryid);
                 dataRecord.setClassifyId(classifyid);
                 dataRecord.setProductVolume(volume);
-               // dataDealService.insertDataRecord(dataRecord);
+               //  dataDealService.insertDataRecord(dataRecord);
             }
         }
         return null;
