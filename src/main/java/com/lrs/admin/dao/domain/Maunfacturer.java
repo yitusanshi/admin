@@ -35,6 +35,36 @@ public class Maunfacturer {
 
     private Integer grade;
 
+    private String foundingTimestr;
+
+    private String registerTimestr;
+
+    private String updateTimestr;
+
+    public String getFoundingTimestr() {
+        return foundingTimestr;
+    }
+
+    public void setFoundingTimestr(String foundingTimestr) {
+        this.foundingTimestr = foundingTimestr;
+    }
+
+    public String getRegisterTimestr() {
+        return registerTimestr;
+    }
+
+    public void setRegisterTimestr(String registerTimestr) {
+        this.registerTimestr = registerTimestr;
+    }
+
+    public String getUpdateTimestr() {
+        return updateTimestr;
+    }
+
+    public void setUpdateTimestr(String updateTimestr) {
+        this.updateTimestr = updateTimestr;
+    }
+
     public Integer getFirmId() {
         return firmId;
     }

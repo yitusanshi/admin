@@ -1,11 +1,13 @@
 package com.lrs.admin.controller.newController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.lrs.admin.util.DateUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +59,11 @@ public class FirmController extends BaseController {
 		model.addAttribute("maunfacturers", list);*/
 		List<Maunfacturer> list = newUserService.selectByGrade(1);
 		model.addAttribute("maunfacturers", list);
+		for (Maunfacturer m : list){
+			Date foundingTime = m.getFoundingTime();
+			String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
+			m.setFoundingTimestr(foundingTimeStr);
+		}
 		return "firm/supplier/suppliers";
 	}
 

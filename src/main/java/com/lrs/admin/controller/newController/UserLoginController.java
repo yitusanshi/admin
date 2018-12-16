@@ -3,6 +3,7 @@ package com.lrs.admin.controller.newController;
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.entity.ResponseModel;
 import com.lrs.admin.service.NewUserService;
+import com.lrs.admin.util.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -93,6 +95,12 @@ public class UserLoginController {
         String firmid = request.getParameter("firmid");
         int id = Integer.parseInt(firmid);
         Maunfacturer maunfacturer = newUserService.selectByFirmId(id);
+        Date foundingTime = maunfacturer.getFoundingTime();
+        String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
+        Date registerTime = maunfacturer.getFoundingTime();
+        String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd HH:mm:ss");
+        maunfacturer.setFoundingTimestr(foundingTimeStr);
+        maunfacturer.setRegisterTimestr(registerTimestr);
         return ResponseModel.getModel("获取成功", "success", maunfacturer);
     }
 
