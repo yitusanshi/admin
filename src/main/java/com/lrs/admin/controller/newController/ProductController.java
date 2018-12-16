@@ -636,6 +636,12 @@ public class ProductController extends BaseController{
                             List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
                             json.put("data", dataRecordCategoryList);
                             maunfacturerlist.add(json);
+                        }else{
+                            json.put("maunfacturer", maunf);
+                            json.put("tagTime", "无添加记录");
+                            json.put("ispass", -1);
+                            json.put("data", new ArrayList<DataRecordCategory>());
+                            maunfacturerlist.add(json);
                         }
 
                     }
@@ -714,6 +720,12 @@ public class ProductController extends BaseController{
                         json.put("ispass", 0);
                         List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
                         json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }else{
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", "无添加记录");
+                        json.put("ispass", -1);
+                        json.put("data", new ArrayList<DataRecordCategory>());
                         maunfacturerlist.add(json);
                     }
 
