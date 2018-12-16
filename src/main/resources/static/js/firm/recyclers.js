@@ -58,15 +58,15 @@ function delRecyclers(firmId) {
 function findRecyclersByFirmId(firmId) {
 	$.ajax({
 		type : "POST",
-		url : _ctx + "/firm/findMaunfacturerByFirmId",
+		url : _ctx + "/userinfo",
 		cache : false,
 		dataType : "json",
 		data : {
-			firmId : firmId
+			firmid : firmId
 		},
 		success : function(data) {
 			if (data.status == 'success') {
-				maunfacturer = eval("(" + data.data + ")").maunfacturer;
+				maunfacturer = data.data;
 				$("#firm_username").val(maunfacturer.username);
 				$("#firm_product").val(maunfacturer.product);
 				$("#firmname").val(maunfacturer.firmName);
@@ -74,8 +74,8 @@ function findRecyclersByFirmId(firmId) {
 				$("#firm_phone").val(maunfacturer.phone);
 				$("#firm_departmen").val(maunfacturer.departmen);
 				$("#firm_email").val(maunfacturer.email);
-				$("#firm_foundingTime").val(maunfacturer.foundingTime);
-				$("#firm_registerTime").val(maunfacturer.registerTime);
+				$("#firm_foundingTime").val(maunfacturer.foundingTimestr);
+				$("#firm_registerTime").val(maunfacturer.registerTimestr);
 				$("#firm_desc").val(maunfacturer.desc);
 			} else {
 				alert(data.msg);

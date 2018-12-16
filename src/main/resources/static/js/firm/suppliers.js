@@ -57,15 +57,15 @@ function delMaunfacturer(firmId) {
 function findMaunfacturerByFirmId(firmId) {
 	$.ajax({
 		type : "POST",
-		url : _ctx + "/firm/findMaunfacturerByFirmId",
+		url : _ctx + "/userinfo",
 		cache : false,
 		dataType : "json",
 		data : {
-			firmId : firmId
+			firmid : firmId
 		},
 		success : function(data) {
 			if (data.status == 'success') {
-				maunfacturer = eval("(" + data.data + ")").maunfacturer;
+				maunfacturer = data.data;
 				$("#firm_username").val(maunfacturer.username);
 				$("#firm_product").val(maunfacturer.product);
 				$("#firmname").val(maunfacturer.firmName);
