@@ -27,7 +27,7 @@
   </insert>
 
   <select id="selectGroupByFirmId" parameterType="java.lang.Integer">
-      SELECT * FROM data_record GROUP BY firm_id, tag_time
+      SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, tag_time
   </select>
 
   <select id="selectDetailData" >
