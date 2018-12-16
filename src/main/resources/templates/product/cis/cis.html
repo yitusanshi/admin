@@ -64,9 +64,35 @@
 					<h4 class="modal-title" id="CissModalLabel">新增合成橡胶（顺丁橡胶）产品数据</h4>
 				</div>
 				<div class="modal-body">
+					<form action="">
+						<table class="display" style="width: 100%">
+							<thead>
+								<tr>
+									<th style="text-align: center;">供应商信息</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="row form-group">
+											<div class="col-xs-2">供应商名称：</div>
+											<div class="col-xs-2">
+												<select name="username" id="firmUsername" class="form-control">
+													<option class="form-control" th:each="maunf : ${mlist}" th:value="${maunf.username}" th:text="${maunf.username}"></option>
+												</select>
+											</div>
+											<div class="col-xs-8"></div>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
 
 					<!-- 产品产出的table pro-->
 					<form action="" id="save_pro">
+
 						<table class="display" style="width: 100%" id="pro">
 							<thead>
 								<tr>
