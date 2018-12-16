@@ -41,3 +41,11 @@ supplier供应商
 能源消耗 （energy）energy consumption
 污染物排放 （pd）Pollutant discharge
 
+废气排放-天然气明火炉 (natural_gas) Natural gas
+废气排放-线材酸洗、电镀工序 （elec_pro）Electroplating process
+废水排放-酸洗废水(pick_water)Pickling wastewater
+废水排放-电镀工序 (elec_water)
+固体废弃物（solid_waste）solid waste
+
+运输过程（trans_pro）Transportation process
+

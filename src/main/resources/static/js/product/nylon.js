@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#steelsList').DataTable({
+	        var table = $('#nylonsList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,
@@ -29,7 +29,7 @@ $(document).ready(
 	        });
 
 	        // Add event listener for opening and closing details
-	        $('#steelsList tbody').on('click', 'td.details-control', function() {
+	        $('#nylonsList tbody').on('click', 'td.details-control', function() {
 		        var tr = $(this).closest('tr');
 		        var row = table.row(tr);
 
@@ -159,9 +159,9 @@ $.fn.serializeObject = function() {
 };
 
 // 保存钢帘线的信息
-function save_steels() {
+function save_nylons() {
 	$.ajax({
-	    url : _ctx + "/product/save_steels",
+	    url : _ctx + "/product/save_nylons",
 	    type : "POST",
 	    data : {
 	        "username" : "用户2",
@@ -170,11 +170,8 @@ function save_steels() {
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
 	            "4" : JSON.stringify($('#save_res').serializeObject()),
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
-	            "9" : JSON.stringify($('#save_natural_gas').serializeObject()),
-	            "10" : JSON.stringify($('#save_elec_pro').serializeObject()),
-	            "11" : JSON.stringify($('#save_pick_water').serializeObject()),
-	            "12" : JSON.stringify($('#save_elec_water').serializeObject()),
-	            "8" : JSON.stringify($('#save_solid_waste').serializeObject()),
+	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
+	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "13" : JSON.stringify($('#save_trans_pro').serializeObject())
 	        }
 	    },

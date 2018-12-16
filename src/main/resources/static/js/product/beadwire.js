@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#steelsList').DataTable({
+	        var table = $('#beadwiresList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,
@@ -29,7 +29,7 @@ $(document).ready(
 	        });
 
 	        // Add event listener for opening and closing details
-	        $('#steelsList tbody').on('click', 'td.details-control', function() {
+	        $('#beadwiresList tbody').on('click', 'td.details-control', function() {
 		        var tr = $(this).closest('tr');
 		        var row = table.row(tr);
 
@@ -159,9 +159,12 @@ $.fn.serializeObject = function() {
 };
 
 // 保存钢帘线的信息
-function save_steels() {
+function save_beadwires() {
+	alert(JSON.stringify($('#save_pro').serializeObject()));
+	alert(JSON.stringify($('#save_rmc').serializeObject()));
+	alert(JSON.stringify($('#save_res').serializeObject()));
 	$.ajax({
-	    url : _ctx + "/product/save_steels",
+	    url : _ctx + "/product/save_beadwires",
 	    type : "POST",
 	    data : {
 	        "username" : "用户2",
