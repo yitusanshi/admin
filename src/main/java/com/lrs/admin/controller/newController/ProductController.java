@@ -3,6 +3,8 @@ package com.lrs.admin.controller.newController;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.controller.base.BaseController;
+import com.lrs.admin.dao.domain.DataRecord;
+import com.lrs.admin.dao.domain.DataRecordCategory;
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.dao.domain.ProCategory;
 import com.lrs.admin.entity.ResponseModel;
@@ -50,25 +52,56 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_beadwires")
-	public String find_all_beadwires(Model model) {
-        Map<String, Object> modelmap = model.asMap();
-        //String username = (String) modelmap.get("username");
-        String username = "用户2";
+	public String find_all_beadwires(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
         if (StringUtils.isEmpty(username)){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/beadwire/beadwire";
             //return ResponseModel.getModel("无法获取用户", "error", null);
         }
         Maunfacturer maunfacturer = newUserService.select(username);
         if (maunfacturer == null){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/beadwire/beadwire";
             //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
         }
         logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
         String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
         JSONObject alljson = new JSONObject();
-        alljson.put("maunfacturer", maunfacturer);
+        alljson.put("maunfacturerList", maunfacturerlist);
         if (map.containsKey(productid)){
             String dbColumn = map.get(productid);
             List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
@@ -87,6 +120,7 @@ public class ProductController extends BaseController{
         }
         System.out.println(alljson.toJSONString());
         model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/beadwire/beadwire";
 	}
 
@@ -97,7 +131,75 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_carbons")
-	public String find_all_carbons(Model model) {
+	public String find_all_carbons(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/carbon/carbon";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/carbon/carbon";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/carbon/carbon";
 	}
 
@@ -108,7 +210,75 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_ciss")
-	public String find_all_ciss(Model model) {
+	public String find_all_ciss(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/cis/cis";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/cis/cis";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/cis/cis";
 	}
 
@@ -119,7 +289,75 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_nrs")
-	public String find_all_nrs(Model model) {
+	public String find_all_nrs(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/nr/nr";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/nr/nr";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/nr/nr";
 	}
 
@@ -130,8 +368,77 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_nylons")
-	public String find_all_nylons(Model model) {
-		return "product/nylon/nylon";
+	public String find_all_nylons(Model model, HttpServletRequest request) {
+
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/nylon/nylon";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/nylon/nylon";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
+	    return "product/nylon/nylon";
 	}
 
     /**
@@ -141,7 +448,75 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_rrs")
-	public String find_all_rrs(Model model) {
+	public String find_all_rrs(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/rr/rr";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/rr/rr";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
 		return "product/rr/rr";
 	}
 
@@ -152,8 +527,77 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_sbrs")
-	public String find_all_sbrs(Model model) {
-		return "product/sbr/sbr";
+	public String find_all_sbrs(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/sbr/sbr";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/sbr/sbr";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
+
+	    return "product/sbr/sbr";
 	}
 
     /**
@@ -163,25 +607,56 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_steels")
-	public String find_all_steels(Model model) {
-        Map<String, Object> modelmap = model.asMap();
-        //String username = (String) modelmap.get("username");
-        String username = "用户2";
+	public String find_all_steels(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
         if (StringUtils.isEmpty(username)){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/steel/steel";
             //return ResponseModel.getModel("无法获取用户", "error", null);
         }
         Maunfacturer maunfacturer = newUserService.select(username);
         if (maunfacturer == null){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/steel/steel";
             //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
         }
         logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
         String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+                List<Maunfacturer> maunfacturers = newUserService.selectAll();
+                List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+                for (DataRecord dataRecord : listrecord){
+                    JSONObject json = new JSONObject();
+                    for (Maunfacturer maunf : maunfacturers){
+                        if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                            json.put("maunfacturer", maunf);
+                            json.put("tagTime", dataRecord.getTagTime());
+                            json.put("ispass", 0);
+                            List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                            json.put("data", dataRecordCategoryList);
+                            maunfacturerlist.add(json);
+                        }
+
+                    }
+                }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
         JSONObject alljson = new JSONObject();
-        alljson.put("maunfacturer", maunfacturer);
+        alljson.put("maunfacturerList", maunfacturerlist);
         if (map.containsKey(productid)){
             String dbColumn = map.get(productid);
             List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
@@ -211,8 +686,77 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_tyres")
-	public String find_all_tyres(Model model) {
-		return "product/tyre/tyre";
+	public String find_all_tyres(Model model, HttpServletRequest request) {
+        String username = request.getParameter("username");
+        if (StringUtils.isEmpty(username)){
+            model.addAttribute("msg", "error");
+            return "product/tyre/tyre";
+            //return ResponseModel.getModel("无法获取用户", "error", null);
+        }
+        Maunfacturer maunfacturer = newUserService.select(username);
+        if (maunfacturer == null){
+            model.addAttribute("msg", "error");
+            return "product/tyre/tyre";
+            //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
+        }
+        logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
+        String productid = maunfacturer.getProductid();
+        List<JSONObject> maunfacturerlist = new ArrayList<>();
+        if (maunfacturer.getGrade() == 0){
+            List<Maunfacturer> maunfacturers = newUserService.selectAll();
+            List<DataRecord> listrecord = dataDealService.selectUniqueTag();
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                for (Maunfacturer maunf : maunfacturers){
+                    if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                        json.put("maunfacturer", maunf);
+                        json.put("tagTime", dataRecord.getTagTime());
+                        json.put("ispass", 0);
+                        List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                        json.put("data", dataRecordCategoryList);
+                        maunfacturerlist.add(json);
+                    }
+
+                }
+            }
+        }
+        if (maunfacturer.getGrade() == 1){
+            int firmid = maunfacturer.getFirmId();
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            for (DataRecord dataRecord : listrecord){
+                JSONObject json = new JSONObject();
+                json.put("maunfacturer", maunfacturer);
+                json.put("tagTime", dataRecord.getTagTime());
+                json.put("ispass", 0);
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                json.put("data", dataRecordCategoryList);
+                maunfacturerlist.add(json);
+            }
+        }
+
+        JSONObject alljson = new JSONObject();
+        alljson.put("maunfacturerList", maunfacturerlist);
+        if (map.containsKey(productid)){
+            String dbColumn = map.get(productid);
+            List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
+            for (ProCategory proCategory : list){
+                String classifyid= proCategory.getClassifyId();
+                if (alljson.containsKey(classifyid)){
+                    List<ProCategory> categoryList = (List<ProCategory>) alljson.get(classifyid);
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }else {
+                    List<ProCategory> categoryList = new ArrayList<ProCategory>();
+                    categoryList.add(proCategory);
+                    alljson.put(classifyid, categoryList);
+                }
+            }
+        }
+        System.out.println(alljson.toJSONString());
+        model.addAttribute("categorylist", alljson);
+        System.out.println(alljson);
+
+	    return "product/tyre/tyre";
 	}
 
 	@ResponseBody
