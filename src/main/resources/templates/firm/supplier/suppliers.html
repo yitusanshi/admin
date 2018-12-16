@@ -45,8 +45,8 @@
 						<td th:text="${maunfacturer.firmId}">供应商ID</td>
 						<td th:text="${maunfacturer.firmName}">供应商名称</td>
 						<td th:text="${maunfacturer.product}">产品类型</td>
-						<td th:text="${maunfacturer.foundingTime}">成立时间</td>
-						<td th:text="${maunfacturer.registerTime}">注册时间</td>
+						<td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
+						<td th:text="${maunfacturer.registerTimestr}">注册时间</td>
 						<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#SuppliersModal" th:onclick="'findMaunfacturerByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span> <span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> <span class="btn btn-xs btn-info" th:onclick="'editMaunfacturer(\''+${maunfacturer.firmId}+'\',\''+${maunfacturer.firmId}+'\',\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-edit">编辑</i> </span></td>
 					</tr>
 				</tbody>
