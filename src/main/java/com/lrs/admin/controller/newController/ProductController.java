@@ -626,7 +626,30 @@ public class ProductController extends BaseController{
         if (maunfacturer.getGrade() == 0){
                 List<Maunfacturer> maunfacturers = newUserService.selectAll();
                 List<DataRecord> listrecord = dataDealService.selectUniqueTag();
-                for (DataRecord dataRecord : listrecord){
+                for (Maunfacturer maunf : maunfacturers){
+                    JSONObject json = new JSONObject();
+                    for (DataRecord dataRecord : listrecord){
+                        if (dataRecord.getFirmId().equals(maunf.getFirmId())){
+                            maunfacturers.remove(maunf);
+                            json.put("maunfacturer", maunf);
+                            json.put("tagTime", dataRecord.getTagTime());
+                            json.put("ispass", 0);
+                            List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                            json.put("data", dataRecordCategoryList);
+                            maunfacturerlist.add(json);
+                        }
+                    }
+                }
+                 for (Maunfacturer maunf : maunfacturers){
+                     JSONObject json = new JSONObject();
+                     json.put("maunfacturer", maunf);
+                     json.put("tagTime", "无添加记录");
+                     json.put("ispass", -1);
+                     json.put("data", new ArrayList<DataRecordCategory>());
+                     maunfacturerlist.add(json);
+                 }
+
+                /*for (DataRecord dataRecord : listrecord){
                     JSONObject json = new JSONObject();
                     for (Maunfacturer maunf : maunfacturers){
                         if (dataRecord.getFirmId().equals(maunf.getFirmId())){
@@ -645,7 +668,7 @@ public class ProductController extends BaseController{
                         }
 
                     }
-                }
+                }*/
         }
         if (maunfacturer.getGrade() == 1){
             int firmid = maunfacturer.getFirmId();
