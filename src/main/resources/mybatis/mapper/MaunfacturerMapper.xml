@@ -57,4 +57,7 @@
   <select id="selectAll" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer
   </select>
+  <select id="selectAllselectAllByProductid" parameterType="java.lang.String" resultMap="MaunfacturerMap">
+    SELECT * FROM maunfacturer WHERE productid = #{0}
+  </select>
 </mapper>

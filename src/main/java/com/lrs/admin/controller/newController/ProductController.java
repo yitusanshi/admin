@@ -624,7 +624,7 @@ public class ProductController extends BaseController{
         String productid = maunfacturer.getProductid();
         List<JSONObject> maunfacturerlist = new ArrayList<>();
         if (maunfacturer.getGrade() == 0){
-                List<Maunfacturer> maunfacturers = newUserService.selectAll();
+                List<Maunfacturer> maunfacturers = newUserService.selectAllByProductid(productid);
                 List<DataRecord> listrecord = dataDealService.selectUniqueTag();
                 for (Maunfacturer maunf : maunfacturers){
                     JSONObject json = new JSONObject();
@@ -685,7 +685,6 @@ public class ProductController extends BaseController{
         }
 
         JSONObject alljson = new JSONObject();
-        alljson.put("maunfacturerList", maunfacturerlist);
         if (map.containsKey(productid)){
             String dbColumn = map.get(productid);
             List<ProCategory> list = dataDealService.getUserCategory(dbColumn);
@@ -704,6 +703,7 @@ public class ProductController extends BaseController{
         }
         System.out.println(alljson.toJSONString());
         model.addAttribute("categorylist", alljson);
+        model.addAttribute("maunfacturerList", maunfacturerlist);
         System.out.println("返回结果====="+alljson.toJSONString());
 		return "product/steel/steel";
 	}

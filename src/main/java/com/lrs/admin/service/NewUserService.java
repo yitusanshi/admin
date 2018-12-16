@@ -129,4 +129,8 @@ public class NewUserService {
         List<Maunfacturer> list = maunfacturerMapper.selectAll();
         return list;
     }
+    public List<Maunfacturer> selectAllByProductid(String productid){
+        List<Maunfacturer> list = maunfacturerMapper.selectAllselectAllByProductid(productid );
+        return list;
+    }
 }
