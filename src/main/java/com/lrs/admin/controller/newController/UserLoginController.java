@@ -82,4 +82,18 @@ public class UserLoginController {
             return ResponseModel.getModel("原始密码输入错误", "error", null);
         }
     }
+    @RequestMapping(value = "/userinfo", method = RequestMethod.POST)
+    public HashMap<String, Object> getUserInfo(HttpServletRequest request){
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("编码格式错误");
+            return ResponseModel.getModel("编码格式错误", "error", null);
+        }
+        String firmid = request.getParameter("firmid");
+        int id = Integer.parseInt(firmid);
+        Maunfacturer maunfacturer = newUserService.selectByFirmId(id);
+        return ResponseModel.getModel("获取成功", "success", maunfacturer);
+    }
+
 }
