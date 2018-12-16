@@ -704,7 +704,7 @@ public class ProductController extends BaseController{
         }
         System.out.println(alljson.toJSONString());
         model.addAttribute("categorylist", alljson);
-        System.out.println(alljson);
+        System.out.println("返回结果====="+alljson.toJSONString());
 		return "product/steel/steel";
 	}
 
@@ -789,7 +789,7 @@ public class ProductController extends BaseController{
         }
         System.out.println(alljson.toJSONString());
         model.addAttribute("categorylist", alljson);
-        System.out.println(alljson);
+        System.out.println("返回结果====="+alljson.toJSONString());
 
 	    return "product/tyre/tyre";
 	}
