@@ -108,6 +108,7 @@ public class DataStoreController {
                 String[] keyarr = key.split("_");
                 Object value = json.get(key);
                 String name = keyarr[0];
+                System.out.println(key+"=================");
                 String categoryid = keyarr[1];
                 if (map.containsKey(categoryid)) {
                     HashMap<String, Object> innermap = map.get(categoryid);

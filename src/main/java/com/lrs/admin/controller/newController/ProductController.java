@@ -81,11 +81,12 @@ public class ProductController extends BaseController {
 		logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
 		String productid = maunfacturer.getProductid();
 		List<JSONObject> mlist = new ArrayList<>();
+		List<Maunfacturer> maunfacturerList = null;
 		if (maunfacturer.getGrade() == 0) {
 			if (pagemap.containsKey(path)) {
 				productid = pagemap.get(path);
 			}
-			List<Maunfacturer> maunfacturerList = newUserService.selectAllByProductid(productid);
+			maunfacturerList = newUserService.selectAllByProductid(productid);
 			for (Maunfacturer m : maunfacturerList) {
 				List<DataRecord> list = dataDealService.selectGroupByFirmId(m.getFirmId());
 				if (list == null || list.size() == 0) {
@@ -148,7 +149,9 @@ public class ProductController extends BaseController {
 		System.out.println(alljson.toJSONString());
 		model.addAttribute("categorylist", alljson);
 		model.addAttribute("maunfacturerList", mlist);
+		model.addAttribute("mlist", maunfacturerList);
 		System.out.println("返回结果=====" + alljson.toJSONString());
+		System.out.println(mlist.toString());
 		return "product/" + path + "/" + path;
 	}
 

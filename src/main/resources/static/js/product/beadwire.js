@@ -167,7 +167,7 @@ function save_beadwires() {
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
-	        "username" : "用户2",
+	        "username" : $("#firmUsername").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
