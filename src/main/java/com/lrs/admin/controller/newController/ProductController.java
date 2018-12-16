@@ -11,6 +11,7 @@ import com.lrs.admin.service.NewUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -163,19 +164,20 @@ public class ProductController extends BaseController{
      * @return
      */
 	@RequestMapping("/find_all_steels")
-	public String find_all_steels(Model model) {
+	public String find_all_steels(Model model,HttpServletRequest request) {
         Map<String, Object> modelmap = model.asMap();
-        //String username = (String) modelmap.get("username");
+        String username1 = request.getParameter("username");
+        System.out.println("==========="+username1);
         String username = "用户2";
         if (StringUtils.isEmpty(username)){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/steel/steel";
             //return ResponseModel.getModel("无法获取用户", "error", null);
         }
         Maunfacturer maunfacturer = newUserService.select(username);
         if (maunfacturer == null){
             model.addAttribute("msg", "error");
-            return "";
+            return "product/steel/steel";
             //return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
         }
         logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());

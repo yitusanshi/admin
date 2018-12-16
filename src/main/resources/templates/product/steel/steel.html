@@ -34,10 +34,10 @@
 						<th width="10%">供应商名称</th>
 						<th width="10%">产品类型</th>
 						<th width="10%">填报日期</th>
-						<th width="10%">指标数据</th>
 						<th width="15%">对比因子</th>
 						<th width="15%">实际值</th>
 						<th width="10%">指标结果</th>
+						<th width="10%">指标数据</th>
 
 					</tr>
 				</thead>
@@ -47,10 +47,10 @@
 						<td th:text="${categorylist.maunfacturer.firmName}">供应商名称</td>
 						<td th:text="${categorylist.maunfacturer.product}">产品类型</td>
 						<td th:text="${categorylist.maunfacturer.foundingTime}">填报日期</td>
-						<td th:text="${cat.beadWire}">指标数据</td>
-						<td th:text="${cat.categoryName}">对比因子</td>
-						<td th:text="${cat.unit}">实际值</td>
-						<td th:text="${cat.classifyId}">指标结果</td>
+						<td th:text="1">对比因子</td>
+						<td th:text="${stat.count}/10">实际值</td>
+						<td th:text="通过">指标结果</td>
+						<td th:text="详情">指标数据</td>
 					</tr>
 				</tbody>
 			</table>
@@ -332,7 +332,7 @@
 	<script th:src="@{/js/path.js}"></script>
 	<script th:src="@{/js/product/steel.js}"></script>
 	<script type="text/javascript">
-        $(function() {
+		$(function() {
 	        $('#elec_water').mergeCell({
 		        cols : [ 0 ]
 	        });

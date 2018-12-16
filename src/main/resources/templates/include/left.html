@@ -52,13 +52,13 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a target="mainFrame" href="firm/find_all_suppliers">
+						<a target="mainFrame" th:href="@{'/firm/find_all_suppliers?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>供应商</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="firm/find_all_recyclers">
+						<a target="mainFrame" th:href="@{'/firm/find_all_recyclers?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>回收商</label>
 						</a>
@@ -75,43 +75,43 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a target="mainFrame" href="product/find_all_steels">
+						<a target="mainFrame" th:href="@{'/product/find_all_steels?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>钢帘线</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_sbrs">
+						<a target="mainFrame" th:href="@{'/product/find_all_sbrs?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>合成橡胶（丁苯橡胶）</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_ciss">
+						<a target="mainFrame" th:href="@{'/product/find_all_ciss?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>合成橡胶（顺丁橡胶）</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_nylons">
+						<a target="mainFrame" th:href="@{'/product/find_all_nylons?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>尼龙帘布</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_beadwires">
+						<a target="mainFrame" th:href="@{'/product/find_all_beadwires?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>胎圈钢丝</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_carbons">
+						<a target="mainFrame" th:href="@{'/product/find_all_carbons?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>炭黑</label>
 						</a>
 					</li>
 					<li>
-						<a target="mainFrame" href="product/find_all_nrs">
+						<a target="mainFrame" th:href="@{'/product/find_all_nrs?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>天然橡胶</label>
 						</a>
@@ -128,7 +128,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a target="mainFrame" href="product/find_all_tyres">
+						<a target="mainFrame" th:href="@{'/product/find_all_tyres?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>轮胎生产</label>
 						</a>
@@ -145,7 +145,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a target="mainFrame" href="product/find_all_rrs">
+						<a target="mainFrame" th:href="@{'/product/find_all_rrs?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
 							<label>再生胶</label>
 						</a>
