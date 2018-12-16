@@ -69,7 +69,7 @@ public class DataStoreController {
     }
 
 
-    @RequestMapping(value = "/product/save_steels", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/save", method = RequestMethod.POST)
     public HashMap<String,Object> dataStoretest(HttpServletRequest request){
         try {
             request.setCharacterEncoding("utf-8");
@@ -129,7 +129,10 @@ public class DataStoreController {
             for (String key : innermap.keySet()){
                 System.out.println(key + "===" + innermap.get(key));
             }
-            Float volume = (Float) innermap.get("value");
+            System.out.println("77777777777777===="+(String) innermap.get("classifyid"));
+            
+            String value = (String) innermap.get("value");
+            Float volume = Float.parseFloat(value);
             String datasouce = (String) innermap.get("datasouce");
             String desc = (String) innermap.get("desc");
             String classifyid = (String) innermap.get("classifyid");
@@ -154,6 +157,6 @@ public class DataStoreController {
                 dataRecord.setClassifyId(classifyid);
                 dataRecord.setProductVolume(volume);
                 dataDealService.insertDataRecord(dataRecord);*/
-        return null;
+          return ResponseModel.getModel("录入成功", "success", null);
     }
 }

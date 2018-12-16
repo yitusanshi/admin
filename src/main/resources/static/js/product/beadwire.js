@@ -164,7 +164,7 @@ function save_beadwires() {
 	alert(JSON.stringify($('#save_rmc').serializeObject()));
 	alert(JSON.stringify($('#save_res').serializeObject()));
 	$.ajax({
-	    url : _ctx + "/product/save_beadwires",
+	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : "用户2",
@@ -177,8 +177,8 @@ function save_beadwires() {
 	            "10" : JSON.stringify($('#save_elec_pro').serializeObject()),
 	            "11" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "12" : JSON.stringify($('#save_elec_water').serializeObject()),
-	            "8" : JSON.stringify($('#save_solid_waste').serializeObject()),
-	            "13" : JSON.stringify($('#save_trans_pro').serializeObject())
+	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
+	           /* "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
 	        }
 	    },
 	    success : function(data) {

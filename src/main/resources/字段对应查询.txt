@@ -7,9 +7,9 @@ product(产品信息)
 尼龙帘布nylon
 胎圈钢丝beadwire
 炭黑carbon
-天然橡胶(nr)Natural rubber
+天然橡胶nr
 轮胎生产tyre
-再生胶rr(Reclaimed rubber)
+再生胶rr
 
 firm(厂商信息)
 recycler回收商

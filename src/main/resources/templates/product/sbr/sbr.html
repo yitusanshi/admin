@@ -26,36 +26,35 @@
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
-			<table id="sbrsList" class="table table-bordered table-striped">
+			<table id="steelsList" class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th width="10%">序号</th>
 						<th width="10%">供应商名称</th>
 						<th width="10%">产品类型</th>
 						<th width="10%">填报日期</th>
-						<th width="10%">指标数据</th>
 						<th width="15%">对比因子</th>
 						<th width="15%">实际值</th>
 						<th width="10%">指标结果</th>
+						<th width="10%">指标数据</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat,stat:${categorylist[2]}">
+					<tr th:each="maunf,stat:${maunfacturerList}">
 						<td th:text="${stat.count}">1</td>
-						<td th:text="${categorylist.maunfacturer.firmName}">供应商名称</td>
-						<td th:text="${categorylist.maunfacturer.product}">产品类型</td>
-						<td th:text="${categorylist.maunfacturer.foundingTime}">填报日期</td>
-						<td th:text="${cat.beadWire}">指标数据</td>
-						<td th:text="${cat.categoryName}">对比因子</td>
-						<td th:text="${cat.unit}">实际值</td>
-						<td th:text="${cat.classifyId}">指标结果</td>
+						<td th:text="${maunf.maunfacturer.firmName}">供应商名称</td>
+						<td th:text="${maunf.maunfacturer.product}">产品类型</td>
+						<td th:text="${maunf.tagTime}">填报日期</td>
+						<td th:text="1">对比因子</td>
+						<td th:text="${stat.count}/10">实际值</td>
+						<td th:text="${maunf.ispass}">指标结果</td>
+						<td th:text="详情">指标数据</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</section>
-
 	<div class="modal fade" id="AddSbrsModal" tabindex="-1" role="dialog" aria-labelledby="SbrsModal" aria-hidden="true">
 		<div class="modal-dialog" style="width: 100%;">
 			<div class="modal-content">

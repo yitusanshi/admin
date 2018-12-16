@@ -161,7 +161,7 @@ $.fn.serializeObject = function() {
 // 保存钢帘线的信息
 function save_steels() {
 	$.ajax({
-	    url : _ctx + "/product/save_steels",
+	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : "用户2",
@@ -174,8 +174,8 @@ function save_steels() {
 	            "10" : JSON.stringify($('#save_elec_pro').serializeObject()),
 	            "11" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "12" : JSON.stringify($('#save_elec_water').serializeObject()),
-	            "8" : JSON.stringify($('#save_solid_waste').serializeObject()),
-	            "13" : JSON.stringify($('#save_trans_pro').serializeObject())
+	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
+	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
 	        }
 	    },
 	    success : function(data) {
