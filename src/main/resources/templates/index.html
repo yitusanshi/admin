@@ -19,20 +19,18 @@
 </head>
 <script type="text/javascript">
 	//iframe 自适应
-	function setIframeHeight(iframe) {
-		if (iframe) {
-			var iframeWin = iframe.contentWindow
-					|| iframe.contentDocument.parentWindow;
-			if (iframeWin.document.body) {
-				iframe.height = iframeWin.document.documentElement.scrollHeight
-						|| iframeWin.document.body.scrollHeight;
-			}
-		}
-	};
+    function setIframeHeight(iframe) {
+	    if (iframe) {
+		    var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+		    if (iframeWin.document.body) {
+			    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		    }
+	    }
+    };
 
-	window.onload = function() {
-		setIframeHeight(document.getElementById('mainBodyFrame'));
-	};
+    window.onload = function() {
+	    setIframeHeight(document.getElementById('mainBodyFrame'));
+    };
 </script>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -68,22 +66,12 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<!-- Home tab content -->
-				<div class="tab-pane" id="control-sidebar-home-tab">
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
+				<div class="tab-pane" id="control-sidebar-home-tab"></div>
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
 				<div class="tab-pane" id="control-sidebar-settings-tab"></div>
 				<!-- /.tab-pane -->
 			</div>
 		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
 

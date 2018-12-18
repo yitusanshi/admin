@@ -124,7 +124,7 @@
 						<table class="display" style="width: 100%" id="rmc">
 							<thead>
 								<tr>
-									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect">
+									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect" class="form-control">
 											<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
 									</select> <input type="button" id="addRmcRow" value="新增" /></th>
 								</tr>
@@ -177,7 +177,7 @@
 						<table class="display" style="width: 100%" id="energy">
 							<thead>
 								<tr>
-									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect">
+									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect" class="form-control">
 											<option th:each="s : ${categorylist[5]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
 									</select> <input type="button" id="addEnergyRow" value="新增" /></th>
 								</tr>

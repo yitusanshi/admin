@@ -1,8 +1,381 @@
 <!DOCTYPE html>
 <html>
 <head th:include="include/css-head :: css-head">
+
 </head>
 <body>
-轮胎生产
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i>生产商产品管理</a></li>
+			<li class="active">轮胎生产</li>
+		</ol>
+	</section>
+
+
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="box-header">
+			<h3 class="box-title">轮胎生产生产商产品信息</h3>
+			<button class="btn btn-success btn-sm" id="addTyres" data-toggle="modal" data-target="#AddTyresModal">
+				<i class="fa fa-plus"></i> &nbsp;&nbsp;添加轮胎生产产品信息
+			</button>
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<table id="tyresList" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th width="10%">序号</th>
+						<th width="10%">生产商名称</th>
+						<th width="10%">产品类型</th>
+						<th width="10%">填报日期</th>
+						<th width="15%">对比因子</th>
+						<th width="15%">实际值</th>
+						<th width="10%">指标结果</th>
+						<th width="10%">指标数据</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="maunf,stat:${maunfacturerList}">
+						<td th:text="${stat.count}">1</td>
+						<td th:text="${maunf.maunfacturer.firmName}">生产商名称</td>
+						<td th:text="${maunf.maunfacturer.product}">产品类型</td>
+						<td th:text="${maunf.tagTime}">填报日期</td>
+						<td th:text="1">对比因子</td>
+						<td th:text="${stat.count}/10">实际值</td>
+						<td th:text="${maunf.ispass}">指标结果</td>
+						<td th:text="详情">指标数据</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<div class="modal fade" id="AddTyresModal" tabindex="-1" role="dialog" aria-labelledby="TyresModal" aria-hidden="true">
+		<div class="modal-dialog" style="width: 100%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="TyresModalLabel">新增轮胎生产产品数据</h4>
+				</div>
+				<div class="modal-body">
+				
+					<form action="">
+						<table class="display" style="width: 100%">
+							<thead>
+								<tr>
+									<th style="text-align: center;">生产商信息</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="row form-group">
+											<div class="col-xs-2">生产商名称：</div>
+											<div class="col-xs-2">
+												<select name="username" id="firmUsername" class="form-control">
+													<option class="form-control" th:each="maunf : ${mlist}" th:value="${maunf.username}" th:text="${maunf.firmName}"></option>
+												</select> 
+											</div>
+											<div class="col-xs-8"></div>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<!-- 产品产出的table pro-->
+					<form action="" id="save_pro">
+						<table class="display" style="width: 100%" id="pro">
+							<thead>
+								<tr>
+									<th colspan="5" style="text-align: center;">产品产出</th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th>产品种类</th>
+									<th>单位</th>
+									<th>产量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="cat:${categorylist[1]}">
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br> <br>
+
+					<!-- 原料消耗的tbale res -->
+					<form action="" id="save_rmc">
+						<table class="display" style="width: 100%" id="rmc">
+							<thead>
+								<tr>
+									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect" class="form-control">
+											<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
+									</select> <input type="button" id="addRmcRow" value="新增" /></th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th></th>
+									<th>原料种类</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+						</table>
+					</form>
+					<br> <br>
+
+					<!-- 资源消耗table res -->
+					<form action="" id="save_res">
+						<table class="display" style="width: 100%" id="res">
+							<thead>
+								<tr>
+									<th colspan="6" style="text-align: center;">资源消耗</th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th>资源种类</th>
+									<th>来源（井水/自来水）</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" class="form-control" name="name_4" value="新鲜水" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" name="water_4" value="自来水" /></td>
+									<td><input type="text" class="form-control" name="unit_4" value="t" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" name="value_4" value="0" /></td>
+									<td><input type="text" class="form-control" name="datasource_4" /></td>
+									<td><input type="text" class="form-control" name="desc_4" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br> <br>
+
+					<!-- 能源消耗 -->
+					<form action="" id="save_energy">
+						<table class="display" style="width: 100%" id="energy">
+							<thead>
+								<tr>
+									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect" class="form-control">
+											<option th:each="s : ${categorylist[5]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
+									</select> <input type="button" id="addEnergyRow" value="新增" /></th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th></th>
+									<th>能源种类</th>
+									<th>单位</th>
+									<th>消耗量</th>
+									<th>数据来源</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+						</table>
+					</form>
+					<br> <br>
+					<!-- 污染物排放table pd 之废气排放-天然气明火炉 -->
+					<form action="" id="save_natural_gas">
+						<table class="display" style="width: 100%" id="natural_gas">
+							<thead>
+								<tr>
+									<th colspan="6" style="text-align: center;">污染物排放</th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th colspan="2" style="text-align: center; border: 2px solid #EEEEEE;">污染物种类</th>
+									<th style="border: 2px solid #EEEEEE;">单位</th>
+									<th style="border: 2px solid #EEEEEE;">数值</th>
+									<th style="border: 2px solid #EEEEEE;">数据来源</th>
+									<th style="border: 2px solid #EEEEEE;">备注</th>
+								</tr>
+
+							</thead>
+							<tbody>
+								<!-- <th rowspan="7" style="border: 2px solid #EEEEEE; width: 100px;">废气排放-天然气明火炉</th> -->
+								<tr th:each="cat:${categorylist[9]}" style="border: 2px solid #EEEEEE;">
+									<td style="width: 100px;">废气排放-天然气明火炉</td>
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<!-- 污染物排放table pd 之废气排放-线材酸洗、电镀工序 -->
+					<form action="" id="save_elec_pro">
+						<table class="display" style="width: 100%" id="elec_pro">
+							<tbody>
+								<!-- <th rowspan="5" style="border: 2px solid #EEEEEE; width: 100px;">废气排放-线材酸洗、电镀工序</th> -->
+								<tr th:each="cat:${categorylist[10]}" style="border: 2px solid #EEEEEE;">
+									<td style="width: 100px;">废气排放-线材酸洗、电镀工序</td>
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+					<!-- 污染物排放table pd 之废水排放-酸洗废水 -->
+					<form action="" id="save_pick_water">
+						<table class="display" style="width: 100%" id="pick_water">
+							<tbody>
+								<!-- <th rowspan="10" style="border: 2px solid #EEEEEE; width: 100px;">废水排放-酸洗废水</th> -->
+								<tr th:each="cat:${categorylist[11]}" style="border: 2px solid #EEEEEE;">
+									<td style="width: 100px;">废水排放-酸洗废水</td>
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+					<!-- 污染物排放table pd 之废水排放-电镀工序 -->
+					<form action="" id="save_elec_water">
+						<table class="display" style="width: 100%" id="elec_water">
+							<tbody>
+								<!-- <th rowspan="13" style="border: 2px solid #EEEEEE; width: 100px;">废水排放-电镀工序</th> -->
+								<tr th:each="cat:${categorylist[12]}" style="border: 2px solid #EEEEEE;">
+									<td style="width: 100px;">废水排放-电镀工序</td>
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+
+					<!-- 污染物排放table pd 之固体废弃物 -->
+					<form action="" id="save_solid_waste">
+						<table class="display" style="width: 100%" id="solid_waste">
+							<tbody>
+								<!-- <th th:rowspan="3" style="border: 2px solid #EEEEEE; width: 100px;">固体废弃物</th> -->
+								<tr th:each="cat:${categorylist[8]}" style="border: 2px solid #EEEEEE;">
+									<td style="width: 100px;">固体废弃物</td>
+									<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
+									<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" /></td>
+									<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>
+									<td><input type="text" class="form-control" th:name="desc+_+${cat.categoryId}"/ ></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br> <br>
+
+					<!-- 运输过程tbale trans_pro -->
+					<form action="" id="save_trans_pro">
+						<table class="display" style="width: 100%" id="trans_pro">
+							<thead>
+								<tr>
+									<th colspan="6" style="text-align: center;">运输过程</th>
+								</tr>
+								<tr style="border: 2px solid #EEEEEE;">
+									<th>运输物质</th>
+									<th>运输方式</th>
+									<th>运输至风神的数量（t）</th>
+									<th>运输至风神的距离（km）</th>
+									<th>装载负荷（t/车）</th>
+									<th>返程是否空载（是/否）</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" class="form-control" name="transport_name" value="轮胎生产" readonly="readonly" /></td>
+									<td><select class="form-control" name="category_id">
+											<option value="44" selected="selected">海运</option>
+											<option value="45">陆运</option>
+											<option value="46">空运</option>
+									</select></td>
+									<td><input type="text" class="form-control" name="value_volume"></td>
+									<td><input type="text" class="form-control" name="transport_distance"></td>
+									<td><input type="text" class="form-control" name="load_volume"></td>
+									<td><select class="form-control" name="is_load">
+											<option value="0" selected="selected">是</option>
+											<option value="1">否</option>
+									</select></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br> <br>
+
+					<div class="row">
+						<div class="col-xs-5"></div>
+						<div class="col-xs-1">
+							<input type="button" id="tyre_save_btn" class="btn btn-primary" onclick="save_tyres();" value="提交" />
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-primary " data-dismiss="modal">关闭</button>
+						</div>
+						<div class="col-xs-5"></div>
+
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/dist/js/adminlte.min.js}"></script>
+	<script th:src="@{/js/path.js}"></script>
+	<script th:src="@{/js/product/tyre.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+	        $('#elec_water').mergeCell({
+		        cols : [ 0 ]
+	        });
+	        $('#solid_waste').mergeCell({
+		        cols : [ 0 ]
+	        });
+	        $('#pick_water').mergeCell({
+		        cols : [ 0 ]
+	        });
+	        $('#elec_pro').mergeCell({
+		        cols : [ 0 ]
+	        });
+	        $('#natural_gas').mergeCell({
+		        cols : [ 0 ]
+	        });
+
+        });
+	</script>
+
 </body>
 </html>
