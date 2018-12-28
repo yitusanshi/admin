@@ -181,6 +181,8 @@ function save_steels() {
 	    success : function(data) {
 		    if (data.status == 'success') {
 			    alert("数据保存成功！");
+			    $("#AddSteelsModal").modal('hide');
+			    window.location.href = window.location.href;
 		    } else {
 			    alert(data.msg);
 		    }
