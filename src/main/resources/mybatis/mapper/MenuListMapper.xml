@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lrs.admin.dao.mapper.MenuListMapper" >
+  <resultMap id="menulistMap" type="com.lrs.admin.dao.domain.MenuList" >
+    <id column="menuid" property="menuid" jdbcType="INTEGER" />
+    <result column="par_menu_name" property="parMenuName" jdbcType="VARCHAR" />
+    <result column="par_menu_url" property="parMenuUrl" jdbcType="VARCHAR" />
+    <result column="child_menu_name" property="childMenuName" jdbcType="VARCHAR" />
+    <result column="child_menu_url" property="childMenuUrl" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="INTEGER" />
+    <result column="steel_cord" property="steelCord" jdbcType="INTEGER" />
+    <result column="sbr_rubber" property="sbrRubber" jdbcType="INTEGER" />
+    <result column="cis_rubber" property="cisRubber" jdbcType="INTEGER" />
+    <result column="nylon_cord" property="nylonCord" jdbcType="INTEGER" />
+    <result column="bead_wire" property="beadWire" jdbcType="INTEGER" />
+    <result column="carbon_black" property="carbonBlack" jdbcType="INTEGER" />
+    <result column="natural_rubber" property="naturalRubber" jdbcType="INTEGER" />
+    <result column="tyre_produce_meridian" property="tyreProduceMeridian" jdbcType="INTEGER" />
+    <result column="tyre_produce_tappe" property="tyreProduceTappe" jdbcType="INTEGER" />
+    <result column="recla_rubber" property="reclaRubber" jdbcType="INTEGER" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getMenulist" parameterType="java.lang.String" resultMap="menulistMap">
+     SELECT * FROM menu_list WHERE ${role} = 1
+  </select>
+
+
+  <insert id="insert" parameterType="com.lrs.admin.dao.domain.MenuList" >
+    insert into menu_list (menuid, par_menu_name, par_menu_url, 
+      child_menu_name, child_menu_url, product, 
+      steel_cord, sbr_rubber, cis_rubber, 
+      nylon_cord, bead_wire, carbon_black, 
+      natural_rubber, tyre_produce_meridian, tyre_produce_tappe, 
+      recla_rubber, inserttime)
+    values (#{menuid,jdbcType=INTEGER}, #{parMenuName,jdbcType=VARCHAR}, #{parMenuUrl,jdbcType=VARCHAR}, 
+      #{childMenuName,jdbcType=VARCHAR}, #{childMenuUrl,jdbcType=VARCHAR}, #{product,jdbcType=INTEGER}, 
+      #{steelCord,jdbcType=INTEGER}, #{sbrRubber,jdbcType=INTEGER}, #{cisRubber,jdbcType=INTEGER}, 
+      #{nylonCord,jdbcType=INTEGER}, #{beadWire,jdbcType=INTEGER}, #{carbonBlack,jdbcType=INTEGER}, 
+      #{naturalRubber,jdbcType=INTEGER}, #{tyreProduceMeridian,jdbcType=INTEGER}, #{tyreProduceTappe,jdbcType=INTEGER}, 
+      #{reclaRubber,jdbcType=INTEGER}, #{inserttime,jdbcType=TIMESTAMP})
+  </insert>
+</mapper>
