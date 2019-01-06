@@ -29,7 +29,7 @@ $(document).ready(
 	        });
 
 	        // Add event listener for opening and closing details
-	        $('#steelsList tbody').on('click', 'td.details-control', function() {
+	/*        $('#steelsList tbody').on('click', 'td.details-control', function() {
 		        var tr = $(this).closest('tr');
 		        var row = table.row(tr);
 
@@ -40,7 +40,7 @@ $(document).ready(
 			        row.child(format(row.data())).show();
 			        tr.addClass('shown');
 		        }
-	        });
+	        });*/
 
 	        // 原料消耗table 中触发事件
 	        var rmc = $('#rmc').DataTable({
@@ -181,6 +181,8 @@ function save_steels() {
 	    success : function(data) {
 		    if (data.status == 'success') {
 			    alert("数据保存成功！");
+			    $("#AddSteelsModal").modal('hide');
+			    window.location.href = window.location.href;
 		    } else {
 			    alert(data.msg);
 		    }

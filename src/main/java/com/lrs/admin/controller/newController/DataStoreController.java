@@ -30,7 +30,7 @@ public class DataStoreController {
     private NewUserService newUserService;
     @Resource
     private DataDealService dataDealService;
-    @RequestMapping(value = "/store", method = RequestMethod.POST)
+ /*   @RequestMapping(value = "/store", method = RequestMethod.POST)
     public HashMap<String,Object> dataStore(HttpServletRequest request){
         try {
             request.setCharacterEncoding("utf-8");
@@ -66,7 +66,7 @@ public class DataStoreController {
             }
         }
         return null;
-    }
+    }*/
 
 
     @RequestMapping(value = "/product/save", method = RequestMethod.POST)

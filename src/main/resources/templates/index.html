@@ -10,7 +10,7 @@
 <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
 <link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
 <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
-<link rel="stylesheet" th:href="@{/dist/css/skins/_all-skins.min.css}">
+<link rel="stylesheet" th:href="@{/dist/css/skins/_all-skins.css}">
 <link rel="stylesheet" th:href="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css}">
 
 <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
@@ -19,20 +19,18 @@
 </head>
 <script type="text/javascript">
 	//iframe 自适应
-	function setIframeHeight(iframe) {
-		if (iframe) {
-			var iframeWin = iframe.contentWindow
-					|| iframe.contentDocument.parentWindow;
-			if (iframeWin.document.body) {
-				iframe.height = iframeWin.document.documentElement.scrollHeight
-						|| iframeWin.document.body.scrollHeight;
-			}
-		}
-	};
+    function setIframeHeight(iframe) {
+	    if (iframe) {
+		    var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+		    if (iframeWin.document.body) {
+			    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		    }
+	    }
+    };
 
-	window.onload = function() {
-		setIframeHeight(document.getElementById('mainBodyFrame'));
-	};
+    window.onload = function() {
+	    setIframeHeight(document.getElementById('mainBodyFrame'));
+    };
 </script>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -46,7 +44,7 @@
 		<div class="content-wrapper">
 			<!-- 主体部分！！！！ -->
 			<!-- <iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%" onload="setIframeHeight(this)" seamless></iframe> -->
-			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" scrolling="no" width="100%"></iframe>
+			<iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0"  width="100%"></iframe>
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
@@ -68,22 +66,12 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<!-- Home tab content -->
-				<div class="tab-pane" id="control-sidebar-home-tab">
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
+				<div class="tab-pane" id="control-sidebar-home-tab"></div>
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
 				<div class="tab-pane" id="control-sidebar-settings-tab"></div>
 				<!-- /.tab-pane -->
 			</div>
 		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
 

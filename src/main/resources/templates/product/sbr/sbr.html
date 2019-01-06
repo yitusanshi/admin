@@ -6,7 +6,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库 <small>凡是没后台的都被一棒子打死了</small>
+			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库 
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i>供应商产品管理</a></li>
@@ -26,7 +26,7 @@
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
-			<table id="steelsList" class="table table-bordered table-striped">
+			<table id="sbrsList" class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th width="10%">序号</th>
@@ -48,8 +48,8 @@
 						<td th:text="${maunf.tagTime}">填报日期</td>
 						<td th:text="1">对比因子</td>
 						<td th:text="${stat.count}/10">实际值</td>
-						<td th:text="${maunf.ispass}">指标结果</td>
-						<td th:text="详情">指标数据</td>
+						<td th:switch="${stat.count}/10"><span th:case="1"> 通过 </span> <span th:case="0"> 通过 </span> <span th:case="*" style="color: red;"> 未通过 </span></td>
+						<td><input type="button" onclick="alert('供应商填写数据详情')" style="color: blue;" value="详情"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -122,7 +122,7 @@
 						<table class="display" style="width: 100%" id="rmc">
 							<thead>
 								<tr>
-									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect">
+									<th colspan="7" style="text-align: center;">原料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect" class="form-control">
 											<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
 									</select> <input type="button" id="addRmcRow" value="新增" /></th>
 								</tr>
@@ -175,7 +175,7 @@
 						<table class="display" style="width: 100%" id="energy">
 							<thead>
 								<tr>
-									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect">
+									<th colspan="7" style="text-align: center;">能源消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="energySelect" class="form-control">
 											<option th:each="s : ${categorylist[5]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
 									</select> <input type="button" id="addEnergyRow" value="新增" /></th>
 								</tr>

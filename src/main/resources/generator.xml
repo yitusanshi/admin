@@ -7,7 +7,7 @@
    <!-- <classPathEntry
             location="D:\mysql-connector-java-5.1.6.jar"/>-->
     <classPathEntry
-            location="D:\Git\spring2\lib\mysql-connector-java-5.1.30-bin.jar"/>
+            location="D:\jar\spring2\lib\mysql-connector-java-5.1.30-bin.jar"/>
     <context id="mysql_tables" >
         <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
         <commentGenerator>
@@ -19,10 +19,13 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/admin"
                         userId="root"
-                        password="root"/>
+                        password="wanglei"/>
         <javaModelGenerator targetPackage="com.lrs.admin.dao.domain" targetProject="src\main\java" />
         <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src\main\resources" />
         <javaClientGenerator targetPackage="com.lrs.admin.dao.mapper" targetProject="src\main\java" type="XMLMAPPER" />
+        <table tableName="menu_list">
+            <!--<columnOverride column="classify_desc" jdbcType="VARCHAR"> </columnOverride>-->
+        </table>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
         <!--   <table schema="test" tableName="users" domainObjectName="User"

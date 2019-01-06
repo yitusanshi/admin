@@ -73,8 +73,8 @@ function findMaunfacturerByFirmId(firmId) {
 				$("#firm_phone").val(maunfacturer.phone);
 				$("#firm_departmen").val(maunfacturer.departmen);
 				$("#firm_email").val(maunfacturer.email);
-				$("#firm_foundingTime").val(maunfacturer.foundingTime);
-				$("#firm_registerTime").val(maunfacturer.registerTime);
+				$("#firm_foundingTime").val(maunfacturer.foundingTimestr);
+				$("#firm_registerTime").val(maunfacturer.registerTimestr);
 				$("#firm_desc").val(maunfacturer.desc);
 			} else {
 				alert(data.msg);

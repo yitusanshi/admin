@@ -31,39 +31,17 @@ public class FirmController extends BaseController {
 	 */
 	@RequestMapping("/find_all_suppliers")
 	public String findAllSupplier(Model model) {
-		/*Maunfacturer maunfacturer = newUserService.selectByFirmId(6);
-		Maunfacturer maunfacturer1 = newUserService.selectByFirmId(7);
-		Maunfacturer maunfacturer2 = newUserService.selectByFirmId(8);
-		List list = new ArrayList();
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		list.add(maunfacturer);
-		list.add(maunfacturer1);
-		list.add(maunfacturer2);
-		model.addAttribute("maunfacturers", list);*/
 		List<Maunfacturer> list = newUserService.selectByGrade(1);
-		model.addAttribute("maunfacturers", list);
+		//model.addAttribute("maunfacturers", list);
 		for (Maunfacturer m : list){
 			Date foundingTime = m.getFoundingTime();
 			String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
 			m.setFoundingTimestr(foundingTimeStr);
+			Date registerTime = m.getFoundingTime();
+	        String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd HH:mm:ss");
+	        m.setRegisterTimestr(registerTimestr);
 		}
+		model.addAttribute("maunfacturers", list);
 		return "firm/supplier/suppliers";
 	}
 
@@ -76,6 +54,14 @@ public class FirmController extends BaseController {
 	@RequestMapping("/find_all_recyclers")
 	public String findAllRecycler(Model model) {
 		List<Maunfacturer> list = newUserService.selectByGrade(2);
+		for (Maunfacturer m : list){
+			Date foundingTime = m.getFoundingTime();
+			String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
+			m.setFoundingTimestr(foundingTimeStr);
+			Date registerTime = m.getFoundingTime();
+	        String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd HH:mm:ss");
+	        m.setRegisterTimestr(registerTimestr);
+		}
 		model.addAttribute("maunfacturers", list);
 		return "firm/recycler/recyclers";
 	}

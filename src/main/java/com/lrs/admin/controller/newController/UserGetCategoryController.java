@@ -28,6 +28,7 @@ import java.util.Map;
  * @Date: 2018/12/1 15:22
  */
 @RestController
+@Deprecated
 public class UserGetCategoryController {
     private Logger logger = LoggerFactory.getLogger(UserGetCategoryController.class);
     @Resource
@@ -46,15 +47,15 @@ public class UserGetCategoryController {
     //online
     @Resource
     private NewUserService newUserService;
-    @RequestMapping(value = "getcategory", method = RequestMethod.POST)
+   /* @RequestMapping(value = "getcategory", method = RequestMethod.POST)
     public String  getCategory(Model model){
-        /*try {
+        *//*try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
             logger.error("编码格式错误");
             return ResponseModel.getModel("编码格式错误", "error", null);
         }
-        String username = request.getParameter("username");*/
+        String username = request.getParameter("username");*//*
         Map<String, Object> modelmap = model.asMap();
         String username = (String) modelmap.get("username");
         if (StringUtils.isEmpty(username)){
@@ -86,7 +87,7 @@ public class UserGetCategoryController {
                     categoryList.add(proCategory);
                     alljson.put(classifyid, categoryList);
                 }
-               /* String categoryid = proCategory.getCategoryId();
+               *//* String categoryid = proCategory.getCategoryId();
                 String categoryName = proCategory.getCategoryName();
                 if (alljson.containsKey(classifyid)){
                     JSONObject json = alljson.getJSONObject(classifyid);
@@ -95,11 +96,11 @@ public class UserGetCategoryController {
                     JSONObject json = new JSONObject();
                     json.put(categoryid, categoryName);
                     alljson.put(classifyid, json);
-                }*/
+                }*//*
             }
         }
         model.addAttribute("categorylist", alljson);
         return "";
         //return ResponseModel.getModel("获取分类成功", "success", alljson.toJSONString());
-    }
+    }*/
 }
