@@ -128,9 +128,15 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a target="mainFrame" th:href="@{'/product/find_all_tyre?username='+${maunfacturer.username}}">
+						<a target="mainFrame" th:href="@{'/product/find_all_mtyre?username='+${maunfacturer.username}}">
 							<i class="fa fa-circle-o"></i>
-							<label>轮胎生产</label>
+							<label>子午线轮胎生产</label>
+						</a>
+					</li>
+					<li>
+						<a target="mainFrame" th:href="@{'/product/find_all_ttyre?username='+${maunfacturer.username}}">
+							<i class="fa fa-circle-o"></i>
+							<label>斜交线轮胎生产</label>
 						</a>
 					</li>
 				</ul>

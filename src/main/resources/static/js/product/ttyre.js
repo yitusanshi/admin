@@ -29,7 +29,7 @@ $(document).ready(
 	        });
 
 	        // Add event listener for opening and closing details
-	        $('#carbonsList tbody').on('click', 'td.details-control', function() {
+	/*        $('#tyresList tbody').on('click', 'td.details-control', function() {
 		        var tr = $(this).closest('tr');
 		        var row = table.row(tr);
 
@@ -40,7 +40,7 @@ $(document).ready(
 			        row.child(format(row.data())).show();
 			        tr.addClass('shown');
 		        }
-	        });
+	        });*/
 
 	        // 原料消耗table 中触发事件
 	        var rmc = $('#rmc').DataTable({
@@ -159,7 +159,7 @@ $.fn.serializeObject = function() {
 };
 
 // 保存钢帘线的信息
-function save_carbons() {
+function save_tyres() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
@@ -170,9 +170,12 @@ function save_carbons() {
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
 	            "4" : JSON.stringify($('#save_res').serializeObject()),
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
-	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
-	            "7" : JSON.stringify($('#save_pick_water').serializeObject())
-	           /* "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	            "9" : JSON.stringify($('#save_natural_gas').serializeObject()),
+	            "10" : JSON.stringify($('#save_elec_pro').serializeObject()),
+	            "11" : JSON.stringify($('#save_pick_water').serializeObject()),
+	            "12" : JSON.stringify($('#save_elec_water').serializeObject()),
+	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
+	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
 	        }
 	    },
 	    success : function(data) {
@@ -186,4 +189,3 @@ function save_carbons() {
 	    }
 	});
 }
-

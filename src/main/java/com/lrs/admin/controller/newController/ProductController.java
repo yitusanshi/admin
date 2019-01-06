@@ -107,7 +107,6 @@ public class ProductController extends BaseController {
 					mlist.add(json);
 				}
 			}
-
 		}
 		if (maunfacturer.getGrade() == 1) {
 			int firmid = maunfacturer.getFirmId();

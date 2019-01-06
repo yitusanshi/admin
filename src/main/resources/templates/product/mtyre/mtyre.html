@@ -10,8 +10,8 @@
 			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i>回收商产品管理</a></li>
-			<li class="active">再生胶</li>
+			<li><a href="#"><i class="fa fa-dashboard"></i>生产商产品管理</a></li>
+			<li class="active">子午线轮胎生产</li>
 		</ol>
 	</section>
 
@@ -20,9 +20,9 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="box-header">
-			<h3 class="box-title">再生胶回收商产品信息</h3>
-			<button class="btn btn-success btn-sm" id="addRrs" data-toggle="modal" data-target="#AddModal">
-				<i class="fa fa-plus"></i> &nbsp;&nbsp;添加再生胶产品信息
+			<h3 class="box-title">轮胎生产生产商产品信息</h3>
+			<button class="btn btn-success btn-sm" id="addTyres" data-toggle="modal" data-target="#AddModal">
+				<i class="fa fa-plus"></i> &nbsp;&nbsp;添加轮胎生产产品信息
 			</button>
 		</div>
 		<!-- /.box-header -->
@@ -35,11 +35,10 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="ModalLabel">新增再生胶产品数据</h4>
+					<h4 class="modal-title" id="ModalLabel">新增轮胎生产产品数据</h4>
 				</div>
 				<div class="modal-body">
-				
-					<!-- 引入供应商信息组件 -->
+			<!-- 引入供应商信息组件 -->
 					<form th:include="/product/public/suppliers_form" action=""></form>
 
 					<!-- 引入产品产出的组件table pro-->
@@ -64,10 +63,15 @@
 					<!-- 引入污染物排放table water 之废水排放 -->
 					<form action="" id="save_pick_water" th:include="/product/public/water_form"></form>
 					<br> <br>
+					<!-- 污染物排放table pd 之固体废弃物 -->
+					<form action="" id="save_solid_waste" th:include="/product/public/solid_form"></form>
+					<br> <br>
+					
+
 					<div class="row">
 						<div class="col-xs-5"></div>
 						<div class="col-xs-1">
-							<input type="button" id="rr_save_btn" class="btn btn-primary" onclick="save_rrs();" value="提交" />
+							<input type="button" id="tyre_save_btn" class="btn btn-primary" onclick="save_tyres();" value="提交" />
 						</div>
 						<div class="col-xs-1">
 							<button type="button" class="btn btn-primary " data-dismiss="modal">关闭</button>

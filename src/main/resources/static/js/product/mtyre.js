@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#tyresList').DataTable({
+	        var table = $('#productList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,
@@ -181,7 +181,7 @@ function save_tyres() {
 	    success : function(data) {
 		    if (data.status == 'success') {
 			    alert("数据保存成功！");
-			    $("#AddSteelsModal").modal('hide');
+			    $("#AddModal").modal('hide');
 			    window.location.href = window.location.href;
 		    } else {
 			    alert(data.msg);

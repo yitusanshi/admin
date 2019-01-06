@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#sbrsList').DataTable({
+	        var table = $('#productList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,
@@ -158,7 +158,7 @@ $.fn.serializeObject = function() {
 	return o;
 };
 
-// 保存钢帘线的信息
+// 保存合成橡胶（丁苯橡胶）的信息
 function save_sbrs() {
 	$.ajax({
 	    url : _ctx + "/product/save",
@@ -181,7 +181,7 @@ function save_sbrs() {
 	    success : function(data) {
 		    if (data.status == 'success') {
 			    alert("数据保存成功！");
-			    $("#AddSteelsModal").modal('hide');
+			    $("#AddModal").modal('hide');
 			    window.location.href = window.location.href;
 		    } else {
 			    alert(data.msg);
