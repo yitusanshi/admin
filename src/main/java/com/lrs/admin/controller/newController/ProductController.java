@@ -109,7 +109,7 @@ public class ProductController extends BaseController {
 			}
 
 		}
-		if (maunfacturer.getGrade() == 1) {
+		if (maunfacturer.getGrade() == 1 || maunfacturer.getGrade() == 2) {
 			int firmid = maunfacturer.getFirmId();
 			List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
 			for (DataRecord dataRecord : listrecord) {
