@@ -7,5 +7,5 @@ import com.lrs.admin.dao.domain.DataRecordCategoryExtend;
 import java.util.List;
 
 public interface JudgePassService {
-    DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecord> list);
+    DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecordCategory> list);
 }

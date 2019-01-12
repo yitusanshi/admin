@@ -11,18 +11,23 @@ import java.util.List;
 @Service
 public class NaturalRubberService7 extends BaseJudgeService{
     @Override
-    public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecord> list) {
+    public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecordCategory> list) {
         String categoryid = dataRecordCategory.getCategoryId();
         float productvolume = dataRecordCategory.getProductVolume();
         Boolean b = false;
-        if (energyConsume(list) <= 45){
-            b = true;
+        if (categoryid.equals("-1")){
+            productvolume = energyConsume(list);
+            if (productvolume <= 45){
+                b = true;
+            }
+            dataRecordCategory.setProductVolume(productvolume);
+            return  transFormToExtend(dataRecordCategory, b, 45f);
         }
 
         //吨干胶耗水量-乳标胶
         if (categoryid.equals("246")){
             float volume = -1f;
-            for (DataRecord record : list){
+            for (DataRecordCategory record : list){
                 if (record.getCategoryId().equals("178")){
                     volume = record.getProductVolume();
                     break;
@@ -40,7 +45,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
         //吨干胶耗水量-凝标胶
         if (categoryid.equals("184")){
             float volume = -1f;
-            for (DataRecord record : list){
+            for (DataRecordCategory record : list){
                 if (record.getCategoryId().equals("245")){
                     volume = record.getProductVolume();
                     break;

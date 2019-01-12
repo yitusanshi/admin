@@ -58,7 +58,7 @@ public class IsPassService {
         }
     };*/
 
-    public DataRecordCategoryExtend selectFactory(String productid, DataRecordCategory dataRecordCategory, List<DataRecord> list){
+    public DataRecordCategoryExtend selectFactory(String productid, DataRecordCategory dataRecordCategory, List<DataRecordCategory> list){
         if (StringUtils.isEmpty(productid)){
             return null;
         }
@@ -86,4 +86,16 @@ public class IsPassService {
         }
     }
 
+    public DataRecordCategoryExtend energeconsumer(String productid, List<DataRecordCategory> list){
+        DataRecordCategory dataRecordCategory = new DataRecordCategory();
+        dataRecordCategory.setCategoryId("-1");
+        dataRecordCategory.setCategoryName("能源消耗指标");
+        return selectFactory(productid, dataRecordCategory, list);
+    }
+    public DataRecordCategoryExtend  gasEmission(String productid, List<DataRecordCategory> list){
+        DataRecordCategory dataRecordCategory = new DataRecordCategory();
+        dataRecordCategory.setCategoryId("-2");
+        dataRecordCategory.setCategoryName("温室气体排放");
+        return selectFactory(productid, dataRecordCategory, list);
+    }
 }

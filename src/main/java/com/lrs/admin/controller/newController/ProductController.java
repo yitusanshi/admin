@@ -3,10 +3,7 @@ package com.lrs.admin.controller.newController;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.controller.base.BaseController;
-import com.lrs.admin.dao.domain.DataRecord;
-import com.lrs.admin.dao.domain.DataRecordCategory;
-import com.lrs.admin.dao.domain.Maunfacturer;
-import com.lrs.admin.dao.domain.ProCategory;
+import com.lrs.admin.dao.domain.*;
 import com.lrs.admin.entity.ResponseModel;
 import com.lrs.admin.service.DataDealService;
 import com.lrs.admin.service.IsPassService;
@@ -105,8 +102,12 @@ public class ProductController extends BaseController {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
-					json.put("ispass", isPassService.selectFactory(d.getCategoryId(), d, list));
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
+					List<DataRecordCategoryExtend> extendList = new ArrayList<>();
+					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
+						extendList.add(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList));
+					}
+					extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
 					json.put("data", dataRecordCategoryList);
 					mlist.add(json);
 				}

@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class SteelCordService1 extends BaseJudgeService{
     @Override
-    public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecord> list) {
+    public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecordCategory> list) {
         return null;
     }
 }
