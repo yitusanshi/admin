@@ -1,14 +1,13 @@
 package com.lrs.admin.service;
 
 import com.lrs.admin.dao.domain.DataRecord;
-import com.lrs.admin.dao.domain.DataRecordExtend;
+import com.lrs.admin.dao.domain.DataRecordCategory;
+import com.lrs.admin.dao.domain.DataRecordCategoryExtend;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class IsPassService {
@@ -33,7 +32,7 @@ public class IsPassService {
 
     /*protected static Map<String, String> map = new HashMap(){
         {
-            put( "1" , "钢帘线_供应商");
+            put( "1" ,  "钢帘线_供应商");
             put( "2" , "合成橡胶_丁苯橡胶_供应商");
             put( "3" , "合成橡胶_顺丁橡胶_供应商");
             put( "4" , "尼龙帘布_供应商");
@@ -59,29 +58,29 @@ public class IsPassService {
         }
     };*/
 
-    public DataRecordExtend selectFactory(String productid, DataRecord dataRecord, List<DataRecord> list){
+    public DataRecordCategoryExtend selectFactory(String productid, DataRecordCategory dataRecordCategory, List<DataRecord> list){
         if (StringUtils.isEmpty(productid)){
             return null;
         }
         switch (productid){
             case "1" :
-                return steelCordService1.isPass(dataRecord, list);
+                return steelCordService1.isPass(dataRecordCategory, list);
             case "2" :
-                return sbrRubberService2.isPass(dataRecord, list);
+                return sbrRubberService2.isPass(dataRecordCategory, list);
             case "3" :
-                return cisRubberService3.isPass(dataRecord, list);
+                return cisRubberService3.isPass(dataRecordCategory, list);
             case "4" :
-                return nylonCordService4.isPass(dataRecord, list);
+                return nylonCordService4.isPass(dataRecordCategory, list);
             case "5" :
-                return beadWireService5.isPass(dataRecord, list);
+                return beadWireService5.isPass(dataRecordCategory, list);
             case "6" :
-                return carbonBlackService6.isPass(dataRecord, list);
+                return carbonBlackService6.isPass(dataRecordCategory, list);
             case "7" :
-                return naturalRubberService7.isPass(dataRecord, list);
+                return naturalRubberService7.isPass(dataRecordCategory, list);
             case "8" :
-                return tyreProduceService8.isPass(dataRecord, list);
+                return tyreProduceService8.isPass(dataRecordCategory, list);
             case "9" :
-                return reclaRubberService9.isPass(dataRecord, list);
+                return reclaRubberService9.isPass(dataRecordCategory, list);
             default:
                 return null;
         }

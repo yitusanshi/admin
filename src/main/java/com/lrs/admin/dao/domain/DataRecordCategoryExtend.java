@@ -2,7 +2,7 @@ package com.lrs.admin.dao.domain;
 
 import java.util.Date;
 
-public class DataRecordExtend {
+public class DataRecordCategoryExtend {
     private Integer id;
 
     private Integer firmId;
@@ -24,6 +24,14 @@ public class DataRecordExtend {
     private int isPass = 0;
 
     private Float reference;
+
+    private String categoryName;
+
+    private String unit;
+
+    private String classifyName;
+
+    private String classifyDesc;
 
     public Integer getId() {
         return id;
@@ -111,5 +119,37 @@ public class DataRecordExtend {
 
     public void setReference(Float reference) {
         this.reference = reference;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getClassifyName() {
+        return classifyName;
+    }
+
+    public void setClassifyName(String classifyName) {
+        this.classifyName = classifyName;
+    }
+
+    public String getClassifyDesc() {
+        return classifyDesc;
+    }
+
+    public void setClassifyDesc(String classifyDesc) {
+        this.classifyDesc = classifyDesc;
     }
 }

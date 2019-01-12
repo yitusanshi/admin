@@ -9,6 +9,7 @@ import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.dao.domain.ProCategory;
 import com.lrs.admin.entity.ResponseModel;
 import com.lrs.admin.service.DataDealService;
+import com.lrs.admin.service.IsPassService;
 import com.lrs.admin.service.NewUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,6 +47,8 @@ public class ProductController extends BaseController {
 	// online
 	@Resource
 	private NewUserService newUserService;
+	@Resource
+	private IsPassService isPassService;
 	private static Map<String, String> pagemap = new HashMap<String, String>() {
 		{
 			put("steel", "1");
@@ -82,6 +85,7 @@ public class ProductController extends BaseController {
 		String productid = maunfacturer.getProductid();
 		List<JSONObject> mlist = new ArrayList<>();
 		List<Maunfacturer> maunfacturerList = null;
+		//获取填写多少次记录
 		if (maunfacturer.getGrade() == 0) {
 			if (pagemap.containsKey(path)) {
 				productid = pagemap.get(path);
@@ -101,7 +105,7 @@ public class ProductController extends BaseController {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
-					json.put("ispass", 0);
+					json.put("ispass", isPassService.selectFactory(d.getCategoryId(), d, list));
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
 					json.put("data", dataRecordCategoryList);
 					mlist.add(json);
