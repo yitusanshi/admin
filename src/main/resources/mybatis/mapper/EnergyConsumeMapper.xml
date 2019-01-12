@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lrs.admin.dao.mapper.EnergyConsumeMapper" >
+  <resultMap id="BaseResultMap" type="com.lrs.admin.dao.domain.EnergyConsume" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+    <result column="ratio" property="ratio" jdbcType="REAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap">
+      SELECT  * FROM  energy_consume
+  </select>
+</mapper>

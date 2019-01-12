@@ -14,9 +14,10 @@ public class NaturalRubberService7 extends BaseJudgeService{
         String categoryid = dataRecord.getCategoryId();
         float productvolume = dataRecord.getProductVolume();
         Boolean b = false;
-        if (categoryid.equals("")){
-
+        if (energyConsume(list) <= 45){
+            b = true;
         }
+
         //吨干胶耗水量-乳标胶
         if (categoryid.equals("246")){
             float volume = -1f;
