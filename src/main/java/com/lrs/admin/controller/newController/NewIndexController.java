@@ -92,7 +92,9 @@ public class NewIndexController extends BaseController{
                 if (parName.equals(json.getString("parname"))){
                     JSONArray jsonArray = json.getJSONArray("childmenu");
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(menu.getChildMenuName(), menu.getChildMenuUrl());
+                    jsonObject.put("childname", menu.getChildMenuName());
+                    jsonObject.put("childurl", menu.getChildMenuUrl());
+                    /*jsonObject.put(menu.getChildMenuName(), menu.getChildMenuUrl());*/
                     jsonArray.add(jsonObject);
                     b = false;
                 }
@@ -103,7 +105,9 @@ public class NewIndexController extends BaseController{
                 parJson.put("parurl", menu.getParMenuUrl());
                 JSONArray jsonArray = new JSONArray();
                 JSONObject sonJson = new JSONObject();
-                sonJson.put(menu.getChildMenuName(), menu.getChildMenuUrl());
+                sonJson.put("childname", menu.getChildMenuName());
+                sonJson.put("childurl", menu.getChildMenuUrl());
+                /*sonJson.put(menu.getChildMenuName(), menu.getChildMenuUrl());*/
                 jsonArray.add(sonJson);
                 parJson.put("childmenu", jsonArray);
                 jsonlist.add(parJson);

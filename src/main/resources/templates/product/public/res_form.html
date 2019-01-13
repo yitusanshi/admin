@@ -20,7 +20,7 @@
 					<option value="45">井水</option>
 			</select></td>
 			<td><input type="text" class="form-control" name="unit_4" value="t" readonly="readonly" /></td>
-			<td><input type="text" class="form-control" name="value_4" value="0" /></td>
+			<td><input type="text" class="form-control" name="value_4" value="0" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"/></td>
 			<td><input type="text" class="form-control" name="datasource_4" /></td>
 			<td><input type="text" class="form-control" name="desc_4" /></td>
 		</tr>

@@ -20,9 +20,9 @@
 					<option value="45">陆运</option>
 					<option value="46">空运</option>
 			</select></td>
-			<td><input type="text" class="form-control" name="value_volume"></td>
-			<td><input type="text" class="form-control" name="transport_distance"></td>
-			<td><input type="text" class="form-control" name="load_volume"></td>
+			<td><input type="text" class="form-control" name="value_volume" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"></td>
+			<td><input type="text" class="form-control" name="transport_distance" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"></td>
+			<td><input type="text" class="form-control" name="load_volume" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')"></td>
 			<td><select class="form-control" name="is_load">
 					<option value="0" selected="selected">是</option>
 					<option value="1">否</option>
