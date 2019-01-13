@@ -417,8 +417,8 @@ function save_steels() {
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
-	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
+	            "8" : JSON.stringify($('#save_solid_waste').serializeObject()),
+	            "13" : JSON.stringify($('#save_trans_pro').serializeObject())
 	        }
 	    },
 	    success : function(data) {
