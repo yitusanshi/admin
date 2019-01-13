@@ -23,6 +23,8 @@ public class DataRecord {
 
     private Date applicantTime;
 
+    private String dataYear;
+
     public Integer getId() {
         return id;
     }
@@ -93,5 +95,13 @@ public class DataRecord {
 
     public void setApplicantTime(Date applicantTime) {
         this.applicantTime = applicantTime;
+    }
+
+    public String getDataYear() {
+        return dataYear;
+    }
+
+    public void setDataYear(String dataYear) {
+        this.dataYear = dataYear;
     }
 }
