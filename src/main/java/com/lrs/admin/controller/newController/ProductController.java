@@ -3,12 +3,10 @@ package com.lrs.admin.controller.newController;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.controller.base.BaseController;
-import com.lrs.admin.dao.domain.DataRecord;
-import com.lrs.admin.dao.domain.DataRecordCategory;
-import com.lrs.admin.dao.domain.Maunfacturer;
-import com.lrs.admin.dao.domain.ProCategory;
+import com.lrs.admin.dao.domain.*;
 import com.lrs.admin.entity.ResponseModel;
 import com.lrs.admin.service.DataDealService;
+import com.lrs.admin.service.IsPassService;
 import com.lrs.admin.service.NewUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -48,6 +46,8 @@ public class ProductController extends BaseController {
 	// online
 	@Resource
 	private NewUserService newUserService;
+	@Resource
+	private IsPassService isPassService;
 	private static Map<String, String> pagemap = new HashMap<String, String>() {
 		{
 			put("steel", "1");
@@ -92,6 +92,7 @@ public class ProductController extends BaseController {
 		String productid = maunfacturer.getProductid();
 		List<JSONObject> mlist = new ArrayList<>();
 		List<Maunfacturer> maunfacturerList = null;
+		//获取填写多少次记录
 		if (maunfacturer.getGrade() == 0) {
 			if (pagemap.containsKey(path)) {
 				productid = pagemap.get(path);
@@ -111,14 +112,18 @@ public class ProductController extends BaseController {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
-					json.put("ispass", 0);
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
+					List<DataRecordCategoryExtend> extendList = new ArrayList<>();
+					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
+						extendList.add(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList));
+					}
+					extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
 					json.put("data", dataRecordCategoryList);
 					mlist.add(json);
 				}
 			}
 		}
-		if (maunfacturer.getGrade() == 1) {
+		if (maunfacturer.getGrade() == 1 || maunfacturer.getGrade() == 2) {
 			int firmid = maunfacturer.getFirmId();
 			List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
 			for (DataRecord dataRecord : listrecord) {

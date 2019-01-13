@@ -22,7 +22,7 @@ public class App implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println(111111);
-        //String s = userGetDataController.getnewData(null, "用户2");
+        //String s = userGetDataController.getnewData(null,  "用户2");
        //JSONObject jsonObject = userGetCategoryController.getCategory(null, "用户2");
         System.out.println(222222);
     }
