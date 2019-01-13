@@ -41,6 +41,8 @@ public class ProductController extends BaseController {
 			put("7", "natural_rubber");
 			put("8", "tyre_produce");
 			put("9", "recla_rubber");
+			put("10", "tyre_produce_meridian");
+			put("11", "tyre_produce_tappe");
 		}
 	};
 	// online
@@ -57,6 +59,8 @@ public class ProductController extends BaseController {
 			put("nr", "7");
 			put("tyre", "8");
 			put("rr", "9");
+			put("mtyre", "10");
+			put("ttyre", "11");
 		}
 	};
 
@@ -67,6 +71,12 @@ public class ProductController extends BaseController {
 		String path = strArr[2];
 
 		String username = request.getParameter("username");
+		if (path.equals("mtyre")){
+			username = "风神轮胎股份有限公司-子午线";
+		}
+		if(path.equals("ttyre")){
+			username = "风神轮胎股份有限公司-斜交线";
+		}
 		if (StringUtils.isEmpty(username)) {
 			model.addAttribute("msg", "error");
 			return "product/" + path + "/" + path;
