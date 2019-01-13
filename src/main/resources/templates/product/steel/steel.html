@@ -37,10 +37,10 @@
 					<h4 class="modal-title" id="ModalLabel">新增钢帘线产品数据</h4>
 				</div>
 				<div class="modal-body">
-				
+
 					<!-- 引入供应商信息组件 -->
-					<form th:include="/product/public/suppliers_form" action="" ></form>
-					
+					<form th:include="/product/public/suppliers_form" action=""></form>
+
 					<!-- 引入产品产出的组件table pro-->
 					<form th:include="/product/public/product_form" action="" id="save_pro"></form>
 					<br> <br>
@@ -56,7 +56,7 @@
 					<!-- 引入能源消耗组件table energy -->
 					<form action="" id="save_energy" th:include="/product/public/energy_form"></form>
 					<br> <br>
-					
+
 					<!-- 引入污染物排放组件table gas 之废气排放 -->
 					<form action="" id="save_natural_gas" th:include="/product/public/gas_form"></form>
 
@@ -93,6 +93,11 @@
 	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
 	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
 	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+
+	<!-- datetimepicker插件 -->
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+
 	<!-- AdminLTE App -->
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 	<script th:src="@{/js/path.js}"></script>

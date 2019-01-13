@@ -14,9 +14,17 @@
 							<option class="form-control" th:each="maunf : ${mlist}" th:value="${maunf.username}" th:text="${maunf.firmName}"></option>
 						</select>
 					</div>
-					<div class="col-xs-8"></div>
-				</div>
+					<div class="col-xs-2">申报时间:</div>
+					<div class="col-xs-4">
 
+						<input id="datetyear" name="datayear" value="2018" type="text">
+
+						<!-- <div class="input-group date form_date " data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+							<input class="form-control" size="16" type="text" id="datayear" value="2018" readonly> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div> -->
+					</div>
+					<!-- <input type="hidden" id="dtp_input2" value="" /><br /> -->
+				</div>
 			</td>
 		</tr>
 	</tbody>
