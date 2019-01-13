@@ -60,4 +60,7 @@
   <select id="selectAllselectAllByProductid" parameterType="java.lang.String" resultMap="MaunfacturerMap">
     SELECT * FROM maunfacturer WHERE productid = #{0}
   </select>
+  <delete id="delManufacturer" parameterType="java.lang.Integer">
+     DELETE FROM maunfacturer WHERE firm_id = #{0}
+  </delete>
 </mapper>

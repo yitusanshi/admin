@@ -49,5 +49,8 @@ public class DataDealService {
     public List<DataRecordCategory> selectDetail(int firmid, String tagTime){
         return dataRecordCategoryMapper.selectDetail(firmid, tagTime);
     }
+    public void delDataRecord(int firmid){
+        dataRecordMapper.delDataRecord(firmid);
+    }
 
 }

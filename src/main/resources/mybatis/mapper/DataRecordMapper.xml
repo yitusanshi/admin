@@ -37,4 +37,7 @@
   <select id="selectUniqueTag" resultMap="DataRecord">
     SELECT * FROM data_record GROUP BY  firm_id, tag_time
   </select>
+  <delete id="delDataRecord" parameterType="java.lang.Integer">
+    DELETE FROM data_record WHERE firm_id = #{0}
+  </delete>
 </mapper>

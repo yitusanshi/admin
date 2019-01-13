@@ -13,4 +13,5 @@ public interface MaunfacturerMapper {
     List<Maunfacturer> selectAll();
     List<Maunfacturer> selectAllselectAllByProductid(String productid);
     void updatePassword(int firmid, String newpassword);
+    void delManufacturer(int firmid);
 }

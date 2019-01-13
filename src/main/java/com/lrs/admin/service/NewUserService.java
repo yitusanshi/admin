@@ -133,4 +133,8 @@ public class NewUserService {
         List<Maunfacturer> list = maunfacturerMapper.selectAllselectAllByProductid(productid );
         return list;
     }
+    public void delManufacturer(int firmid){
+        maunfacturerMapper.delManufacturer(firmid);
+    }
+
 }

@@ -11,9 +11,10 @@ public interface DataRecordMapper {
     List<DataRecord> selectGroupByFirmId(int firmid);
     List<DataRecord> selectDetailData(int firmid, String tagTime);
     List<DataRecord> selectUniqueTag();
-
+    void delDataRecord(int firmid);
     int insertSelective(DataRecord record);
 
     DataRecord selectByPrimaryKey(Integer id);
+
 
 }
