@@ -78,6 +78,7 @@ public class DataStoreController {
             return ResponseModel.getModel("编码格式错误", "error", null);
         }
         String username = request.getParameter("username");
+        String dataYear = request.getParameter("datayear");
         if (StringUtils.isEmpty(username)){
             return ResponseModel.getModel("无法获取用户", "error", null);
         }
@@ -145,6 +146,7 @@ public class DataStoreController {
             dataRecord.setProductVolume(volume);
             dataRecord.setDataSource(datasouce);
             dataRecord.setRemark(desc);
+            dataRecord.setDataYear(dataYear);
             list.add(dataRecord);
         }
         dataDealService.insertDataRecord(list);

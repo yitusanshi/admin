@@ -11,17 +11,18 @@
     <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />
+    <result column="data_year" jdbcType="VARCHAR" property="dataYear" />
   </resultMap>
   <insert id="insert" parameterType="java.util.List">
     insert into data_record (firm_id, tag_time,
       category_id, classify_id, product_volume, 
-      data_source, remark
+      data_source, remark, data_year
       )
     values
     <foreach collection="list" item="item" index= "index" separator =",">
      (#{item.firmId,jdbcType=INTEGER}, #{item.tagTime,jdbcType=VARCHAR},
       #{item.categoryId,jdbcType=VARCHAR}, #{item.classifyId,jdbcType=VARCHAR}, #{item.productVolume,jdbcType=REAL},
-      #{item.dataSource,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}
+      #{item.dataSource,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.dataYear,jdbcType=VARCHAR}
       )
     </foreach>
   </insert>
