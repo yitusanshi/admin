@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,26 +41,7 @@ public class UserManagerController {
             m.setRegisterTimestr(registerTimestr);
         }
         model.addAttribute("maunfacturers", list);
-        return "sys/find_all_user";
+        return "sys/sys_user";
     }
-    @Transactional(rollbackFor = Exception.class)
-    @RequestMapping("/deluser_by_firmid")
-    public HashMap<String, Object> delUser(HttpServletRequest request) {
-        try {
-            request.setCharacterEncoding("utf-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("编码格式错误");
-            return ResponseModel.getModel("编码格式错误", "error", null);
-        }
-        String firmid = request.getParameter("firmid");
-        int id = Integer.parseInt(firmid);
-        logger.info("del firmid is {}", id);
-        try{
-            newUserService.delManufacturer(id);
-            dataDealService.delDataRecord(id);
-        }catch (Exception e){
-           return ResponseModel.getModel(e.getMessage(), "error", null);
-        }
-        return ResponseModel.getModel("删除成功", "success", null);
-    }
+
 }
