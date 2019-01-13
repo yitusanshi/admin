@@ -1,3 +1,17 @@
+$(function() {
+	$('#datetimepicker').datetimepicker({
+	    startView : 'decade',
+	    minView : 'decade',
+	    format : 'yyyy',
+	    autoclose : true
+	/*
+	 * format : 'yyyy', // 格式 如果只有yyyy-mm-dd那就是0000-00-00 language : 'zh-CN',
+	 * todayBtn : true, autoclose : true, todayHighlight : true, startView : 2,
+	 * maxViewMode: 2, minViewMode:2, forceParse : 0, pickerPosition :
+	 * "top-left"
+	 */
+	});
+})
 $(document).ready(
         function() {
 	        var table = $('#productList').DataTable({
@@ -55,8 +69,8 @@ $(document).ready(
 		                rmc.row.add(
 		                        [ "<input type='hidden'  value='" + cat_unit + "'/>", "<input type='text' name='name_" + categoryId + "' class='form-control' id='name_" + categoryId + "' readonly='readonly' value='" + categoryName + "'/>",
 		                                "<input type='text' name='unit_" + categoryId + "' class='form-control' id='unit_" + categoryId + "' readonly='readonly' value='" + unit + "'/>",
-		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />", "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />",
-		                                "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
+		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />",
+		                                "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />", "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
 		                // 在select中删除已经点击的选项
 		                $("#rmcSelect option[value=" + cat_unit + "]").remove();
 	                });
@@ -104,8 +118,8 @@ $(document).ready(
 		                energy.row.add(
 		                        [ "<input type='hidden'  value='" + cat_unit + "'/>", "<input type='text' name='name_" + categoryId + "' class='form-control' id='name_" + categoryId + "' readonly='readonly' value='" + categoryName + "'/>",
 		                                "<input type='text' name='unit_" + categoryId + "' class='form-control' id='unit_" + categoryId + "' readonly='readonly' value='" + unit + "'/>",
-		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />", "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />",
-		                                "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
+		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />",
+		                                "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />", "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
 		                // 在select中删除已经点击的选项
 		                $("#energySelect option[value=" + cat_unit + "]").remove();
 	                });
@@ -150,6 +164,7 @@ function save_beadwires() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -158,7 +173,7 @@ function save_beadwires() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	           /* "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -173,14 +188,14 @@ function save_beadwires() {
 	});
 }
 
-
-//保存炭黑信息
+// 保存炭黑信息
 function save_carbons() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -188,7 +203,7 @@ function save_carbons() {
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject())
-	           /* "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -203,13 +218,14 @@ function save_carbons() {
 	});
 }
 
-//保存合成橡胶（顺丁橡胶）的信息
+// 保存合成橡胶（顺丁橡胶）的信息
 function save_ciss() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -218,7 +234,7 @@ function save_ciss() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	          /*  "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -233,13 +249,14 @@ function save_ciss() {
 	});
 }
 
-//保存轮胎的信息
+// 保存轮胎的信息
 function save_tyres() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -248,7 +265,7 @@ function save_tyres() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -263,13 +280,14 @@ function save_tyres() {
 	});
 }
 
-//保存天然橡胶信息
+// 保存天然橡胶信息
 function save_nrs() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -277,7 +295,7 @@ function save_nrs() {
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject())
-	          /*  "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -292,14 +310,14 @@ function save_nrs() {
 	});
 }
 
-
-//保存尼龙的信息
+// 保存尼龙的信息
 function save_nylons() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -307,7 +325,7 @@ function save_nylons() {
 	            "5" : JSON.stringify($('#save_energy').serializeObject()),
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject())
-	          /*  "13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -322,13 +340,14 @@ function save_nylons() {
 	});
 }
 
-//保存再生胶的信息
+// 保存再生胶的信息
 function save_rrs() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -337,7 +356,7 @@ function save_rrs() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -352,13 +371,14 @@ function save_rrs() {
 	});
 }
 
-//保存合成橡胶（丁苯橡胶）
+// 保存合成橡胶（丁苯橡胶）
 function save_sbrs() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -367,7 +387,7 @@ function save_sbrs() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {
@@ -382,14 +402,14 @@ function save_sbrs() {
 	});
 }
 
-
-//保存钢帘线的信息
+// 保存钢帘线的信息
 function save_steels() {
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
+	        "datayear" : $("#datetyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -398,7 +418,7 @@ function save_steels() {
 	            "6" : JSON.stringify($('#save_natural_gas').serializeObject()),
 	            "7" : JSON.stringify($('#save_pick_water').serializeObject()),
 	            "8" : JSON.stringify($('#save_solid_waste').serializeObject())
-	            /*"13" : JSON.stringify($('#save_trans_pro').serializeObject())*/
+	        /* "13" : JSON.stringify($('#save_trans_pro').serializeObject()) */
 	        }
 	    },
 	    success : function(data) {

@@ -6,9 +6,7 @@
 <body>
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>
-			基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库
-		</h1>
+		<h1>基于天然橡胶的绿色轮胎供应链全生命周期资源环境信息数据库</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i>生产商产品管理</a></li>
 			<li class="active">子午线轮胎生产</li>
@@ -38,7 +36,7 @@
 					<h4 class="modal-title" id="ModalLabel">新增轮胎生产产品数据</h4>
 				</div>
 				<div class="modal-body">
-			<!-- 引入供应商信息组件 -->
+					<!-- 引入供应商信息组件 -->
 					<form th:include="/product/public/suppliers_form" action=""></form>
 
 					<!-- 引入产品产出的组件table pro-->
@@ -66,7 +64,7 @@
 					<!-- 污染物排放table pd 之固体废弃物 -->
 					<form action="" id="save_solid_waste" th:include="/product/public/solid_form"></form>
 					<br> <br>
-					
+
 
 					<div class="row">
 						<div class="col-xs-5"></div>
@@ -90,6 +88,11 @@
 	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
 	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
 	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+
+	<!-- datetimepicker插件 -->
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+
 	<!-- AdminLTE App -->
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 	<script th:src="@{/js/path.js}"></script>
