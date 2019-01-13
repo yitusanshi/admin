@@ -90,12 +90,14 @@ public class IsPassService {
         DataRecordCategory dataRecordCategory = new DataRecordCategory();
         dataRecordCategory.setCategoryId("-1");
         dataRecordCategory.setCategoryName("能源消耗指标");
+        dataRecordCategory.setProductVolume(0f);
         return selectFactory(productid, dataRecordCategory, list);
     }
     public DataRecordCategoryExtend  gasEmission(String productid, List<DataRecordCategory> list){
         DataRecordCategory dataRecordCategory = new DataRecordCategory();
         dataRecordCategory.setCategoryId("-2");
         dataRecordCategory.setCategoryName("温室气体排放");
+        dataRecordCategory.setProductVolume(0f);
         return selectFactory(productid, dataRecordCategory, list);
     }
 }

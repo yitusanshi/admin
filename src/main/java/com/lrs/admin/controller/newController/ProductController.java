@@ -112,13 +112,15 @@ public class ProductController extends BaseController {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
+					json.put("ispass", -1);
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
 					List<DataRecordCategoryExtend> extendList = new ArrayList<>();
 					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
 						extendList.add(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList));
 					}
 					extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
-					json.put("data", dataRecordCategoryList);
+					json.put("data", extendList);
+					
 					mlist.add(json);
 				}
 			}
@@ -165,7 +167,8 @@ public class ProductController extends BaseController {
 		model.addAttribute("maunfacturerList", mlist);
 		model.addAttribute("mlist", maunfacturerList);
 		System.out.println("返回结果=====" + alljson.toJSONString());
-		System.out.println(mlist.toString());
+		System.out.println("mlist==="+mlist.toString());
+		System.out.println("maunfacturerList==="+maunfacturerList.toString());
 		return "product/" + path + "/" + path;
 	}
 

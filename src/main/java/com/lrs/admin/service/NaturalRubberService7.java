@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 //天然橡胶_供应商
 @Service
 public class NaturalRubberService7 extends BaseJudgeService{
     @Override
     public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecordCategory> list) {
         String categoryid = dataRecordCategory.getCategoryId();
+        System.out.println(dataRecordCategory.getCategoryId()+"=========="+dataRecordCategory.getProductVolume());
         float productvolume = dataRecordCategory.getProductVolume();
+       
         Boolean b = false;
         if (categoryid.equals("-1")){
             productvolume = energyConsume(list);
