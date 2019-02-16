@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#rrsList').DataTable({
+	        var table = $('#productList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,

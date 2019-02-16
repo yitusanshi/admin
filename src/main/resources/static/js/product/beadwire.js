@@ -1,6 +1,6 @@
 $(document).ready(
         function() {
-	        var table = $('#beadwiresList').DataTable({
+	        var table = $('#productList').DataTable({
 	            "scrollX" : true,
 	            'paging' : true,
 	            'lengthChange' : true,
@@ -27,21 +27,6 @@ $(document).ready(
 	            }
 
 	        });
-
-	        // Add event listener for opening and closing details
-	        $('#beadwiresList tbody').on('click', 'td.details-control', function() {
-		        var tr = $(this).closest('tr');
-		        var row = table.row(tr);
-
-		        if (row.child.isShown()) {
-			        row.child.hide();
-			        tr.removeClass('shown');
-		        } else {
-			        row.child(format(row.data())).show();
-			        tr.addClass('shown');
-		        }
-	        });
-
 	        // 原料消耗table 中触发事件
 	        var rmc = $('#rmc').DataTable({
 	            "paging" : false,
@@ -160,9 +145,6 @@ $.fn.serializeObject = function() {
 
 // 保存钢帘线的信息
 function save_beadwires() {
-	alert(JSON.stringify($('#save_pro').serializeObject()));
-	alert(JSON.stringify($('#save_rmc').serializeObject()));
-	alert(JSON.stringify($('#save_res').serializeObject()));
 	$.ajax({
 	    url : _ctx + "/product/save",
 	    type : "POST",
@@ -184,7 +166,7 @@ function save_beadwires() {
 	    success : function(data) {
 		    if (data.status == 'success') {
 			    alert("数据保存成功！");
-			    $("#AddSteelsModal").modal('hide');
+			    $("#AddModal").modal('hide');
 			    window.location.href = window.location.href;
 		    } else {
 			    alert(data.msg);

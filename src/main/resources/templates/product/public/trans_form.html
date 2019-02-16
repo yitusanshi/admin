@@ -1,0 +1,32 @@
+<table class="display" style="width: 100%" id="trans_pro">
+	<thead>
+		<tr>
+			<th colspan="6" style="text-align: center;">运输过程</th>
+		</tr>
+		<tr style="border: 2px solid #EEEEEE;">
+			<th>运输物质</th>
+			<th>运输方式</th>
+			<th>运输至风神的数量（t）</th>
+			<th>运输至风神的距离（km）</th>
+			<th>装载负荷（t/车）</th>
+			<th>返程是否空载（是/否）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type="text" class="form-control" name="transport_name" value="钢帘线" readonly="readonly" /></td>
+			<td><select class="form-control" name="category_id">
+					<option value="44" selected="selected">海运</option>
+					<option value="45">陆运</option>
+					<option value="46">空运</option>
+			</select></td>
+			<td><input type="text" class="form-control" name="value_volume"></td>
+			<td><input type="text" class="form-control" name="transport_distance"></td>
+			<td><input type="text" class="form-control" name="load_volume"></td>
+			<td><select class="form-control" name="is_load">
+					<option value="0" selected="selected">是</option>
+					<option value="1">否</option>
+			</select></td>
+		</tr>
+	</tbody>
+</table>
