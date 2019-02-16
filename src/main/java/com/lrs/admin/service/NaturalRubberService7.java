@@ -16,12 +16,20 @@ public class NaturalRubberService7 extends BaseJudgeService{
         float productvolume = dataRecordCategory.getProductVolume();
         Boolean b = false;
         if (categoryid.equals("-1")){
+            float volume = 0f;
             productvolume = energyConsume(list);
-            if (productvolume <= 45){
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("178")){
+                    volume = record.getProductVolume();
+                    break;
+                }
+            }
+            float result = divided(productvolume, volume);
+            if (result <= 45){
                 b = true;
             }
             dataRecordCategory.setProductVolume(productvolume);
-            return  transFormToExtend(dataRecordCategory, b, 45f);
+            return  transFormToExtend(dataRecordCategory, b, 45f, result);
         }
 
         //吨干胶耗水量-乳标胶
@@ -34,10 +42,11 @@ public class NaturalRubberService7 extends BaseJudgeService{
                 }
             }
             float water = dataRecordCategory.getProductVolume();
-            if (water/volume <= 12){
+            float result = divided(water, volume);
+            if (result <= 12){
                 b = true;
             }
-           return  transFormToExtend(dataRecordCategory, b, 12f);
+           return  transFormToExtend(dataRecordCategory, b, 12f, result);
 
         }
 
@@ -52,10 +61,12 @@ public class NaturalRubberService7 extends BaseJudgeService{
                 }
             }
             float water = dataRecordCategory.getProductVolume();
-            if (water/volume <= 20f){
+            float result = divided(water, volume);
+            if (result <= 20f){
                 b = true;
             }
-            return  transFormToExtend(dataRecordCategory, b, 20f);
+
+            return  transFormToExtend(dataRecordCategory, b, 20f, result);
 
         }
         //废气中SO2排放浓度
@@ -63,14 +74,14 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < 850f){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , 850f);
+            return transFormToExtend(dataRecordCategory, b , 850f, productvolume);
         }
         //废气中NOx排放浓度
         if (categoryid.equals("191")){
             if (productvolume < 240f){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , 240f);
+            return transFormToExtend(dataRecordCategory, b , 240f, productvolume);
         }
         //废气中颗粒物排放浓度
         if (categoryid.equals("192")){
@@ -78,7 +89,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         //恶臭排放浓度
         if (categoryid.equals("194")){
@@ -86,7 +97,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         //废水中COD含量
         if (categoryid.equals("196")){
@@ -94,7 +105,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         //废水中BOD5含量
         if (categoryid.equals("197")){
@@ -102,7 +113,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         //废水中NH3-N含量
         if (categoryid.equals("198")){
@@ -110,7 +121,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         //废水中SS含量
         if (categoryid.equals("199")){
@@ -118,7 +129,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             if (productvolume < reference){
                 b = true;
             }
-            return transFormToExtend(dataRecordCategory, b , reference);
+            return transFormToExtend(dataRecordCategory, b , reference, productvolume);
         }
         /*//废气中SO2排放浓度
         if (categoryid.equals("190")){
@@ -129,6 +140,6 @@ public class NaturalRubberService7 extends BaseJudgeService{
             return transFormToExtend(dataRecord, b , reference);
         }*/
 
-        return transFormToExtend(dataRecordCategory, b , 0L);
+        return transFormToExtend(dataRecordCategory, b , 0L, 0L);
     }
 }

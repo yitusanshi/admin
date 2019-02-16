@@ -33,6 +33,8 @@ public class DataRecordCategoryExtend {
 
     private String classifyDesc;
 
+    private float result;
+
     public Integer getId() {
         return id;
     }
@@ -151,5 +153,13 @@ public class DataRecordCategoryExtend {
 
     public void setClassifyDesc(String classifyDesc) {
         this.classifyDesc = classifyDesc;
+    }
+
+    public float getResult() {
+        return result;
+    }
+
+    public void setResult(float result) {
+        this.result = result;
     }
 }
