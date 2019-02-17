@@ -94,6 +94,10 @@ public class DataStoreController {
                System.out.println(key);
                String value = request.getParameter(key);
                String s = key.substring(8,9);
+               if (s.equals("0")){
+                   System.out.println("1333---"+ request.getParameter(key));
+                   value = transDistance(value);
+               }
                jsonObject.put(s, value);
            }
         }
@@ -128,11 +132,7 @@ public class DataStoreController {
             if (innermap == null || innermap.isEmpty()){
                 continue;
             }
-            for (String key : innermap.keySet()){
-                System.out.println(key + "===" + innermap.get(key));
-            }
-            System.out.println("77777777777777===="+(String) innermap.get("classifyid"));
-            
+
             String value = (String) innermap.get("value");
             Float volume = Float.parseFloat(value);
             String datasouce = (String) innermap.get("datasouce");
@@ -162,4 +162,60 @@ public class DataStoreController {
                 dataDealService.insertDataRecord(dataRecord);*/
           return ResponseModel.getModel("录入成功", "success", null);
     }
+
+    //转化运输数据
+    public String transDistance(String value){
+        if (StringUtils.isEmpty(value)){
+            return null;
+        }
+        JSONObject json = JSONObject.parseObject(value);
+        String category = json.getString("category_id");
+        String valueVoume = json.getString("value_volume");
+        String transport_distance = json.getString("transport_distance");
+        String load_volume = json.getString("load_volume");
+        String is_load = json.getString("is_load");
+        JSONObject obj = new JSONObject();
+        if ("3".equals(category)){
+            obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "311"));
+            obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "312"));
+
+            obj.putAll(assemJson("装载负荷", "t", load_volume, "313"));
+
+            obj.putAll(assemJson("是否空载", "无量纲", is_load, "314"));
+
+        }
+        if ("4".equals(category)){
+            obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "315"));
+            obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "316"));
+
+            obj.putAll(assemJson("装载负荷", "t", load_volume, "317"));
+
+            obj.putAll(assemJson("是否空载", "无量纲", is_load, "318"));
+
+        }
+        if ("5".equals(category)){
+            obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "319"));
+            obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "320"));
+
+            obj.putAll(assemJson("装载负荷", "t", load_volume, "321"));
+
+            obj.putAll(assemJson("是否空载", "无量纲", is_load, "322"));
+
+        }
+        return obj.toJSONString();
+
+    }
+
+    public JSONObject assemJson(String name, String unit, String value,String categoryid) {
+        JSONObject json = new JSONObject();
+        json.put("name_"+categoryid, name);
+        json.put("unit_"+categoryid, unit);
+        json.put("value_"+categoryid, value);
+        json.put("datasource_"+categoryid, "");
+        json.put("desc_"+categoryid, "");
+        return json;
+    }
+
+
+
 }

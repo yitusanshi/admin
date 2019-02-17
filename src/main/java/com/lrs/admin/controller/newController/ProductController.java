@@ -162,7 +162,6 @@ public class ProductController extends BaseController {
 				}
 			}
 		}
-		System.out.println(alljson.toJSONString());
 		model.addAttribute("categorylist", alljson);
 		model.addAttribute("maunfacturerList", mlist);
 		model.addAttribute("mlist", maunfacturerList);
