@@ -16,7 +16,7 @@ public abstract class BaseJudgeService implements JudgePassService {
     @Resource
     private EnergyConsumeMapper energyConsumeMapper;
     private HashMap<String, Float> map = new HashMap<String, Float>();
-    protected DataRecordCategoryExtend transFormToExtend(DataRecordCategory dataRecordCategory, Boolean b, float reference){
+    protected DataRecordCategoryExtend transFormToExtend(DataRecordCategory dataRecordCategory, Boolean b, float reference, float result){
         DataRecordCategoryExtend dataRecordExtend = new DataRecordCategoryExtend();
         if (b){
             dataRecordExtend.setIsPass(1);
@@ -37,6 +37,7 @@ public abstract class BaseJudgeService implements JudgePassService {
         dataRecordExtend.setUnit(dataRecordCategory.getUnit());
         dataRecordExtend.setClassifyName(dataRecordCategory.getClassifyName());
         dataRecordExtend.setClassifyDesc(dataRecordCategory.getClassifyDesc());
+        dataRecordExtend.setResult(result);
         return dataRecordExtend;
     }
 
@@ -53,5 +54,12 @@ public abstract class BaseJudgeService implements JudgePassService {
             }
         }
         return target;
+    }
+
+    public float divided(float f1, float f2){
+        if (f2 <= 0f){
+            return 0f;
+        }
+        return  f1/f2;
     }
 }
