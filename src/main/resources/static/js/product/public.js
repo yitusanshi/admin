@@ -1,9 +1,24 @@
 $(function() {
-	$('#datetimepicker').datetimepicker({
-	    startView : 'decade',
-	    minView : 'decade',
+	$('.form_time').datetimepicker({
 	    format : 'yyyy',
-	    autoclose : true
+	    weekStart : 1,
+	    autoclose : true,
+	    startView : 4,
+	    minView : 4,
+	    forceParse : false,
+	    language : 'zh-CN'
+
+	/*
+	 * format : 'yyyy-mm-dd', // 格式 如果只有yyyy-mm-dd那就是0000-00-00 language :
+	 * 'zh-CN', weekStart : 1, todayBtn : true, autoclose : true, todayHighlight :
+	 * true, startView : 2, minView : 2, forceParse : 0, pickerPosition :
+	 * "top-left"
+	 */
+
+	/*
+	 * startView : 'decade', minView : 'decade', format : 'yyyy', autoclose :
+	 * true
+	 */
 	/*
 	 * format : 'yyyy', // 格式 如果只有yyyy-mm-dd那就是0000-00-00 language : 'zh-CN',
 	 * todayBtn : true, autoclose : true, todayHighlight : true, startView : 2,
@@ -195,7 +210,7 @@ function save_carbons() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
