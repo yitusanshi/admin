@@ -96,7 +96,9 @@ public class DataStoreController {
                String s = key.substring(8,9);
                if (s.equals("0")){
                    System.out.println("1333---"+ request.getParameter(key));
-                   value = transDistance(value);
+                   String[] str = transDistance(value);
+                   value = str[0];
+                   s = str[1];
                }
                jsonObject.put(s, value);
            }
@@ -164,7 +166,7 @@ public class DataStoreController {
     }
 
     //转化运输数据
-    public String transDistance(String value){
+    public String[] transDistance(String value){
         if (StringUtils.isEmpty(value)){
             return null;
         }
@@ -174,6 +176,7 @@ public class DataStoreController {
         String transport_distance = json.getString("transport_distance");
         String load_volume = json.getString("load_volume");
         String is_load = json.getString("is_load");
+        String[] str = new String[2];
         JSONObject obj = new JSONObject();
         if ("3".equals(category)){
             obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "311"));
@@ -182,6 +185,8 @@ public class DataStoreController {
             obj.putAll(assemJson("装载负荷", "t", load_volume, "313"));
 
             obj.putAll(assemJson("是否空载", "无量纲", is_load, "314"));
+            // 转化classifyid
+            str[1] = "13";
 
         }
         if ("4".equals(category)){
@@ -191,6 +196,7 @@ public class DataStoreController {
             obj.putAll(assemJson("装载负荷", "t", load_volume, "317"));
 
             obj.putAll(assemJson("是否空载", "无量纲", is_load, "318"));
+            str[1] = "14";
 
         }
         if ("5".equals(category)){
@@ -200,9 +206,12 @@ public class DataStoreController {
             obj.putAll(assemJson("装载负荷", "t", load_volume, "321"));
 
             obj.putAll(assemJson("是否空载", "无量纲", is_load, "322"));
+            str[1] = "15";
 
         }
-        return obj.toJSONString();
+        //转化后的数据
+        str[0] = obj.toJSONString();
+        return str;
 
     }
 
