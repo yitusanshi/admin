@@ -133,12 +133,12 @@ public class TyreProduceService8 extends BaseJudgeService{
             return transFormToExtend(dataRecordCategory, b, 1300f, productvolume);
         }
         //单位产品废气中非甲烷总烃
-        if (categoryid.equals("")){
+        /*if (categoryid.equals("")){
             if (productvolume <= f){
                 b =true;
             }
             return transFormToExtend(dataRecordCategory, b, f, productvolume);
-        }
+        }*/
         //恶臭
         if (categoryid.equals("223")){
             float refer = 20f;
@@ -148,13 +148,13 @@ public class TyreProduceService8 extends BaseJudgeService{
             return transFormToExtend(dataRecordCategory, b, refer, productvolume);
         }
         //单位产品炭黑粉尘量
-        if (categoryid.equals("")){
+        /*if (categoryid.equals("")){
             float refer = f;
             if (productvolume <= refer){
                 b =true;
             }
             return transFormToExtend(dataRecordCategory, b, refer, productvolume);
-        }
+        }*/
         //废水排放量
         if (categoryid.equals("299")){
             float volume = -1f;
