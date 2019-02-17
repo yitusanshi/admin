@@ -40,10 +40,10 @@ public class NylonCordService4 extends BaseJudgeService{
             }
             float water = dataRecordCategory.getProductVolume();
             float result = divided(water, volume);
-            if (result <= 7f){
+            if (result <= 35f){
                 b = true;
             }
-            return  transFormToExtend(dataRecordCategory, b, 7f, result);
+            return  transFormToExtend(dataRecordCategory, b, 35f, result);
         }
         //废气中颗粒物排放浓度
         if (categoryid.equals("98")){
