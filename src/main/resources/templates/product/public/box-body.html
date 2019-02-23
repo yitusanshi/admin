@@ -36,25 +36,23 @@
 					<table id="suppliersList" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">序号</th>
-								<th width="8%">供应商ID</th>
-								<th width="15%">回收商名称</th>
-								<th width="10%">产品类型</th>
-								<th width="10%">成立时间</th>
-								<th width="10%">注册时间</th>
-								<th width="10%">操作</th>
+								<th width="10%">序号</th>
+								<th width="10%">所属种类</th>
+								<th width="15%">分类</th>
+								<th width="10%">种类单位</th>
+								<th width="10%">基准值</th>
+								<th width="10%">计算值</th>
+								<th width="10%">是否通过</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr th:each="maunf,stat:${maunfacturerList}">
-								<td th:text="${stat.count}">1</td>
+						<tbody id="tabtt">
+							<!-- 	<td th:text="${stat.count}">1</td>
 								<td th:text="2">供应商ID</td>
 								<td th:text="3">供应商名称</td>
 								<td th:text="4">产品类型</td>
 								<td th:text="5">成立时间</td>
 								<td th:text="6">注册时间</td>
-								<td>注册时间</td>
-							</tr>
+								<td>注册时间</td> -->
 						</tbody>
 					</table>
 				</div>
