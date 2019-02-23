@@ -145,6 +145,7 @@ public class TyreProduceService8 extends BaseJudgeService{
             if (result <= 1300f){
                 b = true;
             }
+            dataRecordCategory.setUnit("Nm3/t");
             return transFormToExtend(dataRecordCategory, b, 1300f, productvolume);
         }
         //单位产品废气中非甲烷总烃
@@ -160,10 +161,11 @@ public class TyreProduceService8 extends BaseJudgeService{
                 }
             }
             float sum = productvolume * allGas;
-            float result = divided(sum, volume);
+            float result = divided(sum, volume)*0.000001f;
             if (result <= 0.4f){
                 b =true;
             }
+            dataRecordCategory.setUnit("kg/t");
             return transFormToExtend(dataRecordCategory, b, 0.4f, result);
         }
         //恶臭
@@ -187,10 +189,11 @@ public class TyreProduceService8 extends BaseJudgeService{
                 }
             }
             float sum = productvolume * allGas;
-            float result = divided(sum, volume);
+            float result = divided(sum, volume)*0.000001f;
             if (result <= 0.016f){
                 b =true;
             }
+            dataRecordCategory.setUnit("kg/t");
             return transFormToExtend(dataRecordCategory, b, 0.016f, result);
         }
         //废水排放量
@@ -207,7 +210,8 @@ public class TyreProduceService8 extends BaseJudgeService{
             if (result <= refer){
                 b =true;
             }
-            return transFormToExtend(dataRecordCategory, b, refer, productvolume);
+            dataRecordCategory.setUnit("m3/t");
+            return transFormToExtend(dataRecordCategory, b, refer, result);
         }
         //COD
         if (categoryid.equals("300")){

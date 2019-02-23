@@ -78,7 +78,9 @@ public class IsPassService {
                 return carbonBlackService6.isPass(dataRecordCategory, list);
             case "7" :
                 return naturalRubberService7.isPass(dataRecordCategory, list);
-            case "8" :
+            case "10" :
+                return tyreProduceService8.isPass(dataRecordCategory, list);
+            case "11" :
                 return tyreProduceService8.isPass(dataRecordCategory, list);
             case "9" :
                 return reclaRubberService9.isPass(dataRecordCategory, list);

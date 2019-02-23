@@ -75,15 +75,17 @@ public abstract class BaseJudgeService implements JudgePassService {
         float elec = 0f;
         for (DataRecordCategory dataRecord : list){
             String categoryid = dataRecord.getCategoryId();
-            System.out.println("gasMap======"+gasMap);
             if (gasMap.containsKey(categoryid)){
-                System.out.println("categoryid+==="+categoryid);
-
                 EnergyConsume energyConsume = gasMap.get(categoryid);
+                System.out.println("===="+dataRecord.getProductVolume()+"===="+energyConsume.getHotNum()+"===="+energyConsume.getCarbonNum()+"===="+energyConsume.getBurnPercent());
                 target += dataRecord.getProductVolume() * energyConsume.getHotNum()*energyConsume.getCarbonNum()*energyConsume.getBurnPercent()*44f/12;
             }
             if (dataRecord.getCategoryId().equals("276")){
                 elec = dataRecord.getProductVolume();
+            }
+            if (dataRecord.getCategoryId().equals("275")){
+            	System.out.println("=====volume==="+ dataRecord.getProductVolume() );
+                target += dataRecord.getProductVolume()*0.11;
             }
         }
         String provnice = address.substring(0,2);

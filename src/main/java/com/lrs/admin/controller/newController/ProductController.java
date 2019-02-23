@@ -121,7 +121,9 @@ public class ProductController extends BaseController {
 					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.energeconsumer(productid, dataRecordCategoryList))));
 					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.gasEmission(productid, dataRecordCategoryList, m))));
 					//判断是否都通过
+					System.out.println("jjjjjjj+===="+extendList);
 					for (JSONObject j : extendList){
+						
 						if (j.getIntValue("isPass") == -1){
 							json.put("ispass", -1);
 						}
