@@ -71,11 +71,14 @@ public abstract class BaseJudgeService implements JudgePassService {
         for (EnergyConsume energyConsume : energyConsumeList){
             gasMap.put(energyConsume.getCategoryId(), energyConsume);
         }
-        long target = 0;
+        float target = 0;
         float elec = 0f;
         for (DataRecordCategory dataRecord : list){
             String categoryid = dataRecord.getCategoryId();
-            if (energymap.containsKey(categoryid)){
+            System.out.println("gasMap======"+gasMap);
+            if (gasMap.containsKey(categoryid)){
+                System.out.println("categoryid+==="+categoryid);
+
                 EnergyConsume energyConsume = gasMap.get(categoryid);
                 target += dataRecord.getProductVolume() * energyConsume.getHotNum()*energyConsume.getCarbonNum()*energyConsume.getBurnPercent()*44f/12;
             }
@@ -98,6 +101,8 @@ public abstract class BaseJudgeService implements JudgePassService {
                 }
             }
         }
+        System.out.println("elec+===="+elec);
+        System.out.println("ratio+===="+ratio);
         target+= elec*ratio/1000;
 
         return target;
