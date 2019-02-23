@@ -458,6 +458,4 @@ function save_steels() {
 
 function showModal(Id){
     alert(Id);
-	alert(Id[1]);
-	alert(Id);
 }
