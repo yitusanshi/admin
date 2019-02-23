@@ -150,6 +150,14 @@ $(document).ready(
 		        }
 
 	        });
+	        
+	        
+	        
+	    /*    $(#ProductsModal).on("show.sb.modal",function(e){
+	        	alert("ok");
+	        	 alert($(e.target).data());
+	        	alert($(e.relatedTarget).data()); 
+	        });*/
 
         });
 
@@ -446,4 +454,10 @@ function save_steels() {
 		    }
 	    }
 	});
+}
+
+function showModal(Id){
+    alert(Id);
+	alert(Id[1]);
+	alert(Id);
 }

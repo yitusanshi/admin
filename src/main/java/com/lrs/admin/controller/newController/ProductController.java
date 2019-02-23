@@ -118,10 +118,12 @@ public class ProductController extends BaseController {
 					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
 						extendList.add(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList));
 					}
-					extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
+				extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
+					
 					json.put("data", extendList);
 					
 					mlist.add(json);
+					
 				}
 			}
 		}
@@ -135,6 +137,7 @@ public class ProductController extends BaseController {
 				json.put("ispass", 0);
 				List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
 				json.put("data", dataRecordCategoryList);
+				System.out.println("测试02===="+mlist.toString());
 				mlist.add(json);
 			}
 		}

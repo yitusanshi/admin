@@ -16,9 +16,55 @@
 			<td th:text="${maunf.maunfacturer.firmName}">供应商名称</td>
 			<td th:text="${maunf.maunfacturer.product}">产品类型</td>
 			<td th:text="${maunf.tagTime}">填报日期</td>
-			<td th:text="${maunf.ispass}">通过</td>
-			<!-- <td th:switch="${stat.count}/10"><span th:case="1"> 通过 </span> <span th:case="0"> 通过 </span> <span th:case="*" style="color: red;"> 未通过 </span></td> -->
-			<td><input type="button" onclick="alert('ok')" style="color: blue;" value="详情"></td>
+			<!-- <td th:text="${maunf.ispass}">通过</td> -->
+			 <td th:switch="${maunf.ispass}"><span th:case="0"> 通过 </span> <span th:case="*" style="color: red;"> 未通过 </span></td> 
+			<!-- <td><input type="button" onclick="alert('ok')" style="color: blue;" value="详情"></td> -->
+			<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#ProductsModal" th:onclick="'showModal(\''+${maunf.data}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
 		</tr>
 	</tbody>
 </table>
+<div class="modal fade" id="ProductsModal" tabindex="-1" role="dialog" aria-labelledby="ProductsModal" aria-hidden="true">
+
+ 	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="ProductsModalLabel">指标数据详情</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box-body">
+					<table id="suppliersList" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th width="5%">序号</th>
+								<th width="8%">供应商ID</th>
+								<th width="15%">回收商名称</th>
+								<th width="10%">产品类型</th>
+								<th width="10%">成立时间</th>
+								<th width="10%">注册时间</th>
+								<th width="10%">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="maunf,stat:${maunfacturerList}">
+								<td th:text="${stat.count}">1</td>
+								<td th:text="2">供应商ID</td>
+								<td th:text="3">供应商名称</td>
+								<td th:text="4">产品类型</td>
+								<td th:text="5">成立时间</td>
+								<td th:text="6">注册时间</td>
+								<td>注册时间</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+	</div> 
+</div>
+<script>
+
+</script>
+
