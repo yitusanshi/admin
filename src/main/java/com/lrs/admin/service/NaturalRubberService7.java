@@ -89,7 +89,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
         }
         //废气中颗粒物排放浓度
         if (categoryid.equals("192")){
-            float reference = 240f;
+            float reference = 200f;
             if (productvolume < reference){
                 b = true;
             }

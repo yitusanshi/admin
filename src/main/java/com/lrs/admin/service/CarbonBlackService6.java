@@ -117,12 +117,12 @@ public class CarbonBlackService6 extends BaseJudgeService{
             }
             return transFormToExtend(dataRecordCategory, b, 70f, productvolume);
         }
-        //
+        //石油类含量
         if (categoryid.equals("174")){
-            if (productvolume <= 70f){
+            if (productvolume <= 5f){
                 b =true;
             }
-            return transFormToExtend(dataRecordCategory, b, 70f, productvolume);
+            return transFormToExtend(dataRecordCategory, b, 5f, productvolume);
         }
         return transFormToExtend(dataRecordCategory, b , 0f, 0f);
     }
