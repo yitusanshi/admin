@@ -34,6 +34,7 @@ public class FirmController extends BaseController {
 		List<Maunfacturer> list = newUserService.selectByGrade(1);
 		//model.addAttribute("maunfacturers", list);
 		for (Maunfacturer m : list){
+			m.setPassword("");
 			Date foundingTime = m.getFoundingTime();
 			String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
 			m.setFoundingTimestr(foundingTimeStr);
@@ -55,6 +56,7 @@ public class FirmController extends BaseController {
 	public String findAllRecycler(Model model) {
 		List<Maunfacturer> list = newUserService.selectByGrade(2);
 		for (Maunfacturer m : list){
+			m.setPassword("");
 			Date foundingTime = m.getFoundingTime();
 			String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
 			m.setFoundingTimestr(foundingTimeStr);
