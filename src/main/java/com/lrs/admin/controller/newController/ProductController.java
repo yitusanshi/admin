@@ -91,7 +91,7 @@ public class ProductController extends BaseController {
 		logger.info("{} is getting category, time is {}", username, System.currentTimeMillis());
 		String productid = maunfacturer.getProductid();
 		List<JSONObject> mlist = new ArrayList<>();
-		List<Maunfacturer> maunfacturerList = null;
+		List<Maunfacturer> maunfacturerList = new ArrayList<>();
 		//获取填写多少次记录
 		if (maunfacturer.getGrade() == 0) {
 			if (pagemap.containsKey(path)) {
@@ -121,7 +121,6 @@ public class ProductController extends BaseController {
 					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.energeconsumer(productid, dataRecordCategoryList))));
 					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.gasEmission(productid, dataRecordCategoryList, m))));
 					//判断是否都通过
-					System.out.println("jjjjjjj+===="+extendList);
 					for (JSONObject j : extendList){
 						
 						if (j.getIntValue("isPass") == -1){
@@ -136,6 +135,7 @@ public class ProductController extends BaseController {
 		}
 		if (maunfacturer.getGrade() == 1 || maunfacturer.getGrade() == 2) {
 			int firmid = maunfacturer.getFirmId();
+			maunfacturerList.add(maunfacturer);
 			List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
 			for (DataRecord dataRecord : listrecord) {
 				JSONObject json = new JSONObject();
