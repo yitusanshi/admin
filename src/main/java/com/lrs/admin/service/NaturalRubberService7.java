@@ -23,8 +23,8 @@ public class NaturalRubberService7 extends BaseJudgeService{
             float volume = 0f;
             productvolume = energyConsume(list);
             for (DataRecordCategory record : list){
-                if (record.getCategoryId().equals("178")){
-                    volume = record.getProductVolume();
+                if (record.getCategoryId().equals("178") || record.getCategoryId().equals("245")){
+                    volume += record.getProductVolume();
                     break;
                 }
             }
