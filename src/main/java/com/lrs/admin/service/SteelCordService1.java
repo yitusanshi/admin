@@ -29,6 +29,13 @@ public class SteelCordService1 extends BaseJudgeService{
             dataRecordCategory.setProductVolume(productvolume);
             return  transFormToExtend(dataRecordCategory, b, 0f, result);
         }
+        //温室气体排放计算
+        if (categoryid.equals("-2")){
+
+        }
+
+
+
         //单位产品新鲜水消耗量
         if (categoryid.equals("7")){
             float volume = -1f;
@@ -164,7 +171,7 @@ public class SteelCordService1 extends BaseJudgeService{
             }
             return transFormToExtend(dataRecordCategory, b, 0.3f, productvolume);
         }
-
-        return transFormToExtend(dataRecordCategory, b , 0f, 0f);
+        b = true;
+        return transFormToExtend(dataRecordCategory, b , 0f, productvolume);
     }
 }

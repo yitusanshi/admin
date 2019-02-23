@@ -124,6 +124,7 @@ public class CarbonBlackService6 extends BaseJudgeService{
             }
             return transFormToExtend(dataRecordCategory, b, 5f, productvolume);
         }
-        return transFormToExtend(dataRecordCategory, b , 0f, 0f);
+        b = true;
+        return transFormToExtend(dataRecordCategory, b , 0f, productvolume);
     }
 }

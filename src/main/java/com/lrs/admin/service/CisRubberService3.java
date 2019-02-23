@@ -118,6 +118,7 @@ public class CisRubberService3 extends BaseJudgeService{
             }
             return transFormToExtend(dataRecordCategory, b, refer, productvolume);
         }
-        return transFormToExtend(dataRecordCategory, b , 0f, 0f);
+        b = true;
+        return transFormToExtend(dataRecordCategory, b , 0f, productvolume);
     }
 }

@@ -133,12 +133,24 @@ public class TyreProduceService8 extends BaseJudgeService{
             return transFormToExtend(dataRecordCategory, b, 1300f, productvolume);
         }
         //单位产品废气中非甲烷总烃
-        /*if (categoryid.equals("")){
-            if (productvolume <= f){
+        if (categoryid.equals("222")){
+            float volume = -1f;
+            float allGas = -1f;
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("204") || record.getCategoryId().equals("205")){
+                    volume = record.getProductVolume();
+                }
+                if (record.getCategoryId().equals("219")){
+                    allGas = record.getProductVolume();
+                }
+            }
+            float sum = productvolume * allGas;
+            float result = divided(sum, volume);
+            if (result <= 0.4f){
                 b =true;
             }
-            return transFormToExtend(dataRecordCategory, b, f, productvolume);
-        }*/
+            return transFormToExtend(dataRecordCategory, b, 0.4f, result);
+        }
         //恶臭
         if (categoryid.equals("223")){
             float refer = 20f;
@@ -148,13 +160,24 @@ public class TyreProduceService8 extends BaseJudgeService{
             return transFormToExtend(dataRecordCategory, b, refer, productvolume);
         }
         //单位产品炭黑粉尘量
-        /*if (categoryid.equals("")){
-            float refer = f;
-            if (productvolume <= refer){
+        if (categoryid.equals("224")){
+            float volume = -1f;
+            float allGas = -1f;
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("204") || record.getCategoryId().equals("205")){
+                    volume = record.getProductVolume();
+                }
+                if (record.getCategoryId().equals("219")){
+                    allGas = record.getProductVolume();
+                }
+            }
+            float sum = productvolume * allGas;
+            float result = divided(sum, volume);
+            if (result <= 0.016f){
                 b =true;
             }
-            return transFormToExtend(dataRecordCategory, b, refer, productvolume);
-        }*/
+            return transFormToExtend(dataRecordCategory, b, 0.016f, result);
+        }
         //废水排放量
         if (categoryid.equals("299")){
             float volume = -1f;

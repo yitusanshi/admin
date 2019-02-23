@@ -115,6 +115,7 @@ public class NylonCordService4 extends BaseJudgeService{
             }
             return transFormToExtend(dataRecordCategory, b, 70f, productvolume);
         }
-        return transFormToExtend(dataRecordCategory, b , 0f, 0f);
+        b = true;
+        return transFormToExtend(dataRecordCategory, b , 0f, productvolume);
     }
 }

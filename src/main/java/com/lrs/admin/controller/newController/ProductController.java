@@ -112,18 +112,22 @@ public class ProductController extends BaseController {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
-					json.put("ispass", -1);
+					json.put("ispass", 1);
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
 					List<JSONObject> extendList = new ArrayList<>();
 					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
 						extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList))));
 					}
-				//extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
-					
+					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.energeconsumer(productid, dataRecordCategoryList))));
+					//判断是否都通过
+					for (JSONObject j : extendList){
+						if (j.getIntValue("isPass") == -1){
+							json.put("ispass", -1);
+						}
+					}
 					json.put("data", extendList);
-					
 					mlist.add(json);
-					
+
 				}
 			}
 		}

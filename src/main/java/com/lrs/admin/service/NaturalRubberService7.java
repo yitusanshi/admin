@@ -144,6 +144,7 @@ public class NaturalRubberService7 extends BaseJudgeService{
             return transFormToExtend(dataRecord, b , reference);
         }*/
 
-        return transFormToExtend(dataRecordCategory, b , 0L, 0L);
+        b = true;
+        return transFormToExtend(dataRecordCategory, b , 0f, productvolume);
     }
 }

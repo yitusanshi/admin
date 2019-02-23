@@ -136,7 +136,10 @@ public class DataStoreController {
             }
 
             String value = (String) innermap.get("value");
-            Float volume = Float.parseFloat(value);
+            Float volume = 0f;
+            if (StringUtils.isNotEmpty(value)){
+                volume = Float.parseFloat(value);
+            }
             String datasouce = (String) innermap.get("datasouce");
             String desc = (String) innermap.get("desc");
             String classifyid = (String) innermap.get("classifyid");
