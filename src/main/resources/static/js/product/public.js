@@ -457,5 +457,24 @@ function save_steels() {
 }
 
 function showModal(Id){
-    alert(Id);
+	var jsonArr = JSON.parse(Id);
+	var len= jsonArr.length;
+	var tr = "";
+	
+	for(var i=0;i<jsonArr.length;i++){
+		tr+="<tr>"
+		tr+="<td>"+i+"</td>";
+		tr+="<td>"+jsonArr[i].categoryName+"</td>";
+		tr+="<td>"+jsonArr[i].classifyName+"</td>";
+		tr+="<td>"+jsonArr[i].unit+"</td>";
+		tr+="<td>"+jsonArr[i].reference+"</td>";
+		tr+="<td>"+jsonArr[i].result+"</td>";
+		tr+="<td>"+jsonArr[i].isPass+"</td>"
+		tr+="</tr>";
+	}
+	
+	$('#tabtt').html(tr); 
+	
+	
+   
 }
