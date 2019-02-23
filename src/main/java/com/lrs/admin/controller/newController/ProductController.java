@@ -114,11 +114,11 @@ public class ProductController extends BaseController {
 					json.put("tagTime", d.getTagTime());
 					json.put("ispass", -1);
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
-					List<DataRecordCategoryExtend> extendList = new ArrayList<>();
+					List<JSONObject> extendList = new ArrayList<>();
 					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
-						extendList.add(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList));
+						extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.selectFactory(productid, dataRecordCategory, dataRecordCategoryList))));
 					}
-				extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
+				//extendList.add(isPassService.energeconsumer(productid, dataRecordCategoryList));
 					
 					json.put("data", extendList);
 					
