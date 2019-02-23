@@ -142,8 +142,8 @@ public class ProductController extends BaseController {
 				json.put("maunfacturer", maunfacturer);
 				json.put("tagTime", dataRecord.getTagTime());
 				json.put("ispass", 0);
-				//List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
-				//json.put("data", dataRecordCategoryList);
+				List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+				json.put("data", dataRecordCategoryList);
 				mlist.add(json);
 			}
 		}
