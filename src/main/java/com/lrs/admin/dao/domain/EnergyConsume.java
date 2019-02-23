@@ -11,6 +11,12 @@ public class EnergyConsume {
 
     private String unit;
 
+    private Float hotNum;
+
+    private Float carbonNum;
+
+    private Float burnPercent;
+
     private Date createdTime;
 
     public Integer getId() {
@@ -51,5 +57,29 @@ public class EnergyConsume {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Float getHotNum() {
+        return hotNum;
+    }
+
+    public void setHotNum(Float hotNum) {
+        this.hotNum = hotNum;
+    }
+
+    public Float getCarbonNum() {
+        return carbonNum;
+    }
+
+    public void setCarbonNum(Float carbonNum) {
+        this.carbonNum = carbonNum;
+    }
+
+    public Float getBurnPercent() {
+        return burnPercent;
+    }
+
+    public void setBurnPercent(Float burnPercent) {
+        this.burnPercent = burnPercent;
     }
 }

@@ -3,6 +3,7 @@ package com.lrs.admin.service;
 import com.lrs.admin.dao.domain.DataRecord;
 import com.lrs.admin.dao.domain.DataRecordCategory;
 import com.lrs.admin.dao.domain.DataRecordCategoryExtend;
+import com.lrs.admin.dao.domain.Maunfacturer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -93,13 +94,18 @@ public class IsPassService {
         dataRecordCategory.setProductVolume(0f);
         dataRecordCategory.setUnit("kgce/t");
         dataRecordCategory.setClassifyId("5");
+        dataRecordCategory.setClassifyName("能源消耗");
         return selectFactory(productid, dataRecordCategory, list);
     }
-    public DataRecordCategoryExtend  gasEmission(String productid, List<DataRecordCategory> list){
+    public DataRecordCategoryExtend  gasEmission(String productid, List<DataRecordCategory> list, Maunfacturer m){
         DataRecordCategory dataRecordCategory = new DataRecordCategory();
         dataRecordCategory.setCategoryId("-2");
         dataRecordCategory.setCategoryName("温室气体排放");
         dataRecordCategory.setProductVolume(0f);
+        dataRecordCategory.setUnit("tCO2/t");
+        dataRecordCategory.setClassifyName("温室气体");
+        //存放公司地址，判断外购电力因子
+        dataRecordCategory.setClassifyDesc(m.getAddress());
         return selectFactory(productid, dataRecordCategory, list);
     }
 }

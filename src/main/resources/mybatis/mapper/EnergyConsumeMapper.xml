@@ -6,6 +6,9 @@
     <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
     <result column="ratio" property="ratio" jdbcType="REAL" />
     <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="hot_num" property="hotNum" jdbcType="REAL" />
+    <result column="carbon_num" property="carbonNum" jdbcType="REAL" />
+    <result column="burn_percent" property="burnPercent" jdbcType="REAL" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <select id="selectAll" resultMap="BaseResultMap">
