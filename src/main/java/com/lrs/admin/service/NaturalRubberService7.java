@@ -15,7 +15,6 @@ public class NaturalRubberService7 extends BaseJudgeService{
     @Override
     public DataRecordCategoryExtend isPass(DataRecordCategory dataRecordCategory, List<DataRecordCategory> list) {
         String categoryid = dataRecordCategory.getCategoryId();
-        System.out.println(dataRecordCategory.getCategoryId()+"=========="+dataRecordCategory.getProductVolume());
         float productvolume = dataRecordCategory.getProductVolume();
        
         Boolean b = false;

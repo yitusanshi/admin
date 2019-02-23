@@ -1,6 +1,5 @@
 <table class="display" style="width: 100%" id="solid_waste">
 	<tbody>
-		<!-- <th th:rowspan="3" style="border: 2px solid #EEEEEE; width: 100px;">固体废弃物</th> -->
 		<tr th:each="cat:${categorylist[8]}" style="border: 2px solid #EEEEEE;">
 			<td style="width: 100px;">固体废弃物</td>
 			<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
