@@ -24,7 +24,6 @@ public class NaturalRubberService7 extends BaseJudgeService{
             for (DataRecordCategory record : list){
                 if (record.getCategoryId().equals("178") || record.getCategoryId().equals("245")){
                     volume += record.getProductVolume();
-                    break;
                 }
             }
             float result = divided(productvolume, volume);
