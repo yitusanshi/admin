@@ -177,7 +177,6 @@ public class ProductController extends BaseController {
 		model.addAttribute("mlist", maunfacturerList);
 		System.out.println("返回结果=====" + alljson.toJSONString());
 		System.out.println("mlist==="+mlist.toString());
-		System.out.println("maunfacturerList==="+maunfacturerList.toString());
 		return "product/" + path + "/" + path;
 	}
 
