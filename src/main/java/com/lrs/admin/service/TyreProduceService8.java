@@ -46,6 +46,21 @@ public class TyreProduceService8 extends BaseJudgeService{
             dataRecordCategory.setProductVolume(productvolume);
             return  transFormToExtend(dataRecordCategory, b, referce, result);
         }
+
+        //温室气体排放计算
+        if (categoryid.equals("-2")){
+            productvolume = gasConsume(list, dataRecordCategory.getClassifyDesc());
+            float volume = -1f;
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("204") || record.getCategoryId().equals("205")){
+                    volume += record.getProductVolume();
+                }
+            }
+            float result = divided(productvolume, volume);
+            b = true;
+            dataRecordCategory.setProductVolume(productvolume);
+            return  transFormToExtend(dataRecordCategory, b, 0f, result);
+        }
         //单位产品橡胶消耗量
         if (categoryid.equals("206")){
             float volume = -1f;

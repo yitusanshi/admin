@@ -33,6 +33,20 @@ public class NaturalRubberService7 extends BaseJudgeService{
             dataRecordCategory.setProductVolume(productvolume);
             return  transFormToExtend(dataRecordCategory, b, 45f, result);
         }
+        //温室气体排放计算
+        if (categoryid.equals("-2")){
+            productvolume = gasConsume(list, dataRecordCategory.getClassifyDesc());
+            float volume = -1f;
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("178") || record.getCategoryId().equals("245")){
+                    volume += record.getProductVolume();
+                }
+            }
+            float result = divided(productvolume, volume);
+            b = true;
+            dataRecordCategory.setProductVolume(productvolume);
+            return  transFormToExtend(dataRecordCategory, b, 0f, result);
+        }
 
         //吨干胶耗水量-乳标胶
         if (categoryid.equals("246")){

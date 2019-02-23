@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <!-- 控制台打印日志的相关配置 --> 
+  <!-- 控制台打印日志的相关配置 -->
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
     <!-- 日志格式 -->
     <encoder>
@@ -17,7 +17,7 @@
     </filter>
   </appender>
 
-  <!-- 文件保存日志的相关配置 --> 
+  <!-- 文件保存日志的相关配置 -->
   <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
      <!-- 保存日志文件的路径 -->
     <file>e:/logs/admin_info.log</file>

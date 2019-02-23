@@ -31,6 +31,21 @@ public class CarbonBlackService6 extends BaseJudgeService{
             dataRecordCategory.setProductVolume(productvolume);
             return  transFormToExtend(dataRecordCategory, b, 2250f, result);
         }
+        //温室气体排放计算
+        if (categoryid.equals("-2")){
+            productvolume = gasConsume(list, dataRecordCategory.getClassifyDesc());
+            float volume = -1f;
+            for (DataRecordCategory record : list){
+                if (record.getCategoryId().equals("156")){
+                    volume = record.getProductVolume();
+                    break;
+                }
+            }
+            float result = divided(productvolume, volume);
+            b = true;
+            dataRecordCategory.setProductVolume(productvolume);
+            return  transFormToExtend(dataRecordCategory, b, 0f, result);
+        }
         //单位产品新鲜水消耗量
         if (categoryid.equals("160")){
             float volume = -1f;
