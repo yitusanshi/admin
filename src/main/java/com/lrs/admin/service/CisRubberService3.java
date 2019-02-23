@@ -24,8 +24,8 @@ public class CisRubberService3 extends BaseJudgeService{
                     break;
                 }
             }
-            float result = divided(productvolume, volume);
-            b = true;
+            float result = divided(productvolume, volume)*0.7;
+            b = true;f
             dataRecordCategory.setProductVolume(result);
             return  transFormToExtend(dataRecordCategory, b, 0f, result);
         }
