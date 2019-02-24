@@ -1,7 +1,11 @@
 <table class="display" style="width: 100%">
 	<thead>
 		<tr>
+			<th><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#HelpModal" onclick="showHelp()"><i class="fa fa-hand-stop-o">填写帮助</i></span></th>
+		</tr>
+		<tr>
 			<th style="text-align: center;">供应商信息</th>
+
 		</tr>
 	</thead>
 	<tbody>
@@ -27,3 +31,24 @@
 		</tr>
 	</tbody>
 </table>
+
+
+<div class="modal fade" id="HelpModal" tabindex="-1" role="dialog" aria-labelledby="ProductsModal" aria-hidden="true">
+
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="HelpModalLabel">填写帮助</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box-body">
+					<span> 1、供应商名称必须选择 <br> 2、申报年份根据公司实际情况写入<br> 3、填写"产量"、"消耗量"、"数量"的表格时只能填写数字，可以填写小数<br> 4、填写完成之后保存即可，若提示保存成功即完成填写
+					</span>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>

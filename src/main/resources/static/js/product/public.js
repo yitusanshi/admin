@@ -487,3 +487,6 @@ function showModal(Id, ispass) {
 	});
 
 }
+function showHelp(){
+	
+}
