@@ -150,14 +150,11 @@ $(document).ready(
 		        }
 
 	        });
-	        
-	        
-	        
-	    /*    $(#ProductsModal).on("show.sb.modal",function(e){
-	        	alert("ok");
-	        	 alert($(e.target).data());
-	        	alert($(e.relatedTarget).data()); 
-	        });*/
+
+	        /*
+			 * $(#ProductsModal).on("show.sb.modal",function(e){ alert("ok");
+			 * alert($(e.target).data()); alert($(e.relatedTarget).data()); });
+			 */
 
         });
 
@@ -456,31 +453,37 @@ function save_steels() {
 	});
 }
 
-function showModal(Id,ispass){
+function showModal(Id, ispass) {
 	var tr = "";
-	if(ispass==0){
-		tr+="<span>暂无权限</span>";
-	}else{
+	if (ispass == 0) {
+		tr += "<span>暂无权限</span>";
+	} else {
 		var jsonArr = JSON.parse(Id);
-		var len= jsonArr.length;
-		
-		
-		for(var i=0;i<jsonArr.length;i++){
-			tr+="<tr>"
-			tr+="<td>"+i+"</td>";
-			tr+="<td>"+jsonArr[i].categoryName+"</td>";
-			tr+="<td>"+jsonArr[i].classifyName+"</td>";
-			tr+="<td>"+jsonArr[i].unit+"</td>";
-			tr+="<td>"+jsonArr[i].reference+"</td>";
-			tr+="<td>"+jsonArr[i].result+"</td>";
-			tr+="<td>"+jsonArr[i].isPass+"</td>"
-			tr+="</tr>";
+		var len = jsonArr.length;
+
+		for (var i = 0; i < jsonArr.length; i++) {
+			tr += "<tr>"
+			tr += "<td style='text-align: center; vertical-align: middle;'>" + jsonArr[i].classifyName + "</td>";
+			tr += "<td>" + jsonArr[i].categoryName + "</td>";
+			tr += "<td>" + jsonArr[i].unit + "</td>";
+			if (jsonArr[i].reference == 0) {
+				tr += "<td style='color: blue;'>无基准值</td>";
+			} else {
+				tr += "<td>" + jsonArr[i].reference + "</td>";
+			}
+
+			tr += "<td>" + jsonArr[i].result + "</td>";
+			if (jsonArr[i].isPass == 1) {
+				tr += "<td>通过</td>";
+			} else {
+				tr += "<td style='color: red;'>未通过</td>";
+			}
+			tr += "</tr>";
 		}
 	}
+	$('#tabtt').html(tr);
+	$('#indexsList').mergeCell({
+		cols : [ 0 ]
+	});
 
-	
-	$('#tabtt').html(tr); 
-	
-	
-   
 }

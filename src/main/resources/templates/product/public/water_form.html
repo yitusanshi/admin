@@ -1,6 +1,5 @@
 <table class="display" style="width: 100%" id="pick_water">
 	<tbody>
-		<!-- <th rowspan="10" style="border: 2px solid #EEEEEE; width: 100px;">废水排放-酸洗废水</th> -->
 		<tr th:each="cat:${categorylist[7]}" style="border: 2px solid #EEEEEE;">
 			<td style="width: 100px;">废水排放</td>
 			<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly" /></td>
