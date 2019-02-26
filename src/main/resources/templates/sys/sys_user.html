@@ -30,8 +30,8 @@
 			<table id="sysUserList" class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th width="10%">序号</th>
-						<th width="10%">厂商ID</th>
+						<th width="5%">序号</th>
+						<th width="10%">用户名</th>
 						<th width="10%">厂商名称</th>
 						<th width="10%">产品类型</th>
 						<th width="10%">成立时间</th>
@@ -42,9 +42,9 @@
 				<tbody>
 					<tr th:each="maunfacturer,stat:${maunfacturers}">
 						<td th:text="${stat.count}">1</td>
-						<td th:text="${maunfacturer.firmId}">供应商ID</td>
+						<td th:text="${maunfacturer.username}">用户名</td>
 						<td th:text="${maunfacturer.firmName}">供应商名称</td>
-						<td th:text="${maunfacturer.product}">产品类型</td>
+						<td th:text="${maunfacturer.product.substring(0,maunfacturer.product.lastIndexOf('_'))}">产品类型</td>
 						<td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
 						<td th:text="${maunfacturer.registerTimestr}">注册时间</td>
 						<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#SuppliersModal" th:onclick="'findMaunfacturerByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> </td>

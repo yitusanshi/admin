@@ -31,6 +31,33 @@ $(function() {
 	$("[data-toggle='tooltip']").tooltip();
 })
 
+
+
+
+// 删除厂商信息
+function delMaunfacturer(firmId) {
+	if (confirm("你确定要删除吗？如果删除，此用户将不再能够登录！")) {
+		$.ajax({
+		    type : "POST",
+		    url : _ctx + "/sys/deluser_by_firmid",
+		    cache : false,
+		    dataType : "json",
+		    data : {
+			    firmid : firmId
+		    },
+		    success : function(data) {
+			    if (data.status == 'success') {
+				    alert("删除用户成功！！！");
+				    window.location.href = window.location.href;
+			    } else {
+				    alert(data.msg);
+			    }
+		    }
+		});
+	}
+}
+
+
 // 删除厂商信息
 function delRecyclers(firmId) {
 	alert(firmId);
