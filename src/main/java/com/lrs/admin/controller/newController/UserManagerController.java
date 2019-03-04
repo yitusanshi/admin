@@ -34,10 +34,10 @@ public class UserManagerController {
         //model.addAttribute("maunfacturers", list);
         for (Maunfacturer m : list){
             Date foundingTime = m.getFoundingTime();
-            String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
+            String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd");
             m.setFoundingTimestr(foundingTimeStr);
             Date registerTime = m.getFoundingTime();
-            String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd HH:mm:ss");
+            String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd");
             m.setRegisterTimestr(registerTimestr);
         }
         model.addAttribute("maunfacturers", list);

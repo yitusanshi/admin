@@ -462,23 +462,27 @@ function showModal(Id, ispass) {
 		var len = jsonArr.length;
 
 		for (var i = 0; i < jsonArr.length; i++) {
-			tr += "<tr>"
-			tr += "<td style='text-align: center; vertical-align: middle;'>" + jsonArr[i].classifyName + "</td>";
-			tr += "<td>" + jsonArr[i].categoryName + "</td>";
-			tr += "<td>" + jsonArr[i].unit + "</td>";
-			if (jsonArr[i].reference == 0) {
-				tr += "<td style='color: blue;'>无基准值</td>";
+			if (jsonArr[i].classifyName == "固体废弃物"||jsonArr[i].classifyName == "产品产出"||jsonArr[i].classifyName == "运输过程_海运"||jsonArr[i].classifyName == "运输过程_空运"||jsonArr[i].classifyName == "运输过程_陆运") {
 			} else {
-				tr += "<td>" + jsonArr[i].reference + "</td>";
+				tr += "<tr>"
+				tr += "<td style='text-align: center; vertical-align: middle;'>" + jsonArr[i].classifyName + "</td>";
+				tr += "<td>" + jsonArr[i].categoryName + "</td>";
+				tr += "<td>" + jsonArr[i].unit + "</td>";
+				if (jsonArr[i].reference == 0) {
+					tr += "<td style='color: blue;'>无基准值</td>";
+				} else {
+					tr += "<td>" + jsonArr[i].reference + "</td>";
+				}
+
+				tr += "<td>" + jsonArr[i].result + "</td>";
+				if (jsonArr[i].isPass == 1) {
+					tr += "<td>达标</td>";
+				} else {
+					tr += "<td style='color: red;'>不达标</td>";
+				}
+				tr += "</tr>";
 			}
 
-			tr += "<td>" + jsonArr[i].result + "</td>";
-			if (jsonArr[i].isPass == 1) {
-				tr += "<td>通过</td>";
-			} else {
-				tr += "<td style='color: red;'>未通过</td>";
-			}
-			tr += "</tr>";
 		}
 	}
 	$('#tabtt').html(tr);
@@ -487,6 +491,6 @@ function showModal(Id, ispass) {
 	});
 
 }
-function showHelp(){
-	
+function showHelp() {
+
 }

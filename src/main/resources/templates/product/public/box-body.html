@@ -1,9 +1,9 @@
 <table id="productList" class="table table-bordered table-striped">
 	<thead>
 		<tr>
-			<th>供应商名称</th>
+			<th>厂商名称</th>
 			<th>填报日期</th>
-			<th>是否通过</th>
+			<th>对标结果</th>
 			<th>指标数据</th>
 		</tr>
 	</thead>
@@ -11,7 +11,7 @@
 		<tr th:each="maunf,stat:${maunfacturerList}">
 			<td th:text="${maunf.maunfacturer.firmName}" style="text-align: center; vertical-align: middle;">供应商名称</td>
 			<td th:text="${maunf.tagTime}">填报日期</td>
-			<td th:switch="${maunf.ispass}"><span th:case="1"> 通过 </span> <span th:case="-1" style="color: red;"> 未通过 </span><span th:case="*" style="color: blue;"> / </span></td>
+			<td th:switch="${maunf.ispass}"><span th:case="1">达标</span> <span th:case="-1" style="color: red;">不达标</span><span th:case="*" style="color: blue;"> / </span></td>
 			<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#ProductsModal" th:onclick="'showModal(\''+${maunf.data}+'\',\''+${maunf.ispass}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
 		</tr>
 	</tbody>
@@ -34,7 +34,7 @@
 								<th width="10%">种类单位</th>
 								<th width="10%">基准值</th>
 								<th width="10%">计算值</th>
-								<th width="10%">是否通过</th>
+								<th width="10%">对标情况</th>
 							</tr>
 						</thead>
 						<tbody id="tabtt">

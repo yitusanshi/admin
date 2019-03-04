@@ -106,7 +106,7 @@ public class DataStoreController {
 
         int firmid = maunfacturer.getFirmId();
         long timeStamp = System.currentTimeMillis();
-        String tagTime =  DateFormatUtils.format(timeStamp, "yyyy-MM-dd HH:mm:ss");
+        String tagTime =  DateFormatUtils.format(timeStamp, "yyyy-MM-dd");
         Set<String> set = jsonObject.keySet();
         Map<String, HashMap<String, Object>> map = new HashMap<>();
         for (String classifyid : set) {

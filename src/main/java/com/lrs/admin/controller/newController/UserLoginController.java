@@ -96,9 +96,9 @@ public class UserLoginController {
         int id = Integer.parseInt(firmid);
         Maunfacturer maunfacturer = newUserService.selectByFirmId(id);
         Date foundingTime = maunfacturer.getFoundingTime();
-        String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd HH:mm:ss");
+        String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd");
         Date registerTime = maunfacturer.getFoundingTime();
-        String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd HH:mm:ss");
+        String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd");
         maunfacturer.setFoundingTimestr(foundingTimeStr);
         maunfacturer.setRegisterTimestr(registerTimestr);
         return ResponseModel.getModel("获取成功", "success", maunfacturer);
