@@ -28,6 +28,7 @@ public class ResourceDataController {
     private NewUserService newUserService;
     @Resource
     private DataDealService dataDealService;
+    @RequestMapping("/find_all_data")
     public String findAllResourceData(Model model, HttpServletRequest request){
         String username = request.getParameter("username");
         if (StringUtils.isEmpty(username)) {
