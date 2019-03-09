@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head th:include="include/css-head :: css-head">
+
+</head>
+<body>
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>基于天然橡胶的绿色轮胎供应链生命周期资源环境信息数据库</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i>资源环境影响</a></li>
+			<li class="active">基础数据</li>
+		</ol>
+	</section>
+
+
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="box-header">
+			<h3 class="box-title">数据填报列表</h3>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<!-- <button class="btn btn-success btn-sm" id="addSteels" data-toggle="modal" data-target="#AddModal">
+				<i class="fa fa-plus"></i> &nbsp;&nbsp;新增钢帘线供应数据
+			</button> -->
+		</div>
+		<!-- /.box-header -->
+		<table id="dataList" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>厂商名称</th>
+					<th>申报年份</th>
+					<th>填报日期</th>
+					<th>填报数据</th>
+				</tr>
+			</thead>
+			<!-- 	<tbody>
+		<tr th:each="maunf,stat:${maunfacturerList}">
+			<td th:text="${maunf.maunfacturer.firmName}" style="text-align: center; vertical-align: middle;">供应商名称</td>
+			<td th:text="${maunf.dataYear}" style="text-align: center; vertical-align: middle;">申报年份</td>
+			<td th:text="${maunf.tagTime.substring(0,maunf.tagTime.lastIndexOf(' '))}">填报日期</td>
+			<td th:switch="${maunf.ispass}"><span th:case="1">达标</span> <span th:case="-1" style="color: red;">不达标</span><span th:case="*" style="color: blue;"> / </span></td>
+			<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#ProductsModal" th:onclick="'showModal(\''+${maunf.data}+'\',\''+${maunf.ispass}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
+		</tr>
+	</tbody> -->
+		</table>
+
+	</section>
+
+	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+
+	<!-- datetimepicker插件 -->
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.fr.js}"></script>
+
+
+	<!-- AdminLTE App -->
+	<script th:src="@{/dist/js/adminlte.min.js}"></script>
+	<script th:src="@{/js/path.js}"></script>
+	<script th:src="@{/js/resource/basicdata.js}"></script>
+
+</body>
+</html>
