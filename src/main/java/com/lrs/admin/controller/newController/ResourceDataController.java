@@ -70,6 +70,7 @@ public class ResourceDataController {
             }
         }
         model.addAttribute("resourceData", list);
+        System.out.println("list===="+list);
         return "resource/basicdata/basicdata";
     }
 }
