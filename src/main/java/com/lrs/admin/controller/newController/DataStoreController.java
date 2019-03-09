@@ -135,7 +135,6 @@ public class DataStoreController {
             if (innermap == null || innermap.isEmpty()){
                 continue;
             }
-
             String value = (String) innermap.get("value");
             Float volume = 0f;
             if (StringUtils.isNotEmpty(value)){
@@ -228,6 +227,7 @@ public class DataStoreController {
         json.put("value_"+categoryid, value);
         json.put("datasource_"+categoryid, "");
         json.put("desc_"+categoryid, "");
+        json.put("type_"+categoryid, "0");
         return json;
     }
 
