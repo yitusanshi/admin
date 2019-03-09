@@ -94,6 +94,7 @@ public class DataStoreController {
                System.out.println(key);
                String value = request.getParameter(key);
                String s = key.substring(8,9);
+               //运输距离存储
                if (s.equals("0")){
                    System.out.println("1333---"+ request.getParameter(key));
                    String[] str = transDistance(value);
@@ -143,6 +144,7 @@ public class DataStoreController {
             String datasouce = (String) innermap.get("datasouce");
             String desc = (String) innermap.get("desc");
             String classifyid = (String) innermap.get("classifyid");
+            int dataType = Integer.valueOf((String)innermap.get("type"));
             DataRecord dataRecord = new DataRecord();
             dataRecord.setFirmId(firmid);
             dataRecord.setTagTime(tagTime);
@@ -152,6 +154,7 @@ public class DataStoreController {
             dataRecord.setDataSource(datasouce);
             dataRecord.setRemark(desc);
             dataRecord.setDataYear(dataYear);
+            dataRecord.setDataType(dataType);
             list.add(dataRecord);
         }
         dataDealService.insertDataRecord(list);

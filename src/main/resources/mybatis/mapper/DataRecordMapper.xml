@@ -12,23 +12,29 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />
     <result column="data_year" jdbcType="VARCHAR" property="dataYear" />
+    <result column="data_type" jdbcType="INTEGER" property="dataType" />
   </resultMap>
   <insert id="insert" parameterType="java.util.List">
     insert into data_record (firm_id, tag_time,
       category_id, classify_id, product_volume, 
-      data_source, remark, data_year
+      data_source, remark, data_year, data_type
       )
     values
     <foreach collection="list" item="item" index= "index" separator =",">
      (#{item.firmId,jdbcType=INTEGER}, #{item.tagTime,jdbcType=VARCHAR},
       #{item.categoryId,jdbcType=VARCHAR}, #{item.classifyId,jdbcType=VARCHAR}, #{item.productVolume,jdbcType=REAL},
-      #{item.dataSource,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.dataYear,jdbcType=VARCHAR}
+      #{item.dataSource,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.dataYear,jdbcType=VARCHAR},
+      #{item.dataType,jdbcType=INTEGER}
       )
     </foreach>
   </insert>
 
   <select id="selectGroupByFirmId" parameterType="java.lang.Integer" resultMap="DataRecord">
       SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, tag_time
+  </select>
+
+  <select id="selectGroupByFirmIdForOne" parameterType="java.lang.Integer" resultMap="DataRecord">
+      SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, tag_time order by tag_time desc  limit 1
   </select>
 
   <select id="selectDetailData" >

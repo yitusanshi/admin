@@ -100,7 +100,7 @@ public class ProductController extends BaseController {
 			maunfacturerList = newUserService.selectAllByProductid(productid);
 			for (Maunfacturer m : maunfacturerList) {
 				m.setPassword("");
-				List<DataRecord> list = dataDealService.selectGroupByFirmId(m.getFirmId());
+				List<DataRecord> list = dataDealService.selectGroupByFirmIdForOne(m.getFirmId());
 				if (list == null || list.size() == 0) {
 					JSONObject json = new JSONObject();
 					json.put("maunfacturer", m);

@@ -37,6 +37,9 @@ public class DataDealService {
     public List<DataRecord> selectGroupByFirmId(int firmid){
         return dataRecordMapper.selectGroupByFirmId(firmid);
     }
+    public List<DataRecord> selectGroupByFirmIdForOne(int firmid){
+        return dataRecordMapper.selectGroupByFirmIdForOne(firmid);
+    }
     public List<DataRecord> selectDetailData(int firmid, String tagTime){
         return dataRecordMapper.selectDetailData(firmid, tagTime);
     }

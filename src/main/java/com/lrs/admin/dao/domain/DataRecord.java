@@ -24,6 +24,7 @@ public class DataRecord {
     private Date applicantTime;
 
     private String dataYear;
+    private Integer dataType;
 
     public Integer getId() {
         return id;
@@ -103,5 +104,13 @@ public class DataRecord {
 
     public void setDataYear(String dataYear) {
         this.dataYear = dataYear;
+    }
+
+    public Integer getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(Integer dataType) {
+        this.dataType = dataType;
     }
 }
