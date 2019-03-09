@@ -37,7 +37,7 @@
       SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, tag_time order by tag_time desc  limit 1
   </select>
 
-  <select id="selectDetailData" >
+  <select id="selectDetailData" resultMap="DataRecord">
       SELECT * FROM data_record WHERE firm_id = #{arg0}  AND tag_time = #{arg1}
   </select>
   <select id="selectUniqueTag" resultMap="DataRecord">
