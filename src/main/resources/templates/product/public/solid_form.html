@@ -16,8 +16,8 @@
 			<td><input type="text" class="form-control" th:name="unit+_+${cat.categoryId}" th:value="${cat.unit}" readonly="readonly" /></td>
 			<td><select class="form-control" th:name="type+_+${cat.categoryId}">
 					<option value="0" selected="selected">实测值</option>
-					<option value="-1">估算值</option>
-					<option value="1">未监测</option>
+					<option value="1">估算值</option>
+					<option value="-1">未监测</option>
 			</select></td>
 			<td><input type="text" class="form-control" th:name="value+_+${cat.categoryId}" value="0" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" /></td>
 			<td><input type="text" class="form-control" th:name="datasource+_+${cat.categoryId}" /></td>

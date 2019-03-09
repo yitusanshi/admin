@@ -184,7 +184,7 @@ function save_beadwires() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -245,7 +245,7 @@ function save_ciss() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -276,7 +276,7 @@ function save_tyres() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -307,7 +307,7 @@ function save_nrs() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -337,7 +337,7 @@ function save_nylons() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -367,7 +367,7 @@ function save_rrs() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -398,7 +398,7 @@ function save_sbrs() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -429,7 +429,7 @@ function save_steels() {
 	    type : "POST",
 	    data : {
 	        "username" : $("#firmUsername").val(),
-	        "datayear" : $("#datetyear").val(),
+	        "datayear" : $("#dateyear").val(),
 	        "records" : {
 	            "1" : JSON.stringify($('#save_pro').serializeObject()),
 	            "2" : JSON.stringify($('#save_rmc').serializeObject()),
@@ -462,7 +462,7 @@ function showModal(Id, ispass) {
 		var len = jsonArr.length;
 
 		for (var i = 0; i < jsonArr.length; i++) {
-			if (jsonArr[i].classifyName == "固体废弃物"||jsonArr[i].classifyName == "产品产出"||jsonArr[i].classifyName == "运输过程_海运"||jsonArr[i].classifyName == "运输过程_空运"||jsonArr[i].classifyName == "运输过程_陆运") {
+			if (jsonArr[i].classifyName == "固体废弃物" || jsonArr[i].classifyName == "产品产出" || jsonArr[i].classifyName == "运输过程_海运" || jsonArr[i].classifyName == "运输过程_空运" || jsonArr[i].classifyName == "运输过程_陆运") {
 			} else {
 				tr += "<tr>"
 				tr += "<td style='text-align: center; vertical-align: middle;'>" + jsonArr[i].classifyName + "</td>";
@@ -489,8 +489,5 @@ function showModal(Id, ispass) {
 	$('#indexsList').mergeCell({
 		cols : [ 0 ]
 	});
-
-}
-function showHelp() {
 
 }
