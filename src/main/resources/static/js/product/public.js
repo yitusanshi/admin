@@ -477,8 +477,8 @@ function showModal(Id, ispass) {
 				}
 
 				tr += "<td>" + jsonArr[i].result + "</td>";
-				if (jsonArr[i].dataType = -1) {
-					tr += "<td style='color: yellow;'>无法判断</td>";
+				if (jsonArr[i].dataType == -1) {
+					tr += "<td style='color: green;'>无法判断</td>";
 				} else {
 					if (jsonArr[i].isPass == 1) {
 						tr += "<td>达标</td>";
@@ -486,7 +486,6 @@ function showModal(Id, ispass) {
 						tr += "<td style='color: red;'>不达标</td>";
 					}
 				}
-
 				tr += "</tr>";
 			}
 
