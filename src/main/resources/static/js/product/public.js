@@ -85,8 +85,8 @@ $(document).ready(
 		                        [ "<input type='hidden'  value='" + cat_unit + "'/>", "<input type='text' name='name_" + categoryId + "' class='form-control' id='name_" + categoryId + "' readonly='readonly' value='" + categoryName + "'/>",
 		                                "<input type='text' name='unit_" + categoryId + "' class='form-control' id='unit_" + categoryId + "' readonly='readonly' value='" + unit + "'/>",
 		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />",
-		                                "<input type='text' name='type_" + categoryId + "' class='form-control' value='0' style='display:none;' id='type_" + categoryId + "'  />",
-		                                "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />", "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
+		                                "<input type='text' name='type_" + categoryId + "' class='form-control' value='0' style='display:none;' id='type_" + categoryId + "'  />", "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />",
+		                                "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
 		                // 在select中删除已经点击的选项
 		                $("#rmcSelect option[value=" + cat_unit + "]").remove();
 	                });
@@ -135,8 +135,8 @@ $(document).ready(
 		                        [ "<input type='hidden'  value='" + cat_unit + "'/>", "<input type='text' name='name_" + categoryId + "' class='form-control' id='name_" + categoryId + "' readonly='readonly' value='" + categoryName + "'/>",
 		                                "<input type='text' name='unit_" + categoryId + "' class='form-control' id='unit_" + categoryId + "' readonly='readonly' value='" + unit + "'/>",
 		                                "<input type='text' name='value_" + categoryId + "' class='form-control' value='0' onkeyup=\"this.value=this.value.replace(/[^\\d.]/g,'')\" id='value_" + categoryId + "'  />",
-		                                "<input type='text' name='type_" + categoryId + "' class='form-control' value='0' style='display:none;' id='type_" + categoryId + "'  />",
-		                                "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />", "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
+		                                "<input type='text' name='type_" + categoryId + "' class='form-control' value='0' style='display:none;' id='type_" + categoryId + "'  />", "<input type='text' name='datasource_" + categoryId + "' class='form-control' id='datasource_" + categoryId + "' />",
+		                                "<input type='text' name='desc_" + categoryId + "' class='form-control' id='desc_" + categoryId + "' />" ]).draw();
 		                // 在select中删除已经点击的选项
 		                $("#energySelect option[value=" + cat_unit + "]").remove();
 	                });
@@ -477,11 +477,16 @@ function showModal(Id, ispass) {
 				}
 
 				tr += "<td>" + jsonArr[i].result + "</td>";
-				if (jsonArr[i].isPass == 1) {
-					tr += "<td>达标</td>";
+				if (jsonArr[i].dataType = -1) {
+					tr += "<td style='color: yellow;'>无法判断</td>";
 				} else {
-					tr += "<td style='color: red;'>不达标</td>";
+					if (jsonArr[i].isPass == 1) {
+						tr += "<td>达标</td>";
+					} else {
+						tr += "<td style='color: red;'>不达标</td>";
+					}
 				}
+
 				tr += "</tr>";
 			}
 
