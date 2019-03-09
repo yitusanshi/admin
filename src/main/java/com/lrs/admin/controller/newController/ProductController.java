@@ -143,6 +143,7 @@ public class ProductController extends BaseController {
 				JSONObject json = new JSONObject();
 				json.put("maunfacturer", maunfacturer);
 				json.put("tagTime", dataRecord.getTagTime());
+				json.put("dataYear", dataRecord.getDataYear());
 				json.put("ispass", 0);
 				List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
 				json.put("data", dataRecordCategoryList);
