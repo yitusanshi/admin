@@ -106,6 +106,7 @@ public class ProductController extends BaseController {
 					json.put("maunfacturer", m);
 					json.put("tagTime", "无添加记录");
 					json.put("ispass", -1);
+					json.put("dataYear", "");
 					json.put("data", new ArrayList<DataRecordCategory>());
 					mlist.add(json);
 				}
@@ -114,6 +115,7 @@ public class ProductController extends BaseController {
 					json.put("maunfacturer", m);
 					json.put("tagTime", d.getTagTime());
 					json.put("ispass", 1);
+					json.put("dataYear", d.getDataYear());
 					List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(d.getFirmId(), d.getTagTime());
 					List<JSONObject> extendList = new ArrayList<>();
 					for (DataRecordCategory dataRecordCategory : dataRecordCategoryList){
