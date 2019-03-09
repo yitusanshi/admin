@@ -144,6 +144,7 @@ public class DataStoreController {
             String datasouce = (String) innermap.get("datasouce");
             String desc = (String) innermap.get("desc");
             String classifyid = (String) innermap.get("classifyid");
+            
             int dataType = Integer.valueOf((String)innermap.get("type"));
             DataRecord dataRecord = new DataRecord();
             dataRecord.setFirmId(firmid);
@@ -228,6 +229,7 @@ public class DataStoreController {
         json.put("value_"+categoryid, value);
         json.put("datasource_"+categoryid, "");
         json.put("desc_"+categoryid, "");
+        json.put("type_"+categoryid, "0");
         return json;
     }
 
