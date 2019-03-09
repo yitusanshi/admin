@@ -49,6 +49,7 @@ public abstract class BaseJudgeService implements JudgePassService {
         dataRecordExtend.setClassifyName(dataRecordCategory.getClassifyName());
         dataRecordExtend.setClassifyDesc(dataRecordCategory.getClassifyDesc());
         dataRecordExtend.setResult(result);
+        dataRecordExtend.setDataType(dataRecordCategory.getDataType());
         return dataRecordExtend;
     }
 

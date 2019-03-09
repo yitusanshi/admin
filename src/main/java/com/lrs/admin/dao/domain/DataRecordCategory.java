@@ -33,6 +33,8 @@ public class DataRecordCategory {
 
     private String classifyDesc;
 
+    private Integer dataType;
+
     public Integer getId() {
         return id;
     }
@@ -135,5 +137,13 @@ public class DataRecordCategory {
 
     public void setClassifyDesc(String classifyDesc) {
         this.classifyDesc = classifyDesc;
+    }
+
+    public Integer getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(Integer dataType) {
+        this.dataType = dataType;
     }
 }

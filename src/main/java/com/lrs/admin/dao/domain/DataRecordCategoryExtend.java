@@ -35,6 +35,8 @@ public class DataRecordCategoryExtend {
 
     private float result;
 
+    private Integer dataType;
+
     public Integer getId() {
         return id;
     }
@@ -161,5 +163,13 @@ public class DataRecordCategoryExtend {
 
     public void setResult(float result) {
         this.result = result;
+    }
+
+    public Integer getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(Integer dataType) {
+        this.dataType = dataType;
     }
 }

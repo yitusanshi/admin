@@ -15,6 +15,7 @@
         <result column="unit" jdbcType="VARCHAR" property="unit" />
         <result column="classify_name" jdbcType="VARCHAR" property="classifyName" />
         <result column="classify_desc" jdbcType="VARCHAR" property="classifyDesc" />
+        <result column="data_type" jdbcType="INTEGER" property="dataType" />
     </resultMap>
     <select id="selectDetail" resultMap="DataRecordCategory">
         SELECT * FROM data_record d JOIN pro_classify cs JOIN pro_category cg WHERE d.classify_id = cs.classify_id AND
