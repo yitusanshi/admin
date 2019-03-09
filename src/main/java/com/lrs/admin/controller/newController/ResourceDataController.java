@@ -73,4 +73,13 @@ public class ResourceDataController {
         System.out.println("list===="+list);
         return "resource/basicdata/basicdata";
     }
+
+    @RequestMapping("/find_all_bg")
+    public String findBackGroundData(Model model, HttpServletRequest request){
+        return "/resource/bgdata/bgdata";
+    }
+    @RequestMapping("/find_all_rm")
+    public String findOriginalData(Model model, HttpServletRequest request){
+        return "/resource/rmdata/rmdata";
+    }
 }
