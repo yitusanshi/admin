@@ -3,6 +3,7 @@ package com.lrs.admin.controller.newController;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.dao.domain.DataRecord;
+import com.lrs.admin.dao.domain.DataRecordCategory;
 import com.lrs.admin.dao.domain.Maunfacturer;
 import com.lrs.admin.service.DataDealService;
 import com.lrs.admin.service.NewUserService;
@@ -55,9 +56,15 @@ public class ResourceDataController {
             List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
             for (DataRecord dataRecord : listrecord){
                 JSONObject json = new JSONObject();
-                List<DataRecord> records =  dataDealService.selectDetailData(m.getFirmId(), dataRecord.getTagTime());
+                List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+                if(dataRecordCategoryList == null || dataRecordCategoryList.size() == 0){
+                    break;
+                }
+                DataRecordCategory dataRecordCategory = dataRecordCategoryList.get(0);
                 json.put("manu", m);
-                json.put("records", records);
+                json.put("records", dataRecordCategoryList);
+                json.put("tagTime", dataRecordCategory.getTagTime());
+                json.put("dataYear", dataRecordCategory.getDataYear());
                 list.add(json);
 
             }

@@ -34,6 +34,7 @@ public class DataRecordCategory {
     private String classifyDesc;
 
     private Integer dataType;
+    private String dataYear;
 
     public Integer getId() {
         return id;
@@ -145,5 +146,13 @@ public class DataRecordCategory {
 
     public void setDataType(Integer dataType) {
         this.dataType = dataType;
+    }
+
+    public String getDataYear() {
+        return dataYear;
+    }
+
+    public void setDataYear(String dataYear) {
+        this.dataYear = dataYear;
     }
 }
