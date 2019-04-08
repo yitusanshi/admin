@@ -1,5 +1,6 @@
 package com.lrs.admin.controller.newController;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lrs.admin.dao.domain.DataRecord;
@@ -57,12 +58,15 @@ public class ResourceDataController {
             for (DataRecord dataRecord : listrecord){
                 JSONObject json = new JSONObject();
                 List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());
+               
+                List<JSONObject> extendList = new ArrayList<>();
+               
                 if(dataRecordCategoryList == null || dataRecordCategoryList.size() == 0){
                     break;
                 }
                 DataRecordCategory dataRecordCategory = dataRecordCategoryList.get(0);
-                json.put("manu", m);
-                json.put("records", dataRecordCategoryList);
+                json.put("manu", JSONArray.toJSON(m));
+                json.put("records",  JSONArray.parseArray(JSON.toJSONString(dataRecordCategoryList)));
                 json.put("tagTime", dataRecordCategory.getTagTime());
                 json.put("dataYear", dataRecordCategory.getDataYear());
                 list.add(json);

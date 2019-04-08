@@ -13,39 +13,71 @@
 		</ol>
 	</section>
 
-
-
 	<!-- Main content -->
 	<section class="content">
 		<div class="box-header">
-			<h3 class="box-title">数据填报列表</h3>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<!-- <button class="btn btn-success btn-sm" id="addSteels" data-toggle="modal" data-target="#AddModal">
-				<i class="fa fa-plus"></i> &nbsp;&nbsp;新增钢帘线供应数据
-			</button> -->
+			<h3 class="box-title">基础数据填报列表</h3>
 		</div>
 		<!-- /.box-header -->
 		<table id="dataList" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>厂商名称</th>
-					<th>申报年份</th>
-					<th>填报日期</th>
-					<th>填报数据</th>
+					<th width="5%">序号</th>
+					<th width="20%">厂商名称</th>
+					<th width="10%">申报年份</th>
+					<th width="10%">填报日期</th>
+					<th width="10%">填报数据</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="res,stat:${resourceData}">
-					<td th:text="${res.manu.firmName}" style="text-align: center; vertical-align: middle;">供应商名称</td>
-					<td th:text="${res.dataYear}" style="text-align: center; vertical-align: middle;">申报年份</td>
+					<td th:text="${stat.count}">1</td>
+					<td th:text="${res.manu.firmName}">供应商名称</td>
+					<td th:text="${res.dataYear}">申报年份</td>
 					<td th:text="${res.tagTime}">填报日期</td>
-					<!-- <td th:switch="${maunf.ispass}"><span th:case="1">达标</span> <span th:case="-1" style="color: red;">不达标</span><span th:case="*" style="color: blue;"> / </span></td> -->
-					<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#ProductsModal" th:onclick="'showModal(\''+res.manu.firmName+'\',\''+res.manu.firmName+'\');'"><i class="fa fa-reorder">详情</i></span></td>
+					<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#BasicDataModal" th:onclick="'showBasicDataModal(\''+${res.records}+'\',\''+${res.manu}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
+					
 				</tr>
 			</tbody>
 		</table>
 
 	</section>
+
+
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="BasicDataModal" tabindex="-1" role="dialog" aria-labelledby="BasicDataModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="BasicDataModalLabel">基础数据详情</h4>
+				</div>
+				<div class="modal-body">
+					<div class="box-body" id="BasicData">
+<!-- 						<table id="BasicDataList" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th width="15%">分类</th>
+									<th width="10%">所属种类</th>
+									<th width="10%">种类单位</th>
+									<th width="10%">基准值</th>
+									<th width="10%">计算值</th>
+									<th width="10%">对标情况</th>
+								</tr>
+							</thead>
+							<tbody id="BasicData">
+							</tbody>
+						</table> -->
+					</div>
+
+				</div>
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
 
 	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
 	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
