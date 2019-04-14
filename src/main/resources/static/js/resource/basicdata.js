@@ -34,34 +34,28 @@ $(function() {
 function showBasicDataModal(record, firm) {
 	var records = JSON.parse(record);
 	var firms = JSON.parse(firm);
-	
+
 	var tr = "";
-	tr+="<div><span style='text-align: center;'>ok</span>";
-	tr += "<table><tr><th style='text-align: center;'>"+firms.product.substring(0,firms.product.lastIndexOf('_'))+"数据收集表</th></tr>";
+	tr += "<table id='BasicDataList' class='table table-bordered table-striped'><caption>" + firms.product.substring(0, firms.product.lastIndexOf('_')) + "数据收集表</caption>";
+	tr+="<thead><tr><td width='20%'>企业名称：</td><td colspan='5'>"+firms.firmName+"</td></tr>";
+	tr+="<thead><tr><td width='20%'>企业地址：</td><td colspan='5'>"+firms.address+"</td></tr>";
+	tr+="<thead><tr><td width='20%'>数据申报年份：</td><td colspan='5'>"+records[0].dataYear+"</td></tr>";
+	tr += "<tr><td width='20%'>分类</td><td width='20%'>种类</td><td width='10%'>单位</td><td width='10%'>数值</td><td width='10%'>数据来源</td><td width='10%'>备注</td></tr></thead>";
+	tr += "<tbody>";
+	for (var i = 0; i < records.length; i++) {
 
-	tr += "</table></div>";
+		tr += "<tr><td style='text-align: center; vertical-align: middle;'>"+records[i].classifyName+"</td>";
+		tr += "<td>"+ records[i].categoryName + "</td>";
+		tr += "<td>"+records[i].unit + "</td>";
+		tr += "<td>"+ records[i].productVolume + "</td>";
+		tr += "<td>  </td>";
+		tr += "<td>  </td>";
+		tr += "</tr>";
+	};
+	tr += "</tbody></table>";
 
-	/*
-	 * if (ispass == 0) { tr += "<span>暂无权限</span>"; } else { var jsonArr =
-	 * JSON.parse(Id); var len = jsonArr.length;
-	 * 
-	 * for (var i = 0; i < jsonArr.length; i++) { if (jsonArr[i].classifyName ==
-	 * "固体废弃物" || jsonArr[i].classifyName == "产品产出" || jsonArr[i].classifyName ==
-	 * "运输过程_海运" || jsonArr[i].classifyName == "运输过程_空运" ||
-	 * jsonArr[i].classifyName == "运输过程_陆运") { } else { tr += "<tr>" tr += "<td style='text-align: center; vertical-align: middle;'>" +
-	 * jsonArr[i].classifyName + "</td>"; tr += "<td>" +
-	 * jsonArr[i].categoryName + "</td>"; tr += "<td>" + jsonArr[i].unit + "</td>";
-	 * if (jsonArr[i].reference == 0) { tr += "<td style='color: blue;'>无基准值</td>"; }
-	 * else { tr += "<td>" + jsonArr[i].reference + "</td>"; }
-	 * 
-	 * tr += "<td>" + jsonArr[i].result + "</td>"; if (jsonArr[i].dataType ==
-	 * -1) { tr += "<td style='color: green;'>无法判断</td>"; } else { if
-	 * (jsonArr[i].isPass == 1) { tr += "<td>达标</td>"; } else { tr += "<td style='color: red;'>不达标</td>"; } }
-	 * tr += "</tr>"; } } }
-	 */
 	$('#BasicData').html(tr);
 	$('#BasicDataList').mergeCell({
 		cols : [ 0 ]
 	});
-
 }

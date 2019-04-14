@@ -4,7 +4,7 @@
 			<th><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#HelpModal" onclick="showHelp()"><i class="fa fa-hand-stop-o">填写帮助</i></span></th>
 		</tr>
 		<tr>
-			<th style="text-align: center;">供应商信息</th>
+			<th style="text-align: center;">厂商信息</th>
 
 		</tr>
 	</thead>
@@ -13,7 +13,7 @@
 			<td>
 				<div class="form-group">
 					<!-- <div class="col-xs-2">供应商名称：</div> -->
-					<label class="col-md-2 control-label">供应商名称：</label>
+					<label class="col-md-2 control-label">厂商名称：</label>
 					<div class="col-md-3">
 						<select name="username" id="firmUsername" class="form-control">
 							<option class="form-control" th:each="maunf : ${mlist}" th:value="${maunf.username}" th:text="${maunf.firmName}"></option>

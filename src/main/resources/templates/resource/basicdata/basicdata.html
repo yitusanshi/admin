@@ -36,7 +36,7 @@
 					<td th:text="${res.dataYear}">申报年份</td>
 					<td th:text="${res.tagTime}">填报日期</td>
 					<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#BasicDataModal" th:onclick="'showBasicDataModal(\''+${res.records}+'\',\''+${res.manu}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
-					
+
 				</tr>
 			</tbody>
 		</table>
@@ -53,47 +53,24 @@
 					<h4 class="modal-title" id="BasicDataModalLabel">基础数据详情</h4>
 				</div>
 				<div class="modal-body">
-					<div class="box-body" id="BasicData">
-<!-- 						<table id="BasicDataList" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th width="15%">分类</th>
-									<th width="10%">所属种类</th>
-									<th width="10%">种类单位</th>
-									<th width="10%">基准值</th>
-									<th width="10%">计算值</th>
-									<th width="10%">对标情况</th>
-								</tr>
-							</thead>
-							<tbody id="BasicData">
-							</tbody>
-						</table> -->
-					</div>
-
+					<div class="box-body" id="BasicData"></div>
 				</div>
 
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
+
+				<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+				<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+				<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+				<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+
+				<!-- datetimepicker插件 -->
+				<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+				<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+				<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.fr.js}"></script>
 
 
-	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
-	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
-	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
-
-	<!-- datetimepicker插件 -->
-	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
-	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
-	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.fr.js}"></script>
-
-
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<script th:src="@{/js/path.js}"></script>
-	<script th:src="@{/js/resource/basicdata.js}"></script>
-
+				<!-- AdminLTE App -->
+				<script th:src="@{/dist/js/adminlte.min.js}"></script>
+				<script th:src="@{/js/path.js}"></script>
+				<script th:src="@{/js/resource/basicdata.js}"></script>
 </body>
 </html>
