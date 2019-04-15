@@ -10,11 +10,14 @@
 	</thead>
 	<tbody>
 		<tr th:each="maunf,stat:${maunfacturerList}">
+			<div th:if="${maunf.dataYear} ne '' ">-->
 			<td th:text="${maunf.maunfacturer.firmName}" style="text-align: center; vertical-align: middle;">供应商名称</td>
 			<td th:text="${maunf.dataYear}" style="text-align: center; vertical-align: middle;">申报年份</td>
 			<td th:text="${maunf.tagTime.substring(0,maunf.tagTime.lastIndexOf(' '))}">填报日期</td>
 			<td th:switch="${maunf.ispass}"><span th:case="1">达标</span> <span th:case="-1" style="color: red;">不达标</span><span th:case="*" style="color: blue;"> / </span></td>
 			<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#ProductsModal" th:onclick="'showModal(\''+${maunf.data}+'\',\''+${maunf.ispass}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
+			</div>
+
 		</tr>
 	</tbody>
 </table>
