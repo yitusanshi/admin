@@ -22,7 +22,7 @@
 		</div>
 		<!-- /.box-header -->
 		<!-- 引入主页面 -->
-		<div th:include="/product/public/box-body" class="box-body"></div>
+		<div th:include="product/public/box-body" class="box-body"></div>
 	</section>
 
 	<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
@@ -34,36 +34,36 @@
 				</div>
 				<div class="modal-body">
 					<!-- 引入供应商信息组件 -->
-					<form th:include="/product/public/suppliers_form" action=""></form>
+					<form th:include="product/public/suppliers_form" action=""></form>
 
 					<!-- 引入产品产出的组件table pro-->
-					<form th:include="/product/public/product_form" action="" id="save_pro"></form>
+					<form th:include="product/public/product_form" action="" id="save_pro"></form>
 					<br> <br>
 
 					<!-- 引入原辅助料消耗的tbale rmc -->
-					<form action="" id="save_rmc" th:include="/product/public/rmc_form"></form>
+					<form action="" id="save_rmc" th:include="product/public/rmc_form"></form>
 					<br> <br>
 
 					<!-- 引入资源消耗组件table res -->
-					<form action="" id="save_res" th:include="/product/public/res_form"></form>
+					<form action="" id="save_res" th:include="product/public/res_form"></form>
 					<br> <br>
 
 					<!-- 引入能源消耗组件table energy -->
-					<form action="" id="save_energy" th:include="/product/public/energy_form"></form>
+					<form action="" id="save_energy" th:include="product/public/energy_form"></form>
 					<br> <br>
 
 					<!-- 引入污染物排放组件table gas 之废气排放 -->
-					<form action="" id="save_natural_gas" th:include="/product/public/gas_form"></form>
+					<form action="" id="save_natural_gas" th:include="product/public/gas_form"></form>
 
 					<!-- 引入污染物排放table water 之废水排放 -->
-					<form action="" id="save_pick_water" th:include="/product/public/water_form"></form>
+					<form action="" id="save_pick_water" th:include="product/public/water_form"></form>
 
 					<!-- 污染物排放table pd 之固体废弃物 -->
-					<form action="" id="save_solid_waste" th:include="/product/public/solid_form"></form>
+					<form action="" id="save_solid_waste" th:include="product/public/solid_form"></form>
 					<br> <br>
 
 					<!-- 运输过程tbale trans_pro -->
-					<form action="" id="save_trans_pro" th:include="/product/public/trans_form"></form>
+					<form action="" id="save_trans_pro" th:include="product/public/trans_form"></form>
 					<br> <br>
 
 					<div class="row">

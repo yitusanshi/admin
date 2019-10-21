@@ -10,7 +10,7 @@
 	</thead>
 	<tbody>
 		<tr th:each="maunf,stat:${maunfacturerList}">
-			<div th:if="${maunf.dataYear} ne '' ">-->
+			<div th:if="${maunf.dataYear} ne '' ">
 			<td th:text="${maunf.maunfacturer.firmName}" style="text-align: center; vertical-align: middle;">供应商名称</td>
 			<td th:text="${maunf.dataYear}" style="text-align: center; vertical-align: middle;">申报年份</td>
 			<td th:text="${maunf.tagTime.substring(0,maunf.tagTime.lastIndexOf(' '))}">填报日期</td>
