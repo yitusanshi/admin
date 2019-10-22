@@ -1,18 +1,20 @@
-<table class="display" style="width: 100%" id="rmc">
-	<thead>
-		<tr>
-			<th colspan="7" style="text-align: center;">原辅料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="rmcSelect" class="form-control" style="width:150px;">
-					<option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}" th:text="${s.categoryName}"></option>
-			</select> <input type="button" id="addRmcRow" value="新增" /></th>
-		</tr>
-		<tr style="border: 2px solid #EEEEEE;">
-			<th></th>
-			<th>原辅料种类</th>
-			<th>单位</th>
-			<th>消耗量</th>
-			<th>数据来源</th>
-			<th>备注</th>
-			<th>操作</th>
-		</tr>
-	</thead>
+<table class="display" style="width: 100%" id="rmc" xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead>
+    <tr>
+        <th colspan="7" style="text-align: center;">原辅料消耗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="rmcSelect" class="form-control" style="width:150px;">
+                <option th:each="s : ${categorylist[2]}" th:value="${s.categoryId}+_+${s.unit}"
+                        th:text="${s.categoryName}"></option>
+            </select> <input type="button" id="addRmcRow" value="新增"/></th>
+    </tr>
+    <tr style="border: 2px solid #EEEEEE;">
+        <th></th>
+        <th>原辅料种类</th>
+        <th>单位</th>
+        <th>消耗量</th>
+        <th>数据来源</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+    </thead>
 </table>
