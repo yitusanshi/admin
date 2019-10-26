@@ -34,7 +34,7 @@
   </select>
 
   <select id="selectGroupByFirmIdForOne" parameterType="java.lang.Integer" resultMap="DataRecord">
-      SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, tag_time order by tag_time desc  limit 1
+      SELECT * FROM data_record WHERE firm_id = #{arg0} GROUP BY firm_id, data_year order by tag_time desc
   </select>
 
   <select id="selectDetailData" resultMap="DataRecord">

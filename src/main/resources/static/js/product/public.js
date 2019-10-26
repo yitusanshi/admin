@@ -1,12 +1,12 @@
-$(function() {
+$(function () {
     $('.form_time').datetimepicker({
-	    format : 'yyyy',
-	    weekStart : 1,
-	    autoclose : true,
-	    startView : 4,
-	    minView : 4,
-	    forceParse : false,
-	    language : 'zh-CN'
+        format: 'yyyy',
+        weekStart: 1,
+        autoclose: true,
+        startView: 4,
+        minView: 4,
+        forceParse: false,
+        language: 'zh-CN'
 
         /*
          * format : 'yyyy-mm-dd', // 格式 如果只有yyyy-mm-dd那就是0000-00-00 language :
@@ -28,30 +28,30 @@ $(function() {
     });
 })
 $(document).ready(
-        function() {
+    function () {
         var table = $('#productList').DataTable({
-	            "scrollX" : true,
-	            'paging' : true,
-	            'lengthChange' : true,
-	            'searching' : true,
-	            'ordering' : true,
-	            'info' : true,
-	            'autoWidth' : false,
-	            "pagingType" : "full_numbers",
-	            "pageLength" : 10,
-	            "oLanguage" : { // 语言设置
-	                "sLengthMenu" : "每页显示 _MENU_ 条记录",
-	                "sZeroRecords" : "抱歉， 没有找到",
-	                "sInfo" : "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-	                "sInfoEmpty" : "没有数据",
-	                "sInfoFiltered" : "(从 _MAX_ 条数据中检索)",
-	                "sZeroRecords" : "没有检索到数据",
-	                "sSearch" : "搜索:",
-	                "oPaginate" : {
-	                    "sFirst" : "首页",
-	                    "sPrevious" : "前一页",
-	                    "sNext" : "后一页",
-	                    "sLast" : "尾页"
+            "scrollX": true,
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            "pagingType": "full_numbers",
+            "pageLength": 10,
+            "oLanguage": { // 语言设置
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉， 没有找到",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "sZeroRecords": "没有检索到数据",
+                "sSearch": "搜索:",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
                 }
             }
 
@@ -479,13 +479,12 @@ function showModal(Id, ispass) {
                     tr += "<td>" + jsonArr[i].reference + "</td>";
                 }
 
-
                 if (jsonArr[i].dataType == -1) {
                     tr += "<td>/</td>";
                     tr += "<td style='color: green;'>无法判断</td>";
                 } else {
                     tr += "<td>" + jsonArr[i].result + "</td>";
-                    if (jsonArr[i].isPass == 1) {
+                    if (jsonArr[i].isPass == 1 || jsonArr[i].reference == 0) {
                         tr += "<td>达标</td>";
                     } else {
                         tr += "<td style='color: red;'>不达标</td>";

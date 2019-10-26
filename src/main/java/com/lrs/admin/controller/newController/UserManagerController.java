@@ -36,7 +36,7 @@ public class UserManagerController {
             Date foundingTime = m.getFoundingTime();
             String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd");
             m.setFoundingTimestr(foundingTimeStr);
-            Date registerTime = m.getFoundingTime();
+            Date registerTime = m.getRegisterTime();
             String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd");
             m.setRegisterTimestr(registerTimestr);
         }

@@ -23,9 +23,10 @@ public class NewUserService {
     private BaseService baseService;
     @Resource
     private MaunfacturerMapper maunfacturerMapper;
-    public static String PHONE_PATTERN = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\\\d{8}$";
+    public static String PHONE_PATTERN = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$";
     public static String EMAIL_PATTERN = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$";
-    public HashMap<String,Object> judgeNormal(JSONObject json)  {
+
+    public HashMap<String, Object> judgeNormal(JSONObject json) {
         String username = json.getString("username");
         String password1 = json.getString("password1");
         String password2 = json.getString("password2");
@@ -37,46 +38,50 @@ public class NewUserService {
         String email = json.getString("email");
         String foundingTime = json.getString("founding_time");
         String desc = json.getString("desc");
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             return ResponseModel.getModel("用户名为空", "error", null);
         }
         username = username.trim();
-        if (maunfacturerMapper.selectUser(username) != null){
+        if (maunfacturerMapper.selectUser(username) != null) {
             return ResponseModel.getModel("该用户名已经被注册", "error", null);
         }
-        if (StringUtils.isEmpty(password1) || StringUtils.isEmpty(password2)){
+        if (StringUtils.isEmpty(password1) || StringUtils.isEmpty(password2)) {
             return ResponseModel.getModel("密码不能为空", "error", null);
         }
-        if(!password1.equals(password2)){
+        if (!password1.equals(password2)) {
             return ResponseModel.getModel("两次密码设置不同", "error", null);
         }
-        if (StringUtils.isEmpty(firmname)){
+        if (StringUtils.isEmpty(firmname)) {
             return ResponseModel.getModel("公司名称不能为空", "error", null);
         }
-        if (StringUtils.isEmpty(product)){
+        if (StringUtils.isEmpty(product)) {
             return ResponseModel.getModel("请选择产品", "error", null);
         }
-        if (StringUtils.isEmpty(address)){
+        if (address.startsWith("-省--市--区")||address.length() < 10) {
             return ResponseModel.getModel("公司地址不能为空", "error", null);
         }
-        if (!StringUtils.isEmpty(phone)){
+        if (StringUtils.isEmpty(phone)){
+            return ResponseModel.getModel("手机号格式不正确", "error", null);
+        }
+        if (!StringUtils.isEmpty(phone)) {
             boolean b = Pattern.matches(PHONE_PATTERN, phone);
-            if (!b){
+            if (!b) {
                 return ResponseModel.getModel("手机号格式错误", "error", null);
             }
         }
-        if (!StringUtils.isEmpty(email)){
+        if (!StringUtils.isEmpty(email)) {
             boolean b = Pattern.matches(EMAIL_PATTERN, email);
-            if (!b){
+            if (!b) {
                 return ResponseModel.getModel("邮箱格式错误", "error", null);
             }
         }
-        if (StringUtils.isEmpty(foundingTime)){
+        if (StringUtils.isEmpty(foundingTime)) {
             return ResponseModel.getModel("请选择公司成立日期", "error", null);
         }
         return null;
     }
-    public Maunfacturer getObject(JSONObject json){
+
+    public Maunfacturer getObject(JSONObject json) {
         String username = json.getString("username");
         String password1 = json.getString("password1");
         String password2 = json.getString("password2");
@@ -106,34 +111,41 @@ public class NewUserService {
         maunfacturer.setGrade(grade);
         return maunfacturer;
     }
-    public void insertManu(Maunfacturer maunfacturer){
+
+    public void insertManu(Maunfacturer maunfacturer) {
         maunfacturerMapper.insert(maunfacturer);
     }
 
-    public Maunfacturer select(String username){
+    public Maunfacturer select(String username) {
         Maunfacturer maunfacturer = maunfacturerMapper.selectUser(username);
         return maunfacturer;
     }
-    public Maunfacturer selectByFirmId(int firmid){
+
+    public Maunfacturer selectByFirmId(int firmid) {
         Maunfacturer maunfacturer = maunfacturerMapper.selectByFirmId(firmid);
-        return  maunfacturer;
+        return maunfacturer;
     }
-    public List<Maunfacturer> selectByGrade(int grade){
+
+    public List<Maunfacturer> selectByGrade(int grade) {
         List<Maunfacturer> list = maunfacturerMapper.selectByGrade(grade);
         return list;
     }
-    public void updatePassword(int firmid, String password){
+
+    public void updatePassword(int firmid, String password) {
         maunfacturerMapper.updatePassword(firmid, password);
     }
-    public List<Maunfacturer> selectAll(){
+
+    public List<Maunfacturer> selectAll() {
         List<Maunfacturer> list = maunfacturerMapper.selectAll();
         return list;
     }
-    public List<Maunfacturer> selectAllByProductid(String productid){
-        List<Maunfacturer> list = maunfacturerMapper.selectAllselectAllByProductid(productid );
+
+    public List<Maunfacturer> selectAllByProductid(String productid) {
+        List<Maunfacturer> list = maunfacturerMapper.selectAllselectAllByProductid(productid);
         return list;
     }
-    public void delManufacturer(int firmid){
+
+    public void delManufacturer(int firmid) {
         maunfacturerMapper.delManufacturer(firmid);
     }
 

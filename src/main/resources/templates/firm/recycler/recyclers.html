@@ -30,7 +30,7 @@
 				<thead>
 					<tr>
 						<th width="5%">序号</th>
-						<th width="8%">回收商ID</th>
+						<!--<th width="8%">回收商ID</th>-->
 						<th width="15%">回收商名称</th>
 						<th width="10%">产品类型</th>
 						<th width="10%">成立时间</th>
@@ -41,7 +41,7 @@
 				<tbody>
 					<tr th:each="maunfacturer,stat:${maunfacturers}">
 						<td th:text="${stat.count}">1</td>
-						<td th:text="${maunfacturer.firmId}">回收商ID</td>
+						<td th:text="${maunfacturer.firmId}" style="display: none">回收商ID</td>
 						<td th:text="${maunfacturer.firmName}">回收商名称</td>
 						<td th:text="${maunfacturer.product.substring(0,maunfacturer.product.lastIndexOf('_'))}">产品类型</td>
 						<td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
@@ -95,18 +95,18 @@
 							<input type="text" class="form-control" id="firm_phone" readonly="readonly"/>
 						</div>
 					</div>
-					<div class="row form-group">
+			<!--		<div class="row form-group">
 						<div class="col-xs-3">厂商部门：</div>
 						<div class="col-xs-9">
 							<input type="text" class="form-control" id="firm_department" readonly="readonly"/>
 						</div>
-					</div>
-					<div class="row form-group">
+					</div>-->
+			<!--		<div class="row form-group">
 						<div class="col-xs-3">厂商邮箱：</div>
 						<div class="col-xs-9">
 							<input type="text" class="form-control" id="firm_email" readonly="readonly"/>
 						</div>
-					</div>
+					</div>-->
 					<div class="row form-group">
 						<div class="col-xs-3">成立时间：</div>
 						<div class="col-xs-9">
@@ -119,12 +119,12 @@
 							<input type="text" class="form-control" id="firm_registerTime" readonly="readonly"/>
 						</div>
 					</div>
-					<div class="row form-group">
+				<!--	<div class="row form-group">
 						<div class="col-xs-3">描述：</div>
 						<div class="col-xs-9">
 							<input type="text" class="form-control" id="firm_desc" readonly="readonly"/>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 			<!-- /.modal-content -->

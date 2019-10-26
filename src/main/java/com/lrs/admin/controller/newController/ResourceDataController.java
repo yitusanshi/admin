@@ -54,7 +54,7 @@ public class ResourceDataController {
 
             int firmid = m.getFirmId();
             m.setPassword("");
-            List<DataRecord> listrecord = dataDealService.selectGroupByFirmId(firmid);
+            List<DataRecord> listrecord = dataDealService.selectGroupByFirmIdForOne(firmid);
             for (DataRecord dataRecord : listrecord){
                 JSONObject json = new JSONObject();
                 List<DataRecordCategory> dataRecordCategoryList = dataDealService.selectDetail(dataRecord.getFirmId(), dataRecord.getTagTime());

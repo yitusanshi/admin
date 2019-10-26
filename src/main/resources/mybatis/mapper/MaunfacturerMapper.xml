@@ -22,12 +22,12 @@
     insert into maunfacturer (username, password,
     firm_name, product, productid, address,
     phone, department, email,
-    founding_time, register_time, update_time,
+    founding_time,
     `desc`, grade)
     values ( #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
     #{firmName,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR},#{productid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
     #{phone,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-    #{foundingTime,jdbcType=TIMESTAMP}, #{registerTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{foundingTime,jdbcType=TIMESTAMP},
     #{desc,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}) ON  DUPLICATE KEY UPDATE password = #{password,jdbcType=VARCHAR},
     firm_name = #{firmName,jdbcType=VARCHAR},
     product = #{product,jdbcType=VARCHAR},
@@ -37,8 +37,7 @@
     department = #{department,jdbcType=VARCHAR},
     email = #{email,jdbcType=VARCHAR},
     founding_time = #{foundingTime,jdbcType=TIMESTAMP},
-    register_time = #{registerTime,jdbcType=TIMESTAMP},
-    update_time = #{updateTime,jdbcType=TIMESTAMP},
+
     `desc` = #{desc,jdbcType=VARCHAR},
     grade = #{grade,jdbcType=INTEGER}
   </insert>
