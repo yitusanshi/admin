@@ -14,12 +14,13 @@
 		</div>
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">主导航</li>
-			<li class="treeview" th:each="menu:${menulist}"><a href="${menu.parurl}"> <i class="fa fa-gears"></i> <span class="nav-label" th:text="${menu.parname}">系统管理</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+			<li class="treeview" th:each="menu:${menulist}"><a href="${menu.parurl}"> <i class="fa fa-database"></i> <span class="nav-label" th:text="${menu.parname}">系统管理</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li th:each="childMenu:${menu.childmenu}"><a target="mainFrame" th:href="@{${childMenu.childurl}+'?username='+${maunfacturer.username}}"> <i class="fa fa-circle-o"></i> <label th:text="${childMenu.childname}">用户管理</label>
-					</a></li>
+					<li th:each="childMenu:${menu.childmenu}">
+						<a target="mainFrame" th:href="@{${childMenu.childurl}+'?username='+${maunfacturer.username}}"> <i class="fa fa-circle-o"></i> <label th:text="${childMenu.childname}">用户管理</label></a>
+					</li>
 				</ul></li>
 		</ul>
 	</section>

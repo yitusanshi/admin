@@ -24,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class NewIndexController extends BaseController{
+public class NewIndexController extends BaseController {
     @Resource
     private NewUserService newUserService;
-    
+
     @Autowired
-	private IUserService userService;
+    private IUserService userService;
 
     @Autowired
     private MenuListService menuListService;
@@ -53,13 +53,13 @@ public class NewIndexController extends BaseController{
      *
      * @return
      */
-    @RequestMapping(value = { "/", "/toLogin" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/toLogin"}, method = RequestMethod.GET)
     public String toLogin() {
         return "login";
     }
 
-    @RequestMapping(value={"/index"},method=RequestMethod.POST)
-    public String index(Model model, String firmId){
+    @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
+    public String index(Model model, String firmId) {
         /**
          * 根据厂商Id获取厂商的详细信息
          * 并将厂商的信息传至index页面
@@ -74,22 +74,22 @@ public class NewIndexController extends BaseController{
         List<MenuList> list = null;
         String role = "";
         //超级管理员
-        if (grade == 0){
+        if (grade == 0) {
             role = "product";
             list = menuListService.getMeunList(role);
-        }else {
-            if (map.containsKey(productid)){
+        } else {
+            if (map.containsKey(productid)) {
                 role = map.get(productid);
                 System.out.println(role);
                 list = menuListService.getMeunList(role);
             }
         }
         List<JSONObject> jsonlist = new ArrayList<>();
-        for (MenuList menu : list){
+        for (MenuList menu : list) {
             String parName = menu.getParMenuName();
             boolean b = true;
-            for (JSONObject json : jsonlist){
-                if (parName.equals(json.getString("parname"))){
+            for (JSONObject json : jsonlist) {
+                if (parName.equals(json.getString("parname"))) {
                     JSONArray jsonArray = json.getJSONArray("childmenu");
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("childname", menu.getChildMenuName());
@@ -99,7 +99,7 @@ public class NewIndexController extends BaseController{
                     b = false;
                 }
             }
-            if (b){
+            if (b) {
                 JSONObject parJson = new JSONObject();
                 parJson.put("parname", menu.getParMenuName());
                 parJson.put("parurl", menu.getParMenuUrl());
@@ -115,16 +115,20 @@ public class NewIndexController extends BaseController{
         }
         System.out.println(jsonlist.toString());
         model.addAttribute("menulist", jsonlist);
-        model.addAttribute("maunfacturer",maunfacturer);
+        model.addAttribute("maunfacturer", maunfacturer);
+        if (firmId.equals("1")) {
+            return "index1";
+        }
         return "index";
     }
-    
+
     /**
-	 * 用户注销
-	 * @return
-	 */
-	@RequestMapping("/logout")
-	public String logout(){
-		return userService.logout(this.getSession());
-	}
+     * 用户注销
+     *
+     * @return
+     */
+    @RequestMapping("/logout")
+    public String logout() {
+        return userService.logout(this.getSession());
+    }
 }

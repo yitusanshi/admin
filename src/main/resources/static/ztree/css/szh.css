@@ -1,0 +1,6 @@
+#body_imge {
+    background-image: url("../../../templates/image/fengshen.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

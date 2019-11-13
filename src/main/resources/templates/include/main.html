@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head th:include="include/css-head :: css-head">
+    <!--    <style type="text/css">
+            .content {
+                background-color: red;
+            }
+        </style>-->
 </head>
 <body>
-	<!-- Content Header (Page header) -->
-	<section class="content-header">
-		<h1>
-			首页 <small>HOME</small>
-		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">公司简介</li>
-		</ol>
-	</section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        首页
+        <small>HOME</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">公司简介</li>
+    </ol>
+</section>
 
-	<!-- Main content -->
-	<section class="content">
-		<h1>风神轮胎股份有限公司欢迎你</h1>
-		<div class="row" style="text-align: center;">
-			<h2 style="text-align: center;">风神轮胎股份有限公司欢迎你</h2>
-			<br><br>
-			<span>统一社会信用代码/注册号：914100007126348530 </span><br>
-			<br> <span>组织机构代码：71263485-3 </span> <br>
-			<br>
-			<span>百度信用代码：294552321710</span><br>
-			<br> <span> 法定代表人：白忻平 </span> <br>
-			<br>
-			<span> 经营状态：开业 </span><br>
-			<br> <span> 成立日期：1998-12-01 </span><br>
-			<br> <span> 营业期限：1998-12-01 至 无固定期限 </span> <br>
-			<br>
-			<span> 审核/年检日期：2016-09-27 </span><br>
-			<br> <span> 注册资本： 56,241.3万(元) </span> <br>
-			<br>
-			<span> 企业类型：其他股份有限公司(上市) </span><br>
-			<br> <span>机构类型：企业法人 </span> <span>行政区划：河南省 </span> <br>
-			<br>
-			<span> 登记机关：河南省工商行政管理局 </span><br>
-			<br> <span> 所在地址：焦作市焦东南路４８号 经营范围：经营本企业生产的轮胎及相关技术的出口业务；经营本企业生产所需原辅材料、机械设备、零配件、仪器仪表及相关技术的进口业务；开展对外合作生产、来料加工、来样加工、来件装配及补偿贸易业务。轮胎生产、销售；轮胎生产用原辅材料销售；汽车及工程机械零配件销售</span>
-			<br><br>
-			<br><br>
-			<br>
-			<!-- /.col (RIGHT) -->
-		</div>
-		<!-- /.row -->
-	</section>
-	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-	<script th:src="@{/bower_components/chart.js/Chart.js}"></script>
-	<script th:src="@{/bower_components/raphael/raphael.min.js}"></script>
-	<script th:src="@{/bower_components/fastclick/lib/fastclick.js}"></script>
-	<script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
-	<script th:src="@{/bower_components/Flot/jquery.flot.js}"></script>
-	<script th:src="@{/bower_components/Flot/jquery.flot.resize.js}"></script>
-	<script th:src="@{/bower_components/Flot/jquery.flot.pie.js}"></script>
-	<script th:src="@{/bower_components/Flot/jquery.flot.categories.js}"></script>
-	<script th:src="@{/js/demochart.js}"></script>
+<!-- Main content -->
+<section class="content">
+    <!--<h1>风神轮胎股份有限公司欢迎你</h1>-->
+    <!-- <a target="mainFrame" th:href="/sys/find_all_user?username='admin'}" style="display: none">
+         <i class="fa fa-circle-o"><button id="subBtn" type="button"></button></i>
+         <label>用户信息</label>
+     </a>-->
+    <div class="row" id="body_imge">
+        <br><br>
+        <span></span><br>
+        <br> <span></span> <br>
+        <br>
+        <span></span><br>
+        <br> <span> </span> <br>
+        <br>
+        <span>  </span><br>
+        <h2 style="text-align: center;">风神轮胎股份有限公司欢迎你</h2>
+        <br> <span> </span><br>
+        <br> <span> </span> <br>
+        <br>
+        <span> </span><br>
+        <br> <span> </span> <br>
+        <br>
+        <span>  </span><br>
+        <br> <span> </span> <span></span> <br>
+        <br>
+        <span>  </span><br>
+        <br> <span> </span>
+        <br><br>
+        <br><br>
+        <br>
+        <!-- /.col (RIGHT) -->
+    </div>
+    <!-- /.row -->
+</section>
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/bower_components/chart.js/Chart.js}"></script>
+<script th:src="@{/bower_components/raphael/raphael.min.js}"></script>
+<script th:src="@{/bower_components/fastclick/lib/fastclick.js}"></script>
+<script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
+<script th:src="@{/bower_components/Flot/jquery.flot.js}"></script>
+<script th:src="@{/bower_components/Flot/jquery.flot.resize.js}"></script>
+<script th:src="@{/bower_components/Flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/bower_components/Flot/jquery.flot.categories.js}"></script>
+<script th:src="@{/js/demochart.js}"></script>
 
 </body>
+<script type="text/javascript">
+    /* $(function () {
+         $("#subBtn").trigger("click");
+            });*/
+</script>
 </html>

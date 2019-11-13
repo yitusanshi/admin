@@ -92,7 +92,7 @@ public class IsPassService {
     public DataRecordCategoryExtend energeconsumer(String productid, List<DataRecordCategory> list){
         DataRecordCategory dataRecordCategory = new DataRecordCategory();
         dataRecordCategory.setCategoryId("-1");
-        dataRecordCategory.setCategoryName("能源消耗指标");
+        dataRecordCategory.setCategoryName("单位产品综合能耗");
         dataRecordCategory.setProductVolume(0f);
         dataRecordCategory.setUnit("kgce/t");
         dataRecordCategory.setClassifyId("5");
@@ -102,7 +102,7 @@ public class IsPassService {
     public DataRecordCategoryExtend  gasEmission(String productid, List<DataRecordCategory> list, Maunfacturer m){
         DataRecordCategory dataRecordCategory = new DataRecordCategory();
         dataRecordCategory.setCategoryId("-2");
-        dataRecordCategory.setCategoryName("温室气体排放");
+        dataRecordCategory.setCategoryName("单位产品温室气体排放");
         dataRecordCategory.setProductVolume(0f);
         dataRecordCategory.setUnit("tCO2/t");
         dataRecordCategory.setClassifyName("温室气体");

@@ -3,145 +3,129 @@
 <head th:include="include/css-head :: css-head">
 </head>
 <body>
-	<!-- Content Header (Page header) -->
-	<section class="content-header">
-		<h1>
-			基于天然橡胶的轮胎绿色供应链生命周期资源环境影响信息数据库 
-		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> 厂商信息</a></li>
-			<li class="active">回收商</li>
-		</ol>
-	</section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        基于天然橡胶的轮胎绿色供应链生命周期资源环境影响信息数据库
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 厂商信息</a></li>
+        <li class="active">回收商</li>
+    </ol>
+</section>
 
 
 
-	<!-- Main content -->
-	<section class="content">
-		<div class="box-header">
-			<h3 class="box-title">回收商列表</h3>
-			<!-- <button class="btn btn-success btn-sm" id="addRecyclers">
-				<i class="fa fa-plus"></i> &nbsp;&nbsp;添加回收商
-			</button> -->
-		</div>
-		<!-- /.box-header -->
-		<div class="box-body">
-			<table id="recyclersList" class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th width="5%">序号</th>
-						<!--<th width="8%">回收商ID</th>-->
-						<th width="15%">回收商名称</th>
-						<th width="10%">产品类型</th>
-						<th width="10%">成立时间</th>
-						<th width="10%">注册时间</th>
-						<th width="10%">操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="maunfacturer,stat:${maunfacturers}">
-						<td th:text="${stat.count}">1</td>
-						<td th:text="${maunfacturer.firmId}" style="display: none">回收商ID</td>
-						<td th:text="${maunfacturer.firmName}">回收商名称</td>
-						<td th:text="${maunfacturer.product.substring(0,maunfacturer.product.lastIndexOf('_'))}">产品类型</td>
-						<td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
-						<td th:text="${maunfacturer.registerTimestr}">注册时间</td>
-						<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#RecyclersModal" th:onclick="'findRecyclersByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> </td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</section>
+<!-- Main content -->
+<section class="content">
+    <div class="box-header">
+        <h3 class="box-title">回收商列表</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="recyclersList" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <!--<th width="10%">用户名</th>-->
+                <th width="10%">厂商名称</th>
+                <th width="10%">产品类型</th>
+                <th width="10%">成立时间</th>
+                <th width="10%">注册时间</th>
+                <th width="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="maunfacturer,stat:${maunfacturers}">
+                <td th:text="${stat.count}">1</td>
+                <!--<td th:text="${maunfacturer.username}">用户名</td>-->
+                <td th:text="${maunfacturer.firmName}">厂商名称</td>
+                <td th:text="${maunfacturer.product.substring(0,maunfacturer.product.lastIndexOf('_'))}">产品类型</td>
+                <td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
+                <td th:text="${maunfacturer.registerTimestr}">注册时间</td>
+                <td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#RecyclersModal" th:onclick="'findRecyclersByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="RecyclersModal" tabindex="-1" role="dialog" aria-labelledby="RecyclersModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="RecyclersModalLabel">回收商信息详情</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" placeholder="用户ID" id="update_firm_id" />
+                <div class="row form-group">
+                    <div class="col-xs-3">用户名：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_username" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">厂商名称：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firmname" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">产品类型：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_product" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">厂商地址：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_address" readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">厂商电话：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_phone" readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">成立时间：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_foundingTime" readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-3">注册时间：</div>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" id="firm_registerTime" readonly="readonly"/>
+                    </div>
+                </div>
+                <!--	<div class="row form-group">
+                        <div class="col-xs-3">描述：</div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="firm_desc" readonly="readonly"/>
+                        </div>
+                    </div>-->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
 
 
 
-	<!-- 模态框（Modal） -->
-	<div class="modal fade" id="RecyclersModal" tabindex="-1" role="dialog" aria-labelledby="RecyclersModal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="RecyclersModalLabel">回收商信息详情</h4>
-				</div>
-				<div class="modal-body">
-					<input type="hidden" class="form-control" placeholder="用户ID" id="update_firm_id" />
-					<div class="row form-group">
-						<div class="col-xs-3">用户名：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_username" readonly="readonly" />
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-xs-3">厂商名称：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firmname" readonly="readonly" />
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-xs-3">产品类型：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_product" readonly="readonly" />
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-xs-3">厂商地址：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_address" readonly="readonly"/>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-xs-3">厂商电话：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_phone" readonly="readonly"/>
-						</div>
-					</div>
-			<!--		<div class="row form-group">
-						<div class="col-xs-3">厂商部门：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_department" readonly="readonly"/>
-						</div>
-					</div>-->
-			<!--		<div class="row form-group">
-						<div class="col-xs-3">厂商邮箱：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_email" readonly="readonly"/>
-						</div>
-					</div>-->
-					<div class="row form-group">
-						<div class="col-xs-3">成立时间：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_foundingTime" readonly="readonly"/>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-xs-3">注册时间：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_registerTime" readonly="readonly"/>
-						</div>
-					</div>
-				<!--	<div class="row form-group">
-						<div class="col-xs-3">描述：</div>
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="firm_desc" readonly="readonly"/>
-						</div>
-					</div>-->
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	
-
-
-	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
-	<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
-	<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<script th:src="@{/js/path.js}"></script>
-	<script th:src="@{/js/firm/recyclers.js}"></script>
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/js/path.js}"></script>
+<script th:src="@{/js/firm/recyclers.js}"></script>
 
 </body>
 </html>
