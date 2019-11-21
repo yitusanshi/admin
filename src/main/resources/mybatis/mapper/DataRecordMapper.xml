@@ -7,7 +7,7 @@
     <result column="tag_time" jdbcType="VARCHAR" property="tagTime" />
     <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
     <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
-    <result column="product_volume" jdbcType="REAL" property="productVolume" />
+    <result column="product_volume" jdbcType="DOUBLE" property="productVolume" />
     <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="applicant_time" jdbcType="TIMESTAMP" property="applicantTime" />

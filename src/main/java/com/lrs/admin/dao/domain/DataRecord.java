@@ -15,7 +15,7 @@ public class DataRecord {
 
     private String classifyId;
 
-    private Float productVolume;
+    private Double productVolume;
 
     private String dataSource;
 
@@ -66,11 +66,11 @@ public class DataRecord {
         this.classifyId = classifyId;
     }
 
-    public Float getProductVolume() {
+    public Double getProductVolume() {
         return productVolume;
     }
 
-    public void setProductVolume(Float productVolume) {
+    public void setProductVolume(Double productVolume) {
         this.productVolume = productVolume;
     }
 
