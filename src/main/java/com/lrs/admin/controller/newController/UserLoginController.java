@@ -23,9 +23,10 @@ import java.util.HashMap;
 public class UserLoginController {
     private Logger logger = LoggerFactory.getLogger(UserLoginController.class);
     @Resource
-    private NewUserService  newUserService;
+    private NewUserService newUserService;
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(HttpServletRequest request){
+    public Object login(HttpServletRequest request) {
         try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -35,27 +36,28 @@ public class UserLoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         password = password.trim();
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             return ResponseModel.getModel("请输入用户名", "error", null);
         }
-        if (StringUtils.isEmpty(password)){
+        if (StringUtils.isEmpty(password)) {
             return ResponseModel.getModel("请输入密码", "error", null);
         }
         Maunfacturer maunfacturer = newUserService.select(username);
-        if (maunfacturer == null){
+        if (maunfacturer == null) {
             return ResponseModel.getModel("用户名错误", "error", null);
         }
         String pword = maunfacturer.getPassword();
-        if (! pword.equals(password)){
+        if (!pword.equals(password)) {
             return ResponseModel.getModel("用户名或密码错误", "error", null);
         }
-       return  ResponseModel.getModel("登录成功", "success", maunfacturer);
-      
+        return ResponseModel.getModel("登录成功", "success", maunfacturer);
+
     }
+
     @RequestMapping(value = "/editPassword", method = RequestMethod.POST)
-    public HashMap<String, Object> editUserPassword(HttpServletRequest request){
+    public HashMap<String, Object> editUserPassword(HttpServletRequest request) {
         System.out.println("景来额。。。。。。。。。。。。。。。");
-    	try {
+        try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
             logger.error("编码格式错误");
@@ -72,20 +74,21 @@ public class UserLoginController {
         int fid = Integer.valueOf(firmid);
         Maunfacturer maunfacturer = newUserService.selectByFirmId(fid);
         String password = maunfacturer.getPassword();
-        if (password.equals(oldpassword)){
-            if (newpassword1.equals(newpassword2)){
-            	System.out.println(fid+"==========="+newpassword1);
+        if (password.equals(oldpassword)) {
+            if (newpassword1.equals(newpassword2)) {
+                System.out.println(fid + "===========" + newpassword1);
                 newUserService.updatePassword(fid, newpassword1);
                 return ResponseModel.getModel("修改成功", "success", null);
-            }else {
+            } else {
                 return ResponseModel.getModel("新密码两次输入不一致", "error", null);
             }
-        }else {
+        } else {
             return ResponseModel.getModel("原始密码输入错误", "error", null);
         }
     }
+
     @RequestMapping(value = "/userinfo", method = RequestMethod.POST)
-    public HashMap<String, Object> getUserInfo(HttpServletRequest request){
+    public HashMap<String, Object> getUserInfo(HttpServletRequest request) {
         try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -97,7 +100,7 @@ public class UserLoginController {
         Maunfacturer maunfacturer = newUserService.selectByFirmId(id);
         Date foundingTime = maunfacturer.getFoundingTime();
         String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd");
-        Date registerTime = maunfacturer.getFoundingTime();
+        Date registerTime = maunfacturer.getRegisterTime();
         String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd");
         maunfacturer.setFoundingTimestr(foundingTimeStr);
         maunfacturer.setRegisterTimestr(registerTimestr);
