@@ -121,7 +121,7 @@ public class UserGetDataController {
         for (DataRecord dataRecord : list){
             String classifyid = dataRecord.getClassifyId();
             String categoryId = dataRecord.getCategoryId();
-            float volumn = dataRecord.getProductVolume();
+            Double volumn = dataRecord.getProductVolume();
             ProCategory proCategory = dataDealService.getProCategoryDetail(categoryId);
             String categoryName = proCategory.getCategoryName();
             String unit = proCategory.getUnit();
