@@ -121,3 +121,8 @@ $("#toLogin").click(function () {
     $("#regist-box").hide();
     $("#login-box").show();
 });
+
+function showTel() {
+    alert("联系人：张吉春\n联系电话：13521606046");
+
+}

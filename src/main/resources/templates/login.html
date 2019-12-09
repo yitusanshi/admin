@@ -1,536 +1,566 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="_ctx" th:content="@{/}" />
-<title>基于天然橡胶的轮胎绿色供应链生命周期资源环境影响信息数据库管理系统</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="_ctx" th:content="@{/}"/>
+    <title>基于天然橡胶的轮胎绿色供应链生命周期资源环境影响信息数据库管理系统</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}">
 
-<!-- bootstrapvalidator验证  -->
-<link rel="stylesheet" th:href="@{/plugins/bootstrapvalidator-0.4.5/css/bootstrapValidator.min.css}" />
+    <!-- bootstrapvalidator验证  -->
+    <link rel="stylesheet" th:href="@{/plugins/bootstrapvalidator-0.4.5/css/bootstrapValidator.min.css}"/>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
-<!-- Ionicons -->
-<link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
-<!-- iCheck -->
-<link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
-<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/logo.png}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <!-- iCheck -->
+    <link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/logo.png}">
 
-<!-- datetimepicker时间插件v -->
-<link rel="stylesheet" th:href="@{/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}">
+    <!-- datetimepicker时间插件v -->
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}">
 
-<!-- Google Font -->
-<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
-<style>
-#error-msg, #error-msg1 {
-	text-align: center;
-	color: red;
-}
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic}">
+    <style>
+        #error-msg, #error-msg1 {
+            text-align: center;
+            color: red;
+        }
 
-.login-box {
-	box-shadow: 10px 20px 20px rgba(255, 255, 255, 0.1);
-	position: absolute;
-	top: 8%;
-	left: 40%;
-	z-index: 9999;
-}
+        .login-box {
+            box-shadow: 10px 20px 20px rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 8%;
+            left: 40%;
+            z-index: 9999;
+        }
 
-.regist-box {
-	box-shadow: 10px 20px 20px rgba(255, 255, 255, 0.1);
-	position: absolute;
-	top: 3%;
-	left: 30%;
-	z-index: 9999;
-	right: 25%;
-}
+        .regist-box {
+            box-shadow: 10px 20px 20px rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 3%;
+            left: 30%;
+            z-index: 9999;
+            right: 25%;
+        }
 
-.login-box-body {
-	background: rgba(255, 255, 255, 0.6);
-}
+        .login-box-body {
+            background: rgba(255, 255, 255, 0.6);
+        }
 
-.login-logo {
-	background: rgba(255, 255, 255, 0.1);
-	margin-bottom: 0px;
-}
+        .login-logo {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 0px;
+        }
 
-.login-logo a {
-	font-size: 0.8em;
-	color: #fff;
-}
+        .login-logo a {
+            font-size: 0.8em;
+            color: #fff;
+        }
 
-#canvas {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-</style>
+        #canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body class="hold-transition login-page">
-	<div class="login-box" id="login-box">
-		<div class="login-logo">
-			<a><b>风神轮胎绿色供应链生命周期资源环境影响数据库</b></a>
-		</div>
-		<!-- /.login-logo -->
-		<div class="login-box-body" id='regist_login'>
-			<p class="login-box-msg">Please enter your Account.</p>
-			<form action="" method="post">
-				<div class="form-group has-feedback">
-					<input type="text" name="username" class="form-control" placeholder="请输入用户名"> <span class="glyphicon glyphicon-user form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input type="password" name="password" class="form-control" placeholder="请输入密码"> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
-				<p id="error-msg"></p>
-				<div class="row">
-					<div class="col-xs-9">
-						<div class="checkbox icheck">
-							<label> <input type="checkbox"> 记住密码
-							</label>
-						</div>
-					</div>
-					<div class="col-xs-3">
-						<button type="submit" id="login_btn" class="btn btn-primary btn-block btn-flat">登录</button>
-					</div>
-					<!-- /.col -->
-				</div>
-				<div class="row">
-					<div class="col-xs-3"></div>
-					<label style="text-align: center;">还没有账号?立即 <a id="Regist_start_">注册</a>
-					</label>
-				</div>
-			</form>
+<div class="login-box" id="login-box">
+    <div class="login-logo">
+        <a><b>风神轮胎绿色供应链生命周期资源环境影响数据库</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body" id='regist_login'>
+        <p class="login-box-msg">Please enter your Account.</p>
+        <form action="" method="post">
+            <div class="form-group has-feedback">
+                <input type="text" name="username" class="form-control" placeholder="请输入用户名"> <span
+                    class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" name="password" class="form-control" placeholder="请输入密码"> <span
+                    class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <p id="error-msg"></p>
+            <div class="row">
+                <div class="col-xs-9">
+                    <div class="checkbox icheck">
+                        <label> <input type="checkbox"> 记住密码
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <button type="submit" id="login_btn" class="btn btn-primary btn-block btn-flat">登录</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <label style="text-align: center;">还没有账号?立即 <a id="Regist_start_">注册</a>
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <label style="text-align: center;color: red">忘记密码<a onclick="showTel()">联系管理员</a>
+                </label>
+            </div>
+        </form>
 
-		</div>
+    </div>
 
 
-		<!-- /.login-box-body -->
-	</div>
-	<!-- 会员注册 -->
-	<div class="regist-box" id="regist-box" style="display: none;">
-		<div class="login-logo">
-			<a><b>LCA-管理系统注册</b></a>
-		</div>
+    <!-- /.login-box-body -->
+</div>
+<!-- 会员注册 -->
+<div class="regist-box" id="regist-box" style="display: none;">
+    <!--	<div class="login-logo">
+            <a><b>LCA-管理系统注册</b></a>
+        </div>-->
 
-		<div class="login-box-body" id='regist_container'>
-			<div style="width: 330px; text-align: left; font-family: '微软雅黑';">
-				<span id="lab_login" style="font-size: 30px; color:">用户注册</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="lab_toLogin">&nbsp;已有账号 <span id='toLogin' style="color: blue; cursor: pointer; text-align: right;">立即登录</span>
+    <div class="login-box-body" id='regist_container'>
+        <div style="width: 330px; text-align: left; font-family: '微软雅黑';">
+            <span id="lab_login" style="font-size: 30px; color:">用户注册</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="lab_toLogin">&nbsp;已有账号 <span id='toLogin'
+                                                    style="color: blue; cursor: pointer; text-align: right;">立即登录</span>
 				</span>
-			</div>
-			<form action="" method="post" id="regist_form">
-				<div class="row form-group">
-					<div class="col-xs-3">用户名：</div>
-					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="用户名只能包含大写、小写、数字和下划线，长度为3—18位" name="regist_username" id="regist_username" />
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">密&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
-					<div class="col-xs-9">
-						<input type="password" class="form-control" placeholder="密码只能包含大写、小写、数字和下划线，长度为3—18位" name="regist_password1" id="regist_password1" />
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">确认密码：</div>
-					<div class="col-xs-9">
-						<input type="password" class="form-control" placeholder="确认密码" id="regist_password2" name="regist_password2"/>
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">厂商名称：</div>
-					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="厂商名称" id="regist_firm_name" name="regist_firm_name" />
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">厂商类型：</div>
-					<div class="col-xs-9">
-						<select class="form-control" id="productid">
-							<option value="1" selected="selected">钢帘线_供应商</option>
-							<option value="2">合成橡胶_丁苯橡胶_供应商</option>
-							<option value="3">合成橡胶_顺丁橡胶_供应商</option>
-							<option value="4">尼龙帘布_供应商</option>
-							<option value="5">胎圈钢丝_供应商</option>
-							<option value="6">炭黑_供应商</option>
-							<option value="7">天然橡胶_供应商</option>
-							<option value="9">再生胶_回收商</option>
-						</select>
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">厂商地址：</div>
-					<div class="col-xs-3">
-						<select id="cmbProvince" name="cmbProvince" class="form-control"></select>
-					</div>
-					<div class="col-xs-3">
-						<select id="cmbCity" name="cmbCity" class="form-control"></select>
-					</div>
-					<div class="col-xs-3">
-						<select id="cmbArea" name="cmbArea" class="form-control"></select>
-					</div>
-					<!-- 							<input class="col-xs-3" type="text" value="详细地址"
-								onblur="if(this.value=''){this.value='详细地址'}"
-								onfocus="if(this.value='详细地址'){this.value='';this.style.color='#ff0000'}"> -->
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">详细地址：</div>
-					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address1" />
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">联系电话：</div>
-					<div class="col-xs-9">
-						<input type="text" class="form-control" placeholder="联系电话" id="regist_phone" />
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-xs-3">成立时间：</div>
-					<div class="col-xs-9">
-						<div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-							<input class="form-control" size="16" type="text" id="regist_founding_time" value="2018-12-29" readonly> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-						</div>
-					</div>
-					<input type="hidden" id="dtp_input2" value="" /><br />
-				</div>
-			</form>
-			<p id="error-msg1"></p>
-			<div class="row">
-				<div class="col-xs-4">
-					<button type="submit" id="regist_btn" class="btn btn-primary btn-block btn-flat">注册</button>
-				</div>
-				<div class="col-xs-4"></div>
-				<div class="col-xs-4">
-					<button type="submit" id="reset_btn" class="btn btn-primary btn-block btn-flat">重置</button>
-				</div>
+        </div>
+        <form action="" method="post" id="regist_form">
+            <div class="row form-group">
+                <div class="col-xs-3">用户名：</div>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" placeholder="用户名只能包含大写、小写、数字和下划线，长度为3—18位"
+                           name="regist_username" id="regist_username"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">密&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
+                <div class="col-xs-9">
+                    <input type="password" class="form-control" placeholder="密码只能包含大写、小写、数字和下划线，长度为3—18位"
+                           name="regist_password1" id="regist_password1"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">确认密码：</div>
+                <div class="col-xs-9">
+                    <input type="password" class="form-control" placeholder="确认密码" id="regist_password2"
+                           name="regist_password2"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">厂商名称：</div>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" placeholder="厂商名称" id="regist_firm_name"
+                           name="regist_firm_name"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">厂商类型：</div>
+                <div class="col-xs-9">
+                    <select class="form-control" id="productid">
+                        <option value="1" selected="selected">钢帘线_供应商</option>
+                        <option value="2">合成橡胶_丁苯橡胶_供应商</option>
+                        <option value="3">合成橡胶_顺丁橡胶_供应商</option>
+                        <option value="4">尼龙帘布_供应商</option>
+                        <option value="5">胎圈钢丝_供应商</option>
+                        <option value="6">炭黑_供应商</option>
+                        <option value="7">天然橡胶_供应商</option>
+                        <option value="9">再生胶_回收商</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">厂商地址：</div>
+                <div class="col-xs-3">
+                    <select id="cmbProvince" name="cmbProvince" class="form-control"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select id="cmbCity" name="cmbCity" class="form-control"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select id="cmbArea" name="cmbArea" class="form-control"></select>
+                </div>
+                <!-- 							<input class="col-xs-3" type="text" value="详细地址"
+                            onblur="if(this.value=''){this.value='详细地址'}"
+                            onfocus="if(this.value='详细地址'){this.value='';this.style.color='#ff0000'}"> -->
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">详细地址：</div>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" placeholder="请输入详细地址" id="regist_address1"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">联系电话：</div>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" placeholder="联系电话" id="regist_phone"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3">成立时间：</div>
+                <div class="col-xs-9">
+                    <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" id="regist_founding_time" value="2018-12-29"
+                               readonly> <span class="input-group-addon"><span
+                            class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span
+                            class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/><br/>
+            </div>
+        </form>
+        <p id="error-msg1"></p>
+        <div class="row">
+            <div class="col-xs-4">
+                <button type="submit" id="regist_btn" class="btn btn-primary btn-block btn-flat">注册</button>
+            </div>
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <button type="submit" id="reset_btn" class="btn btn-primary btn-block btn-flat">重置</button>
+            </div>
 
-			</div>
-		</div>
-	</div>
+        </div>
+    </div>
+</div>
 
-	<!-- jQuery 3 -->
-	<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-	<!-- Bootstrap 3.3.7 -->
-	<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
-	<!-- iCheck -->
-	<script th:src="@{/plugins/iCheck/icheck.min.js}"></script>
-	<script th:src="@{/js/path.js}"></script>
-	<script th:src="@{/js/city.js}"></script>
+<!-- jQuery 3 -->
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/plugins/iCheck/icheck.min.js}"></script>
+<script th:src="@{/js/path.js}"></script>
+<script th:src="@{/js/city.js}"></script>
 
-	<script th:src="@{/js/login.js}"></script>
-	<!-- datetimepicker插件 -->
-	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
-	<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+<!-- datetimepicker插件 -->
+<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
 
-	<!-- bootstrapvalidator 验证  -->
-	<script th:src="@{/plugins/bootstrapvalidator-0.4.5/js/bootstrapValidator.min.js}"></script>
+<!-- bootstrapvalidator 验证  -->
+<script th:src="@{/plugins/bootstrapvalidator-0.4.5/js/bootstrapValidator.min.js}"></script>
 
-	<script type="text/javascript">
-		addressInit('cmbProvince', 'cmbCity', 'cmbArea');
-	</script>
+<script type="text/javascript">
+    addressInit('cmbProvince', 'cmbCity', 'cmbArea');
+</script>
 <body>
-	<canvas id="canvas" width="2560" height="1285"></canvas>
-	<script>
-		function project3D(x, y, z, vars) {
-	        var p, d;
-	        x -= vars.camX;
-	        y -= vars.camY - 8;
-	        z -= vars.camZ;
-	        p = Math.atan2(x, z);
-	        d = Math.sqrt(x * x + z * z);
-	        x = Math.sin(p - vars.yaw) * d;
-	        z = Math.cos(p - vars.yaw) * d;
-	        p = Math.atan2(y, z);
-	        d = Math.sqrt(y * y + z * z);
-	        y = Math.sin(p - vars.pitch) * d;
-	        z = Math.cos(p - vars.pitch) * d;
-	        var rx1 = -1000;
-	        var ry1 = 1;
-	        var rx2 = 1000;
-	        var ry2 = 1;
-	        var rx3 = 0;
-	        var ry3 = 0;
-	        var rx4 = x;
-	        var ry4 = z;
-	        var uc = (ry4 - ry3) * (rx2 - rx1) - (rx4 - rx3) * (ry2 - ry1);
-	        var ua = ((rx4 - rx3) * (ry1 - ry3) - (ry4 - ry3) * (rx1 - rx3)) / uc;
-	        var ub = ((rx2 - rx1) * (ry1 - ry3) - (ry2 - ry1) * (rx1 - rx3)) / uc;
-	        if (!z)
-		        z = 0.000000001;
-	        if (ua > 0 && ua<1&&ub>0 && ub < 1) {
-		        return {
-		            x : vars.cx + (rx1 + ua * (rx2 - rx1)) * vars.scale,
-		            y : vars.cy + y / z * vars.scale,
-		            d : (x * x + y * y + z * z)
-		        }
-	        } else {
-		        return {
-			        d : -1
-		        }
-	        }
+<canvas id="canvas" width="2560" height="1285"></canvas>
+<script>
+    function project3D(x, y, z, vars) {
+        var p, d;
+        x -= vars.camX;
+        y -= vars.camY - 8;
+        z -= vars.camZ;
+        p = Math.atan2(x, z);
+        d = Math.sqrt(x * x + z * z);
+        x = Math.sin(p - vars.yaw) * d;
+        z = Math.cos(p - vars.yaw) * d;
+        p = Math.atan2(y, z);
+        d = Math.sqrt(y * y + z * z);
+        y = Math.sin(p - vars.pitch) * d;
+        z = Math.cos(p - vars.pitch) * d;
+        var rx1 = -1000;
+        var ry1 = 1;
+        var rx2 = 1000;
+        var ry2 = 1;
+        var rx3 = 0;
+        var ry3 = 0;
+        var rx4 = x;
+        var ry4 = z;
+        var uc = (ry4 - ry3) * (rx2 - rx1) - (rx4 - rx3) * (ry2 - ry1);
+        var ua = ((rx4 - rx3) * (ry1 - ry3) - (ry4 - ry3) * (rx1 - rx3)) / uc;
+        var ub = ((rx2 - rx1) * (ry1 - ry3) - (ry2 - ry1) * (rx1 - rx3)) / uc;
+        if (!z)
+            z = 0.000000001;
+        if (ua > 0 && ua < 1 && ub > 0 && ub < 1) {
+            return {
+                x: vars.cx + (rx1 + ua * (rx2 - rx1)) * vars.scale,
+                y: vars.cy + y / z * vars.scale,
+                d: (x * x + y * y + z * z)
+            }
+        } else {
+            return {
+                d: -1
+            }
         }
-        function elevation(x, y, z) {
-	        var dist = Math.sqrt(x * x + y * y + z * z);
-	        if (dist && z / dist >= -1 && z / dist <= 1)
-		        return Math.acos(z / dist);
-	        return 0.00000001
-        }
-        function rgb(col) {
-	        col += 0.000001;
-	        var r = parseInt((0.5 + Math.sin(col) * 0.5) * 16);
-	        var g = parseInt((0.5 + Math.cos(col) * 0.5) * 16);
-	        var b = parseInt((0.5 - Math.sin(col) * 0.5) * 16);
-	        return "#" + r.toString(16) + g.toString(16) + b.toString(16)
-        }
-        function interpolateColors(RGB1, RGB2, degree) {
-	        var w2 = degree;
-	        var w1 = 1 - w2;
-	        return [ w1 * RGB1[0] + w2 * RGB2[0], w1 * RGB1[1] + w2 * RGB2[1], w1 * RGB1[2] + w2 * RGB2[2] ]
-        }
-        function rgbArray(col) {
-	        col += 0.000001;
-	        var r = parseInt((0.5 + Math.sin(col) * 0.5) * 256);
-	        var g = parseInt((0.5 + Math.cos(col) * 0.5) * 256);
-	        var b = parseInt((0.5 - Math.sin(col) * 0.5) * 256);
-	        return [ r, g, b ]
-        }
-        function colorString(arr) {
-	        var r = parseInt(arr[0]);
-	        var g = parseInt(arr[1]);
-	        var b = parseInt(arr[2]);
-	        return "#" + ("0" + r.toString(16)).slice(-2) + ("0" + g.toString(16)).slice(-2) + ("0" + b.toString(16)).slice(-2)
-        }
-        function process(vars) {
-	        if (vars.points.length < vars.initParticles)
-		        for (var i = 0; i < 5; ++i)
-			        spawnParticle(vars);
-	        var p, d, t;
-	        p = Math.atan2(vars.camX, vars.camZ);
-	        d = Math.sqrt(vars.camX * vars.camX + vars.camZ * vars.camZ);
-	        d -= Math.sin(vars.frameNo / 80) / 25;
-	        t = Math.cos(vars.frameNo / 300) / 165;
-	        vars.camX = Math.sin(p + t) * d;
-	        vars.camZ = Math.cos(p + t) * d;
-	        vars.camY = -Math.sin(vars.frameNo / 220) * 15;
-	        vars.yaw = Math.PI + p + t;
-	        vars.pitch = elevation(vars.camX, vars.camZ, vars.camY) - Math.PI / 2;
-	        var t;
-	        for (var i = 0; i < vars.points.length; ++i) {
-		        x = vars.points[i].x;
-		        y = vars.points[i].y;
-		        z = vars.points[i].z;
-		        d = Math.sqrt(x * x + z * z) / 1.0075;
-		        t = .1 / (1 + d * d / 5);
-		        p = Math.atan2(x, z) + t;
-		        vars.points[i].x = Math.sin(p) * d;
-		        vars.points[i].z = Math.cos(p) * d;
-		        vars.points[i].y += vars.points[i].vy * t * ((Math.sqrt(vars.distributionRadius) - d) * 2);
-		        if (vars.points[i].y > vars.vortexHeight / 2 || d < .25) {
-			        vars.points.splice(i, 1);
-			        spawnParticle(vars)
-		        }
-	        }
-        }
-        function drawFloor(vars) {
-	        var x, y, z, d, point, a;
-	        for (var i = -25; i <= 25; i += 1) {
-		        for (var j = -25; j <= 25; j += 1) {
-			        x = i * 2;
-			        z = j * 2;
-			        y = vars.floor;
-			        d = Math.sqrt(x * x + z * z);
-			        point = project3D(x, y - d * d / 85, z, vars);
-			        if (point.d != -1) {
-				        size = 1 + 15000 / (1 + point.d);
-				        a = 0.15 - Math.pow(d / 50, 4) * 0.15;
-				        if (a > 0) {
-					        vars.ctx.fillStyle = colorString(interpolateColors(rgbArray(d / 26 - vars.frameNo / 40), [ 0, 128, 32 ], .5 + Math.sin(d / 6 - vars.frameNo / 8) / 2));
-					        vars.ctx.globalAlpha = a;
-					        vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
-				        }
-			        }
-		        }
-	        }
-	        vars.ctx.fillStyle = "#82f";
-	        for (var i = -25; i <= 25; i += 1) {
-		        for (var j = -25; j <= 25; j += 1) {
-			        x = i * 2;
-			        z = j * 2;
-			        y = -vars.floor;
-			        d = Math.sqrt(x * x + z * z);
-			        point = project3D(x, y + d * d / 85, z, vars);
-			        if (point.d != -1) {
-				        size = 1 + 15000 / (1 + point.d);
-				        a = 0.15 - Math.pow(d / 50, 4) * 0.15;
-				        if (a > 0) {
-					        vars.ctx.fillStyle = colorString(interpolateColors(rgbArray(-d / 26 - vars.frameNo / 40), [ 32, 0, 128 ], .5 + Math.sin(-d / 6 - vars.frameNo / 8) / 2));
-					        vars.ctx.globalAlpha = a;
-					        vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
-				        }
-			        }
-		        }
-	        }
-        }
-        function sortFunction(a, b) {
-	        return b.dist - a.dist
-        }
-        function draw(vars) {
-	        vars.ctx.globalAlpha = .15;
-	        vars.ctx.fillStyle = "#000";
-	        vars.ctx.fillRect(0, 0, canvas.width, canvas.height);
-	        drawFloor(vars);
-	        var point, x, y, z, a;
-	        for (var i = 0; i < vars.points.length; ++i) {
-		        x = vars.points[i].x;
-		        y = vars.points[i].y;
-		        z = vars.points[i].z;
-		        point = project3D(x, y, z, vars);
-		        if (point.d != -1) {
-			        vars.points[i].dist = point.d;
-			        size = 1 + vars.points[i].radius / (1 + point.d);
-			        d = Math.abs(vars.points[i].y);
-			        a = .8 - Math.pow(d / (vars.vortexHeight / 2), 1000) * .8;
-			        vars.ctx.globalAlpha = a >= 0 && a <= 1 ? a : 0;
-			        vars.ctx.fillStyle = rgb(vars.points[i].color);
-			        if (point.x > -1 && point.x<vars.canvas.width&&point.y> - 1 && point.y < vars.canvas.height)
-				        vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
-		        }
-	        }
-	        vars.points.sort(sortFunction)
-        }
-        function spawnParticle(vars) {
-	        var p, ls;
-	        pt = {};
-	        p = Math.PI * 2 * Math.random();
-	        ls = Math.sqrt(Math.random() * vars.distributionRadius);
-	        pt.x = Math.sin(p) * ls;
-	        pt.y = -vars.vortexHeight / 2;
-	        pt.vy = vars.initV / 20 + Math.random() * vars.initV;
-	        pt.z = Math.cos(p) * ls;
-	        pt.radius = 200 + 800 * Math.random();
-	        pt.color = pt.radius / 1000 + vars.frameNo / 250;
-	        vars.points.push(pt)
-        }
-        function frame(vars) {
-	        if (vars === undefined) {
-		        var vars = {};
-		        vars.canvas = document.querySelector("canvas");
-		        vars.ctx = vars.canvas.getContext("2d");
-		        vars.canvas.width = document.body.clientWidth;
-		        vars.canvas.height = document.body.clientHeight;
-		        window.addEventListener("resize", function() {
-			        vars.canvas.width = document.body.clientWidth;
-			        vars.canvas.height = document.body.clientHeight;
-			        vars.cx = vars.canvas.width / 2;
-			        vars.cy = vars.canvas.height / 2
-		        }, true);
-		        vars.frameNo = 0;
-		        vars.camX = 0;
-		        vars.camY = 0;
-		        vars.camZ = -14;
-		        vars.pitch = elevation(vars.camX, vars.camZ, vars.camY) - Math.PI / 2;
-		        vars.yaw = 0;
-		        vars.cx = vars.canvas.width / 2;
-		        vars.cy = vars.canvas.height / 2;
-		        vars.bounding = 10;
-		        vars.scale = 500;
-		        vars.floor = 26.5;
-		        vars.points = [];
-		        vars.initParticles = 1000;
-		        vars.initV = .01;
-		        vars.distributionRadius = 800;
-		        vars.vortexHeight = 25
-	        }
-	        vars.frameNo++;
-	        requestAnimationFrame(function() {
-		        frame(vars)
-	        });
-	        process(vars);
-	        draw(vars)
-        }
-        frame();
-	</script>
-	<script>
-		//TOCMAT重启之后 在ifrme框架登录后，重新跳出框架显示页面
-        if (window != top) {
-	        top.location.href = location.href;
-        }
+    }
 
-        $(function() {
-	        $('input').iCheck({
-	            checkboxClass : 'icheckbox_square-blue',
-	            radioClass : 'iradio_square-blue',
-	            increaseArea : '20%' // optional
-	        });
+    function elevation(x, y, z) {
+        var dist = Math.sqrt(x * x + y * y + z * z);
+        if (dist && z / dist >= -1 && z / dist <= 1)
+            return Math.acos(z / dist);
+        return 0.00000001
+    }
 
-	        $("#login_btn").click(function() {
-		        console.log("$(input[name='username']).val()", $("input[name='username']").val());
-		        console.log("$(input[name='username']).val()", $("input[name='password']").val());
-		        if (checkLogin()) {
-			        $.ajax({
-			            type : "POST",
-			            url : _ctx + "/login",
-			            data : {
-			                username : $("input[name='username']").val(),
-			                password : $("input[name='password']").val(),
-			                time : new Date().getTime()
-			            },
-			            dataType : "json",
-			            cache : false,
-			            success : function(data) {
-				            if ("success" == data.status) {
-					            /* window.location.href = _ctx + "/index?firmId="+data.data.firmId; */
-					            document.write("<form action='"+_ctx+"/index' name='login_submit' method='post' style='display:none'>>");
-					            document.write("<input type='hidden' name='firmId' value='"+data.data.firmId+"'/>");
-					            document.write("</form>")
-					            document.login_submit.submit();
-				            } else {
-					            $("#error-msg").html(data.msg);
-				            }
-			            }
-			        })
-		        }
-		        return false;
-	        });
+    function rgb(col) {
+        col += 0.000001;
+        var r = parseInt((0.5 + Math.sin(col) * 0.5) * 16);
+        var g = parseInt((0.5 + Math.cos(col) * 0.5) * 16);
+        var b = parseInt((0.5 - Math.sin(col) * 0.5) * 16);
+        return "#" + r.toString(16) + g.toString(16) + b.toString(16)
+    }
 
-	        function checkLogin() {
-		        if ($("input[name='username']").val() == "") {
-			        alert("username cannot be empty")
-			        $("input[name='username']").focus();
-			        return false;
-		        }
-		        if ($("input[name='password']").val() == "") {
-			        alert("password cannot be empty")
-			        $("input[name='password']").focus();
-			        return false;
-		        }
-		        return true;
-	        }
+    function interpolateColors(RGB1, RGB2, degree) {
+        var w2 = degree;
+        var w1 = 1 - w2;
+        return [w1 * RGB1[0] + w2 * RGB2[0], w1 * RGB1[1] + w2 * RGB2[1], w1 * RGB1[2] + w2 * RGB2[2]]
+    }
+
+    function rgbArray(col) {
+        col += 0.000001;
+        var r = parseInt((0.5 + Math.sin(col) * 0.5) * 256);
+        var g = parseInt((0.5 + Math.cos(col) * 0.5) * 256);
+        var b = parseInt((0.5 - Math.sin(col) * 0.5) * 256);
+        return [r, g, b]
+    }
+
+    function colorString(arr) {
+        var r = parseInt(arr[0]);
+        var g = parseInt(arr[1]);
+        var b = parseInt(arr[2]);
+        return "#" + ("0" + r.toString(16)).slice(-2) + ("0" + g.toString(16)).slice(-2) + ("0" + b.toString(16)).slice(-2)
+    }
+
+    function process(vars) {
+        if (vars.points.length < vars.initParticles)
+            for (var i = 0; i < 5; ++i)
+                spawnParticle(vars);
+        var p, d, t;
+        p = Math.atan2(vars.camX, vars.camZ);
+        d = Math.sqrt(vars.camX * vars.camX + vars.camZ * vars.camZ);
+        d -= Math.sin(vars.frameNo / 80) / 25;
+        t = Math.cos(vars.frameNo / 300) / 165;
+        vars.camX = Math.sin(p + t) * d;
+        vars.camZ = Math.cos(p + t) * d;
+        vars.camY = -Math.sin(vars.frameNo / 220) * 15;
+        vars.yaw = Math.PI + p + t;
+        vars.pitch = elevation(vars.camX, vars.camZ, vars.camY) - Math.PI / 2;
+        var t;
+        for (var i = 0; i < vars.points.length; ++i) {
+            x = vars.points[i].x;
+            y = vars.points[i].y;
+            z = vars.points[i].z;
+            d = Math.sqrt(x * x + z * z) / 1.0075;
+            t = .1 / (1 + d * d / 5);
+            p = Math.atan2(x, z) + t;
+            vars.points[i].x = Math.sin(p) * d;
+            vars.points[i].z = Math.cos(p) * d;
+            vars.points[i].y += vars.points[i].vy * t * ((Math.sqrt(vars.distributionRadius) - d) * 2);
+            if (vars.points[i].y > vars.vortexHeight / 2 || d < .25) {
+                vars.points.splice(i, 1);
+                spawnParticle(vars)
+            }
+        }
+    }
+
+    function drawFloor(vars) {
+        var x, y, z, d, point, a;
+        for (var i = -25; i <= 25; i += 1) {
+            for (var j = -25; j <= 25; j += 1) {
+                x = i * 2;
+                z = j * 2;
+                y = vars.floor;
+                d = Math.sqrt(x * x + z * z);
+                point = project3D(x, y - d * d / 85, z, vars);
+                if (point.d != -1) {
+                    size = 1 + 15000 / (1 + point.d);
+                    a = 0.15 - Math.pow(d / 50, 4) * 0.15;
+                    if (a > 0) {
+                        vars.ctx.fillStyle = colorString(interpolateColors(rgbArray(d / 26 - vars.frameNo / 40), [0, 128, 32], .5 + Math.sin(d / 6 - vars.frameNo / 8) / 2));
+                        vars.ctx.globalAlpha = a;
+                        vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
+                    }
+                }
+            }
+        }
+        vars.ctx.fillStyle = "#82f";
+        for (var i = -25; i <= 25; i += 1) {
+            for (var j = -25; j <= 25; j += 1) {
+                x = i * 2;
+                z = j * 2;
+                y = -vars.floor;
+                d = Math.sqrt(x * x + z * z);
+                point = project3D(x, y + d * d / 85, z, vars);
+                if (point.d != -1) {
+                    size = 1 + 15000 / (1 + point.d);
+                    a = 0.15 - Math.pow(d / 50, 4) * 0.15;
+                    if (a > 0) {
+                        vars.ctx.fillStyle = colorString(interpolateColors(rgbArray(-d / 26 - vars.frameNo / 40), [32, 0, 128], .5 + Math.sin(-d / 6 - vars.frameNo / 8) / 2));
+                        vars.ctx.globalAlpha = a;
+                        vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
+                    }
+                }
+            }
+        }
+    }
+
+    function sortFunction(a, b) {
+        return b.dist - a.dist
+    }
+
+    function draw(vars) {
+        vars.ctx.globalAlpha = .15;
+        vars.ctx.fillStyle = "#000";
+        vars.ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawFloor(vars);
+        var point, x, y, z, a;
+        for (var i = 0; i < vars.points.length; ++i) {
+            x = vars.points[i].x;
+            y = vars.points[i].y;
+            z = vars.points[i].z;
+            point = project3D(x, y, z, vars);
+            if (point.d != -1) {
+                vars.points[i].dist = point.d;
+                size = 1 + vars.points[i].radius / (1 + point.d);
+                d = Math.abs(vars.points[i].y);
+                a = .8 - Math.pow(d / (vars.vortexHeight / 2), 1000) * .8;
+                vars.ctx.globalAlpha = a >= 0 && a <= 1 ? a : 0;
+                vars.ctx.fillStyle = rgb(vars.points[i].color);
+                if (point.x > -1 && point.x < vars.canvas.width && point.y > -1 && point.y < vars.canvas.height)
+                    vars.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size)
+            }
+        }
+        vars.points.sort(sortFunction)
+    }
+
+    function spawnParticle(vars) {
+        var p, ls;
+        pt = {};
+        p = Math.PI * 2 * Math.random();
+        ls = Math.sqrt(Math.random() * vars.distributionRadius);
+        pt.x = Math.sin(p) * ls;
+        pt.y = -vars.vortexHeight / 2;
+        pt.vy = vars.initV / 20 + Math.random() * vars.initV;
+        pt.z = Math.cos(p) * ls;
+        pt.radius = 200 + 800 * Math.random();
+        pt.color = pt.radius / 1000 + vars.frameNo / 250;
+        vars.points.push(pt)
+    }
+
+    function frame(vars) {
+        if (vars === undefined) {
+            var vars = {};
+            vars.canvas = document.querySelector("canvas");
+            vars.ctx = vars.canvas.getContext("2d");
+            vars.canvas.width = document.body.clientWidth;
+            vars.canvas.height = document.body.clientHeight;
+            window.addEventListener("resize", function () {
+                vars.canvas.width = document.body.clientWidth;
+                vars.canvas.height = document.body.clientHeight;
+                vars.cx = vars.canvas.width / 2;
+                vars.cy = vars.canvas.height / 2
+            }, true);
+            vars.frameNo = 0;
+            vars.camX = 0;
+            vars.camY = 0;
+            vars.camZ = -14;
+            vars.pitch = elevation(vars.camX, vars.camZ, vars.camY) - Math.PI / 2;
+            vars.yaw = 0;
+            vars.cx = vars.canvas.width / 2;
+            vars.cy = vars.canvas.height / 2;
+            vars.bounding = 10;
+            vars.scale = 500;
+            vars.floor = 26.5;
+            vars.points = [];
+            vars.initParticles = 1000;
+            vars.initV = .01;
+            vars.distributionRadius = 800;
+            vars.vortexHeight = 25
+        }
+        vars.frameNo++;
+        requestAnimationFrame(function () {
+            frame(vars)
         });
-	</script>
-	<!-- 	<script type="text/javascript">
+        process(vars);
+        draw(vars)
+    }
 
-	</script> -->
-	<script>
-		$('.form_date').datetimepicker({
-            format : 'yyyy-mm-dd', // 格式 如果只有yyyy-mm-dd那就是0000-00-00
-            language : 'zh-CN',
-            weekStart : 1,
-            todayBtn : true,
-            autoclose : true,
-            todayHighlight : true,
-            startView : 2,
-            minView : 2,
-            forceParse : 0,
-            pickerPosition : "top-left"
+    frame();
+</script>
+<script>
+    //TOCMAT重启之后 在ifrme框架登录后，重新跳出框架显示页面
+    if (window != top) {
+        top.location.href = location.href;
+    }
+
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
         });
-	</script>
+
+        $("#login_btn").click(function () {
+            console.log("$(input[name='username']).val()", $("input[name='username']").val());
+            console.log("$(input[name='username']).val()", $("input[name='password']").val());
+            if (checkLogin()) {
+                $.ajax({
+                    type: "POST",
+                    url: _ctx + "/login",
+                    data: {
+                        username: $("input[name='username']").val(),
+                        password: $("input[name='password']").val(),
+                        time: new Date().getTime()
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        if ("success" == data.status) {
+                            /* window.location.href = _ctx + "/index?firmId="+data.data.firmId; */
+                            document.write("<form action='" + _ctx + "/index' name='login_submit' method='post' style='display:none'>>");
+                            document.write("<input type='hidden' name='firmId' value='" + data.data.firmId + "'/>");
+                            document.write("</form>")
+                            document.login_submit.submit();
+                        } else {
+                            $("#error-msg").html(data.msg);
+                        }
+                    }
+                })
+            }
+            return false;
+        });
+
+        function checkLogin() {
+            if ($("input[name='username']").val() == "") {
+                alert("username cannot be empty")
+                $("input[name='username']").focus();
+                return false;
+            }
+            if ($("input[name='password']").val() == "") {
+                alert("password cannot be empty")
+                $("input[name='password']").focus();
+                return false;
+            }
+            return true;
+        }
+    });
+</script>
+<!-- 	<script type="text/javascript">
+
+</script> -->
+<script>
+    $('.form_date').datetimepicker({
+        format: 'yyyy-mm-dd', // 格式 如果只有yyyy-mm-dd那就是0000-00-00
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: true,
+        autoclose: true,
+        todayHighlight: true,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "top-left"
+    });
+</script>
 </body>
 </html>
