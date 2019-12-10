@@ -43,16 +43,14 @@ function showBasicDataModal(record, firm) {
     tr += "<tr><td width='20%'>分类</td><td width='20%'>种类</td><td width='10%'>单位</td><td width='10%'>数值</td><td width='10%'>数据来源</td><td width='10%'>备注</td></tr></thead>";
     tr += "<tbody>";
     for (var i = 0; i < records.length; i++) {
-
         tr += "<tr><td style='text-align: center; vertical-align: middle;'>" + records[i].classifyName + "</td>";
         tr += "<td>" + records[i].categoryName + "</td>";
         tr += "<td>" + records[i].unit + "</td>";
         tr += "<td>" + records[i].productVolume + "</td>";
-        tr += "<td> " + records[i].dataSource + " </td>";
-        tr += "<td> " + records[i].remark + " </td>";
+        tr += "<td>" + records[i].dataSource + "</td>";
+        tr += "<td>" + records[i].remark + "</td>";
         tr += "</tr>";
     }
-    ;
     tr += "</tbody></table>";
 
     $('#BasicData').html(tr);
