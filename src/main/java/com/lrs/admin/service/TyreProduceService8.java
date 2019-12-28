@@ -94,7 +94,7 @@ public class TyreProduceService8 extends BaseJudgeService {
                     count += record.getProductVolume();
                 }
             }
-            float result = divided(count, productvolume);
+            float result = divided(count,productvolume );
             if (result <= 0.5f) {
                 b = true;
             }
@@ -108,7 +108,7 @@ public class TyreProduceService8 extends BaseJudgeService {
                     count += record.getProductVolume();
                 }
             }
-            float result = divided(productvolume, count);
+            float result = divided(count, productvolume);
             if (result <= 0.55f) {
                 b = true;
             }
