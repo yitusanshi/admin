@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,19 +29,25 @@ public class UserManagerController {
     private NewUserService newUserService;
     @Resource
     private DataDealService dataDealService;
+
     @RequestMapping("/find_all_user")
     public String findAllUser(Model model) {
         List<Maunfacturer> list = newUserService.selectAll();
+        List<Maunfacturer> list1 = new ArrayList<Maunfacturer>();
         //model.addAttribute("maunfacturers", list);
-        for (Maunfacturer m : list){
+        for (Maunfacturer m : list) {
             Date foundingTime = m.getFoundingTime();
             String foundingTimeStr = DateUtil.formatDate(foundingTime, "yyyy-MM-dd");
             m.setFoundingTimestr(foundingTimeStr);
             Date registerTime = m.getRegisterTime();
             String registerTimestr = DateUtil.formatDate(registerTime, "yyyy-MM-dd");
             m.setRegisterTimestr(registerTimestr);
+            if (m.getFirmId() == 1 || m.getFirmId() == 15 || m.getFirmId() == 16) {
+            } else {
+                list1.add(m);
+            }
         }
-        model.addAttribute("maunfacturers", list);
+        model.addAttribute("maunfacturers", list1);
         return "sys/sys_user";
     }
 

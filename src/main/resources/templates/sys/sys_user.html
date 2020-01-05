@@ -47,7 +47,9 @@
 						<td th:text="${maunfacturer.product.substring(0,maunfacturer.product.lastIndexOf('_'))}">产品类型</td>
 						<td th:text="${maunfacturer.foundingTimestr}">成立时间</td>
 						<td th:text="${maunfacturer.registerTimestr}">注册时间</td>
-						<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#SuppliersModal" th:onclick="'findMaunfacturerByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> </td>
+						<td>
+							<span class="btn btn-xs btn-info" data-toggle="modal" data-target="#SuppliersModal" th:onclick="'findMaunfacturerByFirmId(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-reorder">详情</i></span>
+							<span class="btn btn-xs btn-danger" th:onclick="'delMaunfacturer(\''+${maunfacturer.firmId}+'\');'"><i class="fa fa-trash-o">删除</i> </span> </td>
 					</tr>
 				</tbody>
 			</table>
