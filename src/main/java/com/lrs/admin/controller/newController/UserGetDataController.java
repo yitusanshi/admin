@@ -36,6 +36,7 @@ public class UserGetDataController {
     private NewUserService newUserService;
     @Resource
     private DataDealService dataDealService;
+
     @RequestMapping(value = "/getData", method = RequestMethod.POST)
     public HashMap<String, Object> getData(HttpServletRequest request){
         try {
@@ -153,7 +154,7 @@ public class UserGetDataController {
         String tagTime = request.getParameter("tagTime");
         int firmId = Integer.valueOf(request.getParameter("firmId"));
         String dataYear = request.getParameter("dataYear");
-
-        return null;
+        List<DataRecordCategory> list = dataDealService.getRecordData(tagTime, firmId, dataYear);
+        return ResponseModel.getModel("获取数据成功", "success", list);
     }
 }

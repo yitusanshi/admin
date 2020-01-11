@@ -56,4 +56,8 @@ public class DataDealService {
         dataRecordMapper.delDataRecord(firmid);
     }
 
+    public List<DataRecordCategory>  getRecordData(String tagTime, int firmId, String dataYear){
+        return dataRecordCategoryMapper.getRecordData(tagTime, firmId, dataYear);
+    }
+
 }

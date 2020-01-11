@@ -25,6 +25,8 @@ public class DataRecord {
 
     private String dataYear;
     private Integer dataType;
+    private String classifyName;
+    private String categoryName;
 
     public Integer getId() {
         return id;
@@ -112,5 +114,21 @@ public class DataRecord {
 
     public void setDataType(Integer dataType) {
         this.dataType = dataType;
+    }
+
+    public String getClassifyName() {
+        return classifyName;
+    }
+
+    public void setClassifyName(String classifyName) {
+        this.classifyName = classifyName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

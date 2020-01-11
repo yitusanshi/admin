@@ -10,8 +10,10 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -67,103 +69,106 @@ public class DataStoreController {
         }
         return null;
     }*/
-
+    @RequestMapping(value = "/product/update", method = RequestMethod.POST)
+    @Transactional(rollbackFor = Exception.class)
+    public HashMap<String, Object> dataUpdate(@RequestParam List<JSONObject> list){
+        return null;
+    }
 
     @RequestMapping(value = "/product/save", method = RequestMethod.POST)
-    public HashMap<String, Object> dataStoretest(HttpServletRequest request) {
+    @Transactional(rollbackFor = Exception.class)
+    public HashMap<String, Object> dataStore(HttpServletRequest request) throws Exception {
         try {
             request.setCharacterEncoding("utf-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("编码格式错误");
-            return ResponseModel.getModel("编码格式错误", "error", null);
-        }
-        String username = request.getParameter("username");
-        String dataYear = request.getParameter("datayear");
-        if (StringUtils.isEmpty(username)) {
-            return ResponseModel.getModel("无法获取用户", "error", null);
-        }
-        Maunfacturer maunfacturer = newUserService.select(username);
-        if (maunfacturer == null) {
-            return ResponseModel.getModel("无该用户名称，请联系管理员", "error", null);
-        }
-        Map<String, String[]> requestMap = request.getParameterMap();
-        JSONObject jsonObject = new JSONObject();
-        for (Map.Entry<String, String[]> entry : requestMap.entrySet()) {
-            String key = entry.getKey();
-            if (key.contains("records[")) {
-                String value = request.getParameter(key);
-                String s = key.substring(8, 9);
-                //运输距离存储
-                if (s.equals("0")) {
-                    System.out.println("1333---" + request.getParameter(key));
-                    String[] str = transDistance(value);
-                    value = str[0];
-                    s = str[1];
-                }
-                jsonObject.put(s, value);
+            String username = request.getParameter("username");
+            String dataYear = request.getParameter("datayear");
+            if (StringUtils.isEmpty(username)) {
+                throw new Exception("无法获取用户");
             }
-        }
+            Maunfacturer maunfacturer = newUserService.select(username);
+            Map<String, String[]> requestMap = request.getParameterMap();
+            JSONObject jsonObject = new JSONObject();
+            for (Map.Entry<String, String[]> entry : requestMap.entrySet()) {
+                String key = entry.getKey();
+                if (key.contains("records[")) {
+                    String value = request.getParameter(key);
+                    String s = key.substring(8, 9);
+                    //运输距离存储
+                    if (s.equals("0")) {
+                        System.out.println("1333---" + request.getParameter(key));
+                        String[] str = transDistance(value);
+                        value = str[0];
+                        s = str[1];
+                    }
+                    jsonObject.put(s, value);
+                }
+            }
 
-        int firmid = maunfacturer.getFirmId();
-        long timeStamp = System.currentTimeMillis();
-        String tagTime = DateFormatUtils.format(timeStamp, "yyyy-MM-dd HH:mm:ss");
-        Set<String> set = jsonObject.keySet();
-        Map<String, HashMap<String, Object>> map = new HashMap<>();
-        for (String classifyid : set) {
-            JSONObject json = jsonObject.getJSONObject(classifyid);
-            for (String key : json.keySet()) {
-                String[] keyarr = key.split("_");
-                Object value = json.get(key);
-                String name = keyarr[0];
-                System.out.println(key + "=================");
-                String categoryid = keyarr[1];
-                if (map.containsKey(categoryid)) {
-                    HashMap<String, Object> innermap = map.get(categoryid);
-                    innermap.put(name, value);
+            int firmid = maunfacturer.getFirmId();
+            long timeStamp = System.currentTimeMillis();
+            String tagTime = DateFormatUtils.format(timeStamp, "yyyy-MM-dd HH:mm:ss");
+            Set<String> set = jsonObject.keySet();
+            Map<String, HashMap<String, Object>> map = new HashMap<>();
+            for (String classifyid : set) {
+                JSONObject json = jsonObject.getJSONObject(classifyid);
+                for (String key : json.keySet()) {
+                    String[] keyarr = key.split("_");
+                    Object value = json.get(key);
+                    String name = keyarr[0];
+                    System.out.println(key + "=================");
+                    String categoryid = keyarr[1];
+                    if (map.containsKey(categoryid)) {
+                        HashMap<String, Object> innermap = map.get(categoryid);
+                        innermap.put(name, value);
+                    } else {
+                        HashMap<String, Object> innermap = new HashMap<>();
+                        innermap.put(name, value);
+                        innermap.put("classifyid", classifyid);
+                        map.put(categoryid, innermap);
+                    }
+                }
+            }
+            List<DataRecord> list = new ArrayList<>();
+            for (String categoryid : map.keySet()) {
+                HashMap<String, Object> innermap = map.get(categoryid);
+                if (innermap == null || innermap.isEmpty()) {
+                    continue;
+                }
+                String value = (String) innermap.get("value");
+                Double volume = 0.0;
+                if (StringUtils.isNotEmpty(value)) {
+                    volume = Double.parseDouble(value);
+                }
+                String datasouce = (String) innermap.get("datasource");
+                String desc = (String) innermap.get("desc");
+                String classifyid = (String) innermap.get("classifyid");
+                String type = (String) innermap.get("type");
+                int dataType;
+                if (type == null || "".equals(type)) {
+                    dataType = 0;
                 } else {
-                    HashMap<String, Object> innermap = new HashMap<>();
-                    innermap.put(name, value);
-                    innermap.put("classifyid", classifyid);
-                    map.put(categoryid, innermap);
+                    dataType = Integer.valueOf(type);
                 }
-            }
-        }
-        List<DataRecord> list = new ArrayList<>();
-        for (String categoryid : map.keySet()) {
-            HashMap<String, Object> innermap = map.get(categoryid);
-            if (innermap == null || innermap.isEmpty()) {
-                continue;
-            }
-            String value = (String) innermap.get("value");
-            Double volume = 0.0;
-            if (StringUtils.isNotEmpty(value)) {
-                volume = Double.parseDouble(value);
-            }
-            String datasouce = (String) innermap.get("datasource");
-            String desc = (String) innermap.get("desc");
-            String classifyid = (String) innermap.get("classifyid");
-            String type = (String) innermap.get("type");
-            int dataType;
-            if (type == null || "".equals(type)) {
-                dataType = 0;
-            } else {
-                dataType = Integer.valueOf(type);
-            }
 
 
-            DataRecord dataRecord = new DataRecord();
-            dataRecord.setFirmId(firmid);
-            dataRecord.setTagTime(tagTime);
-            dataRecord.setCategoryId(categoryid);
-            dataRecord.setClassifyId(classifyid);
-            dataRecord.setProductVolume(volume);
-            dataRecord.setDataSource(datasouce);
-            dataRecord.setRemark(desc);
-            dataRecord.setDataYear(dataYear);
-            dataRecord.setDataType(dataType);
-            list.add(dataRecord);
+                DataRecord dataRecord = new DataRecord();
+                dataRecord.setFirmId(firmid);
+                dataRecord.setTagTime(tagTime);
+                dataRecord.setCategoryId(categoryid);
+                dataRecord.setClassifyId(classifyid);
+                dataRecord.setProductVolume(volume);
+                dataRecord.setDataSource(datasouce);
+                dataRecord.setRemark(desc);
+                dataRecord.setDataYear(dataYear);
+                dataRecord.setDataType(dataType);
+                list.add(dataRecord);
+            }
+            dataDealService.insertDataRecord(list);
+        }catch (Exception e){
+            logger.error("存储失败: {}", e);
+            throw  new Exception("存储失败", e);
         }
-        dataDealService.insertDataRecord(list);
+
 
 
                 /*Float volume = json.getFloatValue("volume");
@@ -190,7 +195,7 @@ public class DataStoreController {
         String is_load = json.getString("is_load");
         String[] str = new String[2];
         JSONObject obj = new JSONObject();
-        if ("3".equals(category)) {
+        if ("13".equals(category)) {
             obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "311"));
             obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "312"));
 
@@ -201,7 +206,7 @@ public class DataStoreController {
             str[1] = "13";
 
         }
-        if ("4".equals(category)) {
+        if ("14".equals(category)) {
             obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "315"));
             obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "316"));
 
@@ -211,7 +216,7 @@ public class DataStoreController {
             str[1] = "14";
 
         }
-        if ("5".equals(category)) {
+        if ("15".equals(category)) {
             obj.putAll(assemJson("运输至风神数量", "t", valueVoume, "319"));
             obj.putAll(assemJson("运输至风神距离", "km", transport_distance, "320"));
 

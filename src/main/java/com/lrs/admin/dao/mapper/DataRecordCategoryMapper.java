@@ -1,7 +1,9 @@
 package com.lrs.admin.dao.mapper;
 
+import com.lrs.admin.dao.domain.DataRecord;
 import com.lrs.admin.dao.domain.DataRecordCategory;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,4 +14,5 @@ import java.util.List;
 @Mapper
 public interface DataRecordCategoryMapper {
     List<DataRecordCategory> selectDetail(int firmid, String tagTime);
+    List<DataRecordCategory> getRecordData(@Param("tagTime") String tagTime, @Param("firmId") int firmId, @Param("dataYear") String dataYear);
 }

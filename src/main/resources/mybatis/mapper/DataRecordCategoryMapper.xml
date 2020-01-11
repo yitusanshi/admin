@@ -22,4 +22,9 @@
         SELECT * FROM data_record d JOIN pro_classify cs JOIN pro_category cg WHERE d.classify_id = cs.classify_id AND
         d.category_id = cg.category_id AND d.firm_id = #{arg0} AND d.tag_time = #{arg1}
     </select>
+    <select id="getRecordData" resultMap="DataRecordCategory">
+        SELECT d.*,c1.category_name, c1.unit, c2.classify_name FROM data_record d  JOIN pro_category c1 JOIN pro_classify c2
+        WHERE  d.tag_time = #{tagTime} and d.firm_id = #{firmId} and d.data_year = #{dataYear} AND d.category_id = c1.category_id
+        AND d.classify_id = c2.classify_id
+    </select>
 </mapper>
