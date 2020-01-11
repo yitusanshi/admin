@@ -142,4 +142,18 @@ public class UserGetDataController {
         }
         return ResponseModel.getModel("获取数据成功", "success", allJson.toJSONString());
     }
+    @RequestMapping(value = "/getRecordData" , method = RequestMethod.POST)
+    public HashMap<String, Object> getRecordData(HttpServletRequest request){
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("编码格式错误");
+            return ResponseModel.getModel("编码格式错误", "error", null);
+        }
+        String tagTime = request.getParameter("tagTime");
+        int firmId = Integer.valueOf(request.getParameter("firmId"));
+        String dataYear = request.getParameter("dataYear");
+
+        return null;
+    }
 }
