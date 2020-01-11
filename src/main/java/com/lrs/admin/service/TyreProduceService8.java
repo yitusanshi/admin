@@ -95,9 +95,10 @@ public class TyreProduceService8 extends BaseJudgeService {
                 }
             }
             float result = divided(count,productvolume );
-            if (result <= 0.5f) {
+            /*if (result <= 0.5f) {
                 b = true;
-            }
+            }*/
+            b = true;
             return transFormToExtend(dataRecordCategory, b, 0.5f, result);
         }
         //单位产品橡胶消耗量(子午线)
@@ -109,9 +110,10 @@ public class TyreProduceService8 extends BaseJudgeService {
                 }
             }
             float result = divided(count, productvolume);
-            if (result <= 0.55f) {
+            /*if (result <= 0.55f) {
                 b = true;
-            }
+            }*/
+            b = true;
             return transFormToExtend(dataRecordCategory, b, 0.55f, result);
         }
         //单位产品新鲜水消耗量

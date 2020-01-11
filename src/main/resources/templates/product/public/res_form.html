@@ -15,7 +15,7 @@
 	<tbody>
 		<tr th:each="cat:${categorylist[3]}" style="border: 2px solid #EEEEEE;">
 			<input type="text" class="form-control" th:name="type+_+${cat.categoryId}" value="0" style="display: none;" />
-			<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" value="新鲜水" readonly="readonly"  /></td>
+			<td><input type="text" class="form-control" th:name="name+_+${cat.categoryId}" th:value="${cat.categoryName}" readonly="readonly"  /></td>
 			<td><select class="form-control" th:name="water+_+${cat.categoryId}">
 					<option value="44" selected="selected">自来水</option>
 					<option value="45">地下水</option>

@@ -46,12 +46,12 @@
         <!-- 主体部分！！！！ -->
         <iframe name="mainFrame" id="mainBodyFrame" th:src="@{/include/main}" frameborder="0" width="100%"></iframe>
     </div>
-    <a target="mainFrame" th:href="@{'/sys/find_all_user?username='+${maunfacturer.username}}" style="display: none">
+ <!--   <a target="mainFrame" th:href="@{'/sys/find_all_user?username='+${maunfacturer.username}}" style="display: none">
         <i class="fa fa-circle-o">
             <button id="subBtn" type="button"></button>
         </i>
         <label>用户信息</label>
-    </a>
+    </a>-->
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -158,9 +158,9 @@
 <script th:src="@{/js/user/index.js}"></script>
 <script th:src="@{/js/path.js}"></script>
 </body>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $(function () {
         $("#subBtn").trigger("click");
     });
-</script>
+</script>-->
 </html>
