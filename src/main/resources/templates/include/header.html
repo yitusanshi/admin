@@ -1,37 +1,41 @@
 <!-- Logo -->
 <div th:fragment="admin-header">
-	<a href="#" class="logo"> <span class="logo-mini">菜单</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg" th:text="${maunfacturer.username}"><b>Admin</b>后台</span>
-	</a>
-	<!-- Header Navbar: style can be found in header.less -->
-	<nav class="navbar navbar-static-top">
-		<!-- Sidebar toggle button-->
-		<!--<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle navigation</span>
-		</a>-->
+    <a href="#" class="logo"> <span class="logo-mini">菜单</span> <!-- logo for regular state and mobile devices --> <span
+            class="logo-lg" th:text="${maunfacturer.username}"><b>Admin</b>后台</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <!--<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle navigation</span>
+        </a>-->
 
-		<div class="navbar-custom-menu">
-			<ul class="nav navbar-nav">
-				<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/images/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs" th:text="${maunfacturer.username}">管理员</span>
-				</a>
-					<ul class="dropdown-menu">
-						<!-- User image -->
-						<li class="user-header"><img src="/images/logo.png" class="img-circle" alt="User Image">
-							<p th:text="${maunfacturer.username}"></p>
-							<p>
-								<!--<small><a href="www.baidu.com" style="color: #fff;">www.baidu.com</a></small>-->
-							</p></li>
-						<!-- Menu Footer-->
-						<li class="user-footer">
-							<div class="pull-left">
-								<!--<a href="/include/icon" target="mainFrame" class="btn btn-default btn-flat">Icons</a>-->
-							</div>
-							<div class="pull-right">
-								<a th:href="@{/logout}" class="btn btn-default btn-flat">退出</a>
-							</div>
-						</li>
-					</ul></li>
-				<!-- Control Sidebar Toggle Button -->
-				<!--<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>-->
-			</ul>
-		</div>
-	</nav>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="/images/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs"
+                                                                                           th:text="${maunfacturer.username}">管理员</span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header"><img src="/images/logo.png" class="img-circle" alt="User Image">
+                            <p th:text="${maunfacturer.username}"></p>
+                            <p>
+                                <!--<small><a href="www.baidu.com" style="color: #fff;">www.baidu.com</a></small>-->
+                            </p></li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <!--<a href="/include/icon" target="mainFrame" class="btn btn-default btn-flat">Icons</a>-->
+                            </div>
+                            <div class="pull-right">
+                                <a th:href="@{/logout}" class="btn btn-default btn-flat">退出</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <!--<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>-->
+            </ul>
+        </div>
+    </nav>
 </div>
