@@ -71,8 +71,22 @@ public class DataStoreController {
     }*/
     @RequestMapping(value = "/product/update", method = RequestMethod.POST)
     @Transactional(rollbackFor = Exception.class)
-    public HashMap<String, Object> dataUpdate(@RequestParam List<JSONObject> list){
-        return null;
+    public HashMap<String, Object> dataUpdate(HttpServletRequest request){
+        String str  = request.getParameter("dataValue");
+        JSONObject json = JSONObject.parseObject(str);
+        List<String> idList = json.getObject("id", List.class);
+        List<String> dataTypeList = json.getObject("dataType", List.class);
+        List<String> productVolumeList = json.getObject("productVolume", List.class);
+        List<DataRecord> list = new ArrayList<>();
+        for (int i = 0; i < idList.size() ; i++) {
+            DataRecord dataRecord = new DataRecord();
+            dataRecord.setId(Integer.valueOf(idList.get(i)));
+            dataRecord.setProductVolume(Double.valueOf(productVolumeList.get(i)));
+            dataRecord.setDataType(Integer.valueOf(dataTypeList.get(i)));
+            list.add(dataRecord);
+        }
+        dataDealService.updateRecordData(list);
+        return ResponseModel.getModel("更新成功", "success", null);
     }
 
     @RequestMapping(value = "/product/save", method = RequestMethod.POST)

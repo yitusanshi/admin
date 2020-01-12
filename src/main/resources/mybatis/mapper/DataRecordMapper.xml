@@ -46,4 +46,9 @@
   <delete id="delDataRecord" parameterType="java.lang.Integer">
     DELETE FROM data_record WHERE firm_id = #{0}
   </delete>
+  <update id="updateRecordData" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" separator=";" close="">
+      UPDATE data_record SET product_volume = #{item.productVolume}, data_type = #{item.dataType}  WHERE id= #{item.id}
+    </foreach>
+  </update>
 </mapper>
