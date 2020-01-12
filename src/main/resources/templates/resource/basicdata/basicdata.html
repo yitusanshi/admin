@@ -25,7 +25,7 @@
 					<th width="5%">序号</th>
 					<th width="20%">厂商名称</th>
 					<th width="10%">申报年份</th>
-					<th width="10%">填报日期</th>
+<!--					<th width="10%">填报日期</th>-->
 					<th width="10%">填报数据</th>
 				</tr>
 			</thead>
@@ -34,7 +34,7 @@
 					<td th:text="${stat.count}">1</td>
 					<td th:text="${res.manu.firmName}">供应商名称</td>
 					<td th:text="${res.dataYear}">申报年份</td>
-					<td th:text="${res.tagTime}">填报日期</td>
+					<!--<td th:text="${res.tagTime}">填报日期</td>-->
 					<td><span class="btn btn-xs btn-info" data-toggle="modal" data-target="#BasicDataModal" th:onclick="'showBasicDataModal(\''+${res.records}+'\',\''+${res.manu}+'\');'"><i class="fa fa-reorder">详情</i></span></td>
 
 				</tr>

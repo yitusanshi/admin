@@ -483,3 +483,58 @@ function showModal(Id, ispass) {
     });
 
 }
+
+
+function updateModal(tagTime, dataYear, firmId) {
+    $.ajax({
+        url: _ctx + "/getRecordData",
+        type: "POST",
+        data: {
+            "tagTime": tagTime,
+            "firmId": firmId,
+            "dataYear": dataYear
+        },
+        success: function (data) {
+            if (data.status == 'success') {
+                var data = data.data;
+                var tr = "";
+                for (var i = 0; i < data.length; i++) {
+                    tr += "<tr>"
+                    tr += '<td style="display: none"><input name="id" value="' + data[i].id + '"></td>';
+                    tr += '<td>' + data[i].classifyName + '</td>';
+                    tr += '<td>' + data[i].categoryName + '</td>';
+                    tr += '<td>' + data[i].dataYear + '</td>';
+                    /*tr += '<td>' + data[i].dataSource + '</td>';*/
+                    tr += '<td><select class="form-control" name="dataType"><option value="0" selected="selected">实测值</option><option value="1">估算值</option><option value="-1">未监测</option></select></td>';
+                    tr += '<td><input type="text" class="form-control" name="productVolume" style="border: 0px;" value="' + data[i].productVolume
+                        + '" onkeyup="this.value=this.value.replace(/[^\\d.]/g,\'\')"/></td>';
+                    tr += '<td>' + data[i].unit + '</td>';
+                    tr += "</tr>"
+                }
+                $('#updateTable').html(tr);
+            } else {
+                alert("数据异常！请联系管理员");
+            }
+        }
+    });
+}
+
+function updateData() {
+    $.ajax({
+        url: _ctx + "/product/update",
+        type: "POST",
+        data: {
+            "dataValue": JSON.stringify($('#updateData').serializeObject()),
+        },
+        success: function (data) {
+            if (data.status == 'success') {
+                alert("数据保存成功！");
+                $("#UpdatesModal").modal('hide');
+                window.location.href = window.location.href;
+            } else {
+                alert(data.msg);
+            }
+        }
+
+    });
+}
