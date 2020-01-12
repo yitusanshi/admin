@@ -13,7 +13,7 @@ public interface DataRecordMapper {
     List<DataRecord> selectDetailData(int firmid, String tagTime);
     List<DataRecord> selectUniqueTag();
     void delDataRecord(int firmid);
-    void updateRecordData(List<DataRecord> list);
+    void updateRecordData(DataRecord dataRecord);
 
 /*    int insertSelective(DataRecord record);
 

@@ -85,7 +85,10 @@ public class DataStoreController {
             dataRecord.setDataType(Integer.valueOf(dataTypeList.get(i)));
             list.add(dataRecord);
         }
-        dataDealService.updateRecordData(list);
+        for (DataRecord dataRecord : list){
+            dataDealService.updateRecordData(dataRecord);
+        }
+
         return ResponseModel.getModel("更新成功", "success", null);
     }
 

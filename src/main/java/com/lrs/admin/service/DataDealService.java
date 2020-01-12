@@ -59,8 +59,8 @@ public class DataDealService {
     public List<DataRecordCategory>  getRecordData(String tagTime, int firmId, String dataYear){
         return dataRecordCategoryMapper.getRecordData(tagTime, firmId, dataYear);
     }
-    public void updateRecordData(List<DataRecord> list){
-        dataRecordMapper.updateRecordData(list);
+    public void updateRecordData(DataRecord dataRecord){
+        dataRecordMapper.updateRecordData(dataRecord);
     }
 
 }

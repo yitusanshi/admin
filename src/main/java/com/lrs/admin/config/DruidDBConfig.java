@@ -99,7 +99,8 @@ public class DruidDBConfig {
         datasource.setTestOnBorrow(testOnBorrow);  
         datasource.setTestOnReturn(testOnReturn);  
         datasource.setPoolPreparedStatements(poolPreparedStatements);  
-        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);  
+        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+
         try {  
             datasource.setFilters(filters);  
         } catch (SQLException e) {  
