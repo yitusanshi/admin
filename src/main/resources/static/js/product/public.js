@@ -11,7 +11,7 @@ $(function () {
 })
 $(document).ready(
     function () {
-        var table = $('#productList').DataTable({
+        /*var table = $('#productList').DataTable({
             "scrollX": true,
             'paging': true,
             'lengthChange': true,
@@ -21,6 +21,32 @@ $(document).ready(
             'autoWidth': false,
             "pagingType": "full_numbers",
             "pageLength": 10,
+            "oLanguage": { // 语言设置
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉， 没有找到",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "sZeroRecords": "没有检索到数据",
+                "sSearch": "搜索:",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                }
+            }
+
+        });*/
+        $('#productList').DataTable({
+            "scrollX": true,
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            "pagingType": "full_numbers",
             "oLanguage": { // 语言设置
                 "sLengthMenu": "每页显示 _MENU_ 条记录",
                 "sZeroRecords": "抱歉， 没有找到",
@@ -56,8 +82,7 @@ $(document).ready(
 
         });
         // 原料消耗中点击select按钮，新增一行
-        $("#addRmcRow").on(
-            'click',
+        $("#addRmcRow").on('click',
             function () {
                 var cat_unit = $("#rmcSelect").val();
                 var categoryId = cat_unit.split("_")[0];
@@ -505,9 +530,25 @@ function updateModal(tagTime, dataYear, firmId) {
                     tr += '<td>' + data[i].categoryName + '</td>';
                     tr += '<td>' + data[i].dataYear + '</td>';
                     /*tr += '<td>' + data[i].dataSource + '</td>';*/
-                    tr += '<td><select class="form-control" name="dataType"><option value="0" selected="selected">实测值</option><option value="1">估算值</option><option value="-1">未监测</option></select></td>';
-                    tr += '<td><input type="text" class="form-control" name="productVolume" style="border: 0px;" value="' + data[i].productVolume
-                        + '" onkeyup="this.value=this.value.replace(/[^\\d.]/g,\'\')"/></td>';
+
+
+                    if (data[i].classifyName == "废水排放" || data[i].classifyName == "废气排放" || data[i].classifyName == "固体废弃物") {
+                        if (data[i].dataType == 0) {
+                            tr += '<td><select class="form-control" id="dataType" name="dataType"><option value="0" selected="selected">实测值</option><option value="1">估算值</option><option value="-1">未监测</option></select></td>';
+                        } else if (data[i].dataType == 1) {
+                            tr += '<td><select class="form-control" id="dataType" name="dataType"><option value="0">实测值</option><option value="1" selected="selected">估算值</option><option value="-1">未监测</option></select></td>';
+                        } else {
+                            tr += '<td><select class="form-control" id="dataType" name="dataType"><option value="0">实测值</option><option value="1">估算值</option><option value="-1" selected="selected">未监测</option></select></td>';
+                        }
+                    } else {
+                        tr += '<td><input style="border: 0px;display: none;" name="dataType" value="0">无</td>';
+                    }
+                    if (data[i].categoryId == "314" || data[i].categoryId == "322" || data[i].categoryId == "318") {
+                        tr += '<td><select  class="form-control" name="productVolume"> <option value="0" selected="selected">是</option><option value="1">否</option></select></td>';
+                    } else {
+                        tr += '<td><input type="text" class="form-control" name="productVolume" style="border: 0px;" value="' + data[i].productVolume
+                            + '" onkeyup="this.value=this.value.replace(/[^\\d.]/g,\'\')"/></td>';
+                    }
                     tr += '<td>' + data[i].unit + '</td>';
                     tr += "</tr>"
                 }

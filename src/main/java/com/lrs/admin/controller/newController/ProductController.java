@@ -108,7 +108,7 @@ public class ProductController extends BaseController {
 					json.put("ispass", -1);
 					json.put("dataYear", "");
 					json.put("data", new ArrayList<DataRecordCategory>());
-					mlist.add(json);
+//					mlist.add(json);
 				}
 				for (DataRecord d : list) {
 					JSONObject json = new JSONObject();
@@ -125,7 +125,7 @@ public class ProductController extends BaseController {
 					extendList.add(JSONObject.parseObject(JSONObject.toJSONString(isPassService.gasEmission(productid, dataRecordCategoryList, m))));
 					//判断是否都通过
 					for (JSONObject j : extendList){
-						
+
 						if (j.getIntValue("isPass") == -1){
 							json.put("ispass", -1);
 						}
